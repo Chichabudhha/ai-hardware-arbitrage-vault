@@ -1,0 +1,1 @@
+Nastavljamo rad na AI Hardware Arbitrage Serbia. Pročitaj CLAUDE.md, PROGRESS.md, MASTER-PLAN.md i poslednjih 5 unosa u DNEVNIK-NAPRETKA.md. Predloži jedan konkretan sledeći task. Ne počinji implementaciju dok nije jasno da task nije blokiran i da su potrebne odluke odobrene.

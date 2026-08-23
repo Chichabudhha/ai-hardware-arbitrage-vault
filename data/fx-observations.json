@@ -1,0 +1,44 @@
+[
+  {
+    "base_currency": "EUR",
+    "quote_currency": "RSD",
+    "rate": "120",
+    "observed_at": "2026-08-19T00:00:00+00:00",
+    "source": "vlasnik (usmeno, 2026-08-19) — radni kurs, nije NBS srednji kurs"
+  },
+  {
+    "base_currency": "EUR",
+    "quote_currency": "RSD",
+    "rate": "118",
+    "observed_at": "2026-08-19T12:00:00+00:00",
+    "source": "NBS srednji kurs (uneo vlasnik, 2026-08-19)"
+  },
+  {
+    "base_currency": "EUR",
+    "quote_currency": "RON",
+    "rate": "5.2452",
+    "observed_at": "2026-08-19T00:00:00+00:00",
+    "source": "BNR (bnr.ro) — cursul de schimb al pietei valutare, 19.08.2026"
+  },
+  {
+    "base_currency": "EUR",
+    "quote_currency": "HUF",
+    "rate": "365.03",
+    "observed_at": "2026-08-19T00:00:00+00:00",
+    "source": "MNB (mnb.hu) — napi arfolyamok, 19 August 2026"
+  },
+  {
+    "base_currency": "EUR",
+    "quote_currency": "BGN",
+    "rate": "1.95583",
+    "observed_at": "2026-08-18T00:00:00+00:00",
+    "source": "BNB (bnb.bg) — fiksiran kurs (currency board)"
+  },
+  {
+    "base_currency": "EUR",
+    "quote_currency": "PLN",
+    "rate": "4.3267",
+    "observed_at": "2026-08-19T00:00:00+00:00",
+    "source": "NBP (api.nbp.pl) — tabela A, nr 160/A/NBP/2026, 2026-08-19"
+  }
+]

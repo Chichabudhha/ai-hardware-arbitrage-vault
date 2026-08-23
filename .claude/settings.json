@@ -1,0 +1,22 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/progress-reminder.sh 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(bash .claude/bin/ai-status.sh)",
+      "Bash(bash .claude/bin/delegate.sh:*)",
+      "Bash(python -m pytest:*)",
+      "Bash(python -m src.cli:*)"
+    ]
+  }
+}

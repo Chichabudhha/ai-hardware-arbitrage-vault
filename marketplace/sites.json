@@ -1,0 +1,127 @@
+[
+  {
+    "marketplace": "willhaben",
+    "country": "AT",
+    "base_url": "https://www.willhaben.at",
+    "listing_id_pattern": "/iad/[^?]*?-(\\d{6,})",
+    "title": [
+      "h1"
+    ],
+    "price": [
+      "[data-testid*=\"price\"]"
+    ],
+    "description": [
+      "[data-testid*=\"description\"]"
+    ],
+    "location": [
+      "[data-testid*=\"location\"]"
+    ],
+    "listing_link": [
+      "a[href*=\"/iad/\"]"
+    ],
+    "source_decision": "D-017",
+    "notes": "Merni prolaz 2026-08-19: gole 3080 Ti 499-550 EUR, iznad praga."
+  },
+  {
+    "marketplace": "njuskalo",
+    "country": "HR",
+    "base_url": "https://www.njuskalo.hr",
+    "listing_id_pattern": "-oglas-(\\d{6,})",
+    "title": [
+      "h1"
+    ],
+    "price": [
+      "[class*=\"price\"]"
+    ],
+    "description": [
+      "[class*=\"ClassifiedDetailDescription\"]"
+    ],
+    "listing_link": [
+      "a[href*=\"-oglas-\"]"
+    ],
+    "source_decision": "D-017",
+    "notes": "Merni prolaz 2026-08-19: najjeftinija gola 3080 Ti 300 EUR."
+  },
+  {
+    "marketplace": "subito",
+    "country": "IT",
+    "base_url": "https://www.subito.it",
+    "listing_id_pattern": "-(\\d{6,})\\.htm",
+    "title": [
+      "h1"
+    ],
+    "price": [
+      "[class*=\"price\"]"
+    ],
+    "description": [
+      "[class*=\"description\"]"
+    ],
+    "listing_link": [
+      "a[href*=\".htm\"]"
+    ],
+    "source_decision": "D-017",
+    "notes": "Merni prolaz 2026-08-19: gole 3080 Ti 350-650 EUR."
+  },
+  {
+    "marketplace": "olx-ro",
+    "country": "RO",
+    "base_url": "https://www.olx.ro",
+    "listing_id_pattern": "-ID([A-Za-z0-9]{6,})",
+    "title": [
+      "h1",
+      "[data-cy=\"ad_title\"]"
+    ],
+    "price": [
+      "[data-testid=\"ad-price-container\"]"
+    ],
+    "description": [
+      "[data-cy=\"ad_description\"]"
+    ],
+    "listing_link": [
+      "a[href*=\"/d/oferta/\"]"
+    ],
+    "source_decision": "D-017",
+    "notes": "Merni prolaz 2026-08-19: gole 3080 Ti 2200-2400 RON."
+  },
+  {
+    "marketplace": "hardverapro",
+    "country": "HU",
+    "base_url": "https://hardverapro.hu",
+    "listing_id_pattern": "/apro/[^/]*/(\\d{6,})",
+    "title": [
+      "h1"
+    ],
+    "price": [
+      "[class*=\"uad-price\"]"
+    ],
+    "description": [
+      "[class*=\"uad-content\"]"
+    ],
+    "listing_link": [
+      "a[href*=\"/apro/\"]"
+    ],
+    "source_decision": "D-017",
+    "notes": "Merni prolaz 2026-08-19: jedna 3080 Ti za 195000 HUF."
+  },
+  {
+    "marketplace": "olx-pl",
+    "country": "PL",
+    "base_url": "https://www.olx.pl",
+    "listing_id_pattern": "-ID([A-Za-z0-9]{4,})",
+    "title": [
+      "h1",
+      "[data-cy=\"ad_title\"]"
+    ],
+    "price": [
+      "[data-testid=\"ad-price-container\"]"
+    ],
+    "description": [
+      "[data-cy=\"ad_description\"]"
+    ],
+    "listing_link": [
+      "a[href*=\"/d/oferta/\"]"
+    ],
+    "source_decision": "D-017",
+    "notes": "Merni prolaz 2026-08-19: gole 3080 Ti 1700-2399 PLN."
+  }
+]
