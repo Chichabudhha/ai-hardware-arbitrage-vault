@@ -1,6 +1,6 @@
 ---
 updated: 2026-08-24
-status: druga provera liste praćenja (14/15 UNSOLD, 1 DELISTED); HU i HR dodati u watchlist; i dalje 0 SOLD
+status: matrica proširena na BG/BE/NL; Holandija (marktplaats) sada najveća DE-izlaz razlika; D-020 diler cene isključene iz statistike
 ---
 
 # PROGRESS — AI Hardware Arbitrage Serbia
@@ -27,14 +27,45 @@ na listu praćenja (`watch --add`, D-017 već pokriva oba sajta) — 5 + 4 = 9
 novih subjekata, sada 23 ukupno otvorenih. Ranije je Mađarska bila samo u
 matrici asking cena, bez merenja stvarnog ishoda.
 
+**Drugi deo sesije — proširenje pretrage na nova tržišta (Bugarska, Belgija,
+Holandija; sva tri već pokrivena spiskom u D-017, samo nisu ranije korišćena).**
+Usput otkriven i ispravljen **arhitekturni nalaz**: `src/pricing/serbian_market.py`
+nije razdvajao `dealer_reference` (diler) od `asking` (privatni prodavac) opservacija
+pri računanju P25/medijane/P75 — ista greška koju D-013 zabranjuje za mešanje
+valuta, samo neprimenjena na tip prodavca. Otkriveno na `olx.bg`, gde je 7 od 9
+nađenih oglasa bilo od preprodavaca hardvera (dileri), a diler cena sistematski
+gura medijanu naviše. **Odluka D-020** (odobrio vlasnik 2026-08-24): `dealer_reference`
+i `manual_reference` se isključuju iz statistike na svim tržištima, retroaktivno;
+opservacije ostaju upisane (princip 6), samo ne ulaze u percentile. Implementirano
+u `_filter()`, 2 nova testa, 217 testova prolazi.
+
+Nakon fixa:
+- **olx.bg (BG):** 9 opservacija (2 privatne, 7 diler — 3 od istog diler-a
+  PCFlip.BG). n=2 posle isključivanja dilera, ispod praga uzorka.
+- **2dehands.be (BE):** 3 opservacije, sve privatne (450–500 €), ispod praga uzorka.
+- **marktplaats.nl (NL):** 14 opservacija (13 privatnih + 1 diler "Hardriven
+  Technologies", sopstveni sajt hardriven.nl, isključen). n=12 posle IQR filtera.
+  **Nova najveća DE→izlaz razlika: DE→NL +137 € neto (47,9%)**, ispred
+  DE→HU (+128,74 €) koja je bila prva ranije ove sesije.
+
 ## Brojevi na dan 2026-08-24
 - **39 ishoda upisano ukupno** (append-only, uklj. istorijske ispravke):
   10 DELISTED, 29 UNSOLD, **0 SOLD, 0 sa cenom**. +15 novih outcome linija
   ove sesije (14 UNSOLD, 1 DELISTED).
 - **23 subjekta otvoreno** na listi praćenja (14 preostalih iz prošlog
   prolaza + 9 novih: 5 hardverapro/HU, 4 njuskalo/HR).
-- Matrica cena i srpska procena nepromenjene (nema novih opservacija ove
-  sesije, samo watch-provera i outcome upisi).
+- **+26 novih opservacija** (9 olx-bg, 3 2dehands, 14 marktplaats) —
+  **107 opservacija ukupno**, **12 tržišta** (3 nova: BG, BE, NL).
+- **Matrica (RTX 3080 Ti) posle proširenja:** DE 338/425/463 (n=8) < RS
+  380/390/410 (n=9) < IT 430/450/600 (n=13) < HU 438,32/491,74/501,33 (n=5) <
+  RO 448,03/452,79/457,56 (n=8) < AT 450/480/499 (n=9) < PL 462,01/485,13/508,47
+  (n=13) < **NL 500/500/535 (n=12, novo)**. BG (n=2), BE (n=2), HR (n=3/4),
+  CZ (n=1) ispod praga uzorka (5).
+- **Najveća neto razlika je sada DE→NL: +137 € (47,9%)**, ispred DE→HU
+  (+128,74 €) i DE→PL (+122,13 €).
+- **D-020 doneta i primenjena**: dealer_reference/manual_reference isključeni
+  iz P25/medijana/P75 svuda, retroaktivno. Nijedna postojeća opservacija van BG/NL
+  nije bila diler-tip, pa se nijedna stara ćelija matrice nije promenila.
 
 ## Brojevi na dan 2026-08-23
 - **81 opservacija** u `data/observations/serbia.jsonl`, **9 tržišta**
@@ -149,6 +180,14 @@ matrici asking cena, bez merenja stvarnog ishoda.
   i upisana opservacija 2026-08-23 pre nego što je postojala eksplicitna
   odluka za taj sajt (D-012/D-014/D-017 nabrajaju tačan spisak i `bazos.cz`
   nije na njemu). Treba ili proširiti D-017 na Češku ili povući taj upis.
+- 🟡 **Novo (2026-08-24): "Dan" na marktplaats.nl** — jedan privatni nalog
+  (2 god. na sajtu, 205 ocena) je izvor 3 od 12 holandskih opservacija u
+  uzorku, gotovo identičan tekst oglasa/grad. Nema formalnu "Zakelijk"
+  (poslovni) oznaku sajta, pa je upisan kao privatni po istom kriterijumu kao
+  ostali (D-020: oznaka platforme), ali obrazac (visok broj ocena, ponovljeni
+  šablon) liči na neformalnog preprodavca. Nije isključeno — samo zabeleženo;
+  vlasnik treba da odluči da li nalog sa X+ ponovljenih oglasa za isti model
+  treba tretirati kao diler bez obzira na platformsku oznaku.
 
 ## Sledeći zadatak
 Za nekoliko dana: `arbitrage watch`, pa proći kroz svih 23 otvorena subjekta
@@ -157,13 +196,27 @@ prolaza ostane 0 SOLD na celoj listi, vredi razmotriti da li 5-dnevni interval
 uopšte hvata realan ciklus prodaje na ovim tržištima, ili treba duži razmak
 između provera.
 
+Vredi i vratiti se na Belgiju (2dehands, n=2) i Bugarsku (olx.bg, n=2 posle
+D-020) sa još jednim mernim prolazom da pređu prag uzorka od 5 — trenutno
+oba ispod praga i ne ulaze u matricu.
+
 Kod koji nedostaje, a ne zavisi od podataka: W5 liquidity, friction i
 deal/confidence score.
 
 ## Poslednje sesije
-- 2026-08-24 — Druga provera liste praćenja: svih 15 subjekata (slug URL-ovi
-  za willhaben), 14 UNSOLD + 1 stvarno DELISTED (potvrđeno "Gelöscht", ne
-  ambiguozan 404). Dodati hardverapro (HU, 5) i njuskalo (HR, 4) na listu
+- 2026-08-24 (drugi deo) — Merni prolaz na 3 nova tržišta iz D-017 spiska
+  koja do sada nisu korišćena: Bugarska (olx.bg), Belgija (2dehands.be),
+  Holandija (marktplaats.nl). Usput otkriven arhitekturni nalaz: pricing
+  engine nije razdvajao diler (`dealer_reference`) od privatnih (`asking`)
+  cena — ista greška klase kao D-013 (mešanje uzorka), samo za tip prodavca
+  umesto valute. **D-020** (odobrio vlasnik): diler cene isključene iz
+  P25/medijana/P75 svuda, retroaktivno; opservacije ostaju upisane. +26
+  opservacija (BG 9, BE 3, NL 14). **Holandija je nova najveća DE→izlaz
+  razlika: +137 € neto (47,9%)**, ispred Mađarske. 217 testova prolazi (2
+  nova za D-020).
+- 2026-08-24 (prvi deo) — Druga provera liste praćenja: svih 15 subjekata (slug
+  URL-ovi za willhaben), 14 UNSOLD + 1 stvarno DELISTED (potvrđeno "Gelöscht",
+  ne ambiguozan 404). Dodati hardverapro (HU, 5) i njuskalo (HR, 4) na listu
   praćenja — 23 otvorena subjekta ukupno. I dalje 0 SOLD posle 5 dana. 215
   testova prolazi (bez izmene koda, samo podaci).
 - 2026-08-23 (drugi deo) — Traženje novih oglasa na 8 tržišta (DE, AT, PL, RS,

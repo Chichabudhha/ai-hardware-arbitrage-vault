@@ -896,3 +896,82 @@ stvarnog ishoda tamo. Sada 23 otvorena subjekta ukupno.
 **Sledeći korak:** za nekoliko dana `arbitrage watch` za svih 23 subjekta.
 Ako treći prolaz i dalje da 0 SOLD, razmotriti da li 5-dnevni interval
 provere uopšte hvata realan ciklus prodaje, ili treba duži razmak.
+
+## 2026-08-24 `[claude-code]` (drugi deo) — Merni prolaz na BG/BE/NL; D-020 (dealer_reference isključen iz statistike)
+
+Nastavak iste sesije, na zahtev vlasnika: "Proširi pretragu na druge države."
+D-017 već pokriva `olx.bg` (BG), `2dehands.be`/`marktplaats.nl` (BE/NL) i
+`jofogas.hu` (drugi HU sajt) — nijedan od njih do sad nije korišćen. Fokus
+ove sesije: BG, BE, NL (nove *države*; jofogas je drugi sajt za već pokrivenu
+Mađarsku, ostavljen za drugi put).
+
+**olx.bg (Bugarska):** pretraga za "rtx 3080 ti" dala 49 rezultata, filtrirano
+na gole kartice (bez laptopa/PC bundle-ova/ventilatora): 9 kandidata. Sajt
+eksplicitno označava "Частна" (privatna) vs "Бизнес" (poslovna) na svakoj
+stranici oglasa — **7 od 9 je bilo diler** (PCFlip.BG triput, MyPCcamp,
+Komputri bg), samo 2 privatna. Cene su prikazane direktno u EUR (Bugarska je
+u međuvremenu ušla u evrozonu), bez potrebe za konverzijom.
+
+**Kritičan nalaz:** `src/pricing/serbian_market.py` je te diler cene mešao
+sa privatnim u P25/medijana/P75 računu — `PriceObservation` je već imao
+`dealer_reference` kao poseban `price_type`, ali `_filter()` ga nije
+isključivao, samo `SOLD`/`COMPLETED` je imao posebno tretiranje. Ista klasa
+greške koju D-013 zabranjuje za mešanje valuta, neprimenjena na tip
+prodavca — prva olx-bg ćelija u matrici (n=8, medijana 455 €) bila je
+mešavina i vodila ka precenjenoj proceni.
+
+Stao sam i pitao vlasnika pre nastavka (pitanje preko AskUserQuestion, ne
+nagađanje) — ovo je poslovno pravilo (šta ulazi u procenu cene), ne
+implementacioni detalj, princip 9 traži odluku u `odluke/` pre izmene.
+**Odgovor: isključi dealer_reference iz statistike (preporučena opcija).**
+
+**D-020 upisana i primenjena:**
+- `REFERENCE_TYPES = {DEALER_REFERENCE, MANUAL_REFERENCE}` — oba isključena
+  iz uzorka istim rezonom (referentna, ne peer cena), sa razlogom
+  `reference_price_not_peer:<tip>` u `ExcludedObservation`.
+- Opservacije ostaju upisane (princip 6) — samo se ne broje u percentile.
+- Primenjeno u `_filter()` u `src/pricing/serbian_market.py`; `market_matrix.py`
+  automatski nasleđuje fix jer poziva isti `estimate_resale()`.
+- 2 nova testa (`test_dealer_reference_is_not_a_peer_price`,
+  `test_manual_reference_is_not_a_peer_price`) po uzoru na postojeći stil
+  (`test_bundle_price_is_not_a_gpu_price`). 215 → 217 testova, svi prolaze.
+- Provereno da nijedna ranija opservacija (pre ove sesije) nije bila
+  dealer/manual_reference — fix je čist, nijedna stara ćelija matrice se
+  nije promenila retroaktivno.
+
+Posle fixa: olx-bg ćelija ispravno pada na n=2 (ispod praga 5), `INSUFFICIENT_DATA`.
+
+**2dehands.be (Belgija):** 15 rezultata za "rtx 3080 ti", samo 3 gole kartice
+(ostalo PC-ovi, laptopovi, jedna "samo kutija bez kartice"). Sve 3 privatne
+(nema "Zakelijk" oznaku). 450–500 €, n=3 — ispod praga uzorka.
+
+**marktplaats.nl (Holandija):** 16 rezultata u kategoriji "Videokaarten",
+15 prodajnih (1 "tražim/menjam" isključen). 1 od njih bez fiksne cene (samo
+"Bieden"/ponude, nema asking cenu) — isključen, nema šta da se upiše. Od
+preostalih 14: **13 privatnih + 1 diler** — "Hardriven Technologies", sa
+sopstvenim sajtom (hardriven.nl) i profesionalnim dvojezičnim opisom
+("Japan Import", test report na sajtu) — jasan poslovni identitet iako sajt
+nema formalnu "Zakelijk" oznaku u tekstu koji se čita; klasifikovan kao
+dealer_reference po istom D-020 principu (poslovni identitet, ne samo
+platformska oznaka).
+
+**Uzgredna napomena, nije filtrirano:** jedan privatni nalog ("Dan", 2 god.
+na sajtu, 205 ocena) je izvor 3 od 14 holandskih oglasa, gotovo identičan
+tekst/grad. Nema formalnu poslovnu oznaku pa je upisan kao privatni po istom
+kriterijumu kao ostali, ali obrazac (visok broj ocena, ponovljen šablon)
+liči na neformalnog preprodavca. Zabeleženo u PROGRESS.md kao otvoreno
+pitanje za vlasnika, ne isključeno bez odluke.
+
+Posle IQR filtera: n=12 privatnih holandskih opservacija u matrici, medijana
+500 €. **Holandija je nova najveća DE→izlaz razlika: +137 € neto (47,9%)**,
+ispred Mađarske (+128,74 €) koja je bila prva ranije ove sesije.
+
+**Upisano 26 novih opservacija ukupno** (9 BG, 3 BE, 14 NL — uklj. 1 diler
+BG × 7... ne, tačnije: BG 2 asking + 7 dealer_reference = 9; BE 3 asking;
+NL 13 asking + 1 dealer_reference = 14). `marketplace/sites.json` dopunjen
+sa `olx-bg`, `2dehands`, `marktplaats` redovima (D-017 kao source_decision).
+
+**Sledeći korak:** Belgija i Bugarska su ispod praga uzorka (n=2 svaka) —
+vredi dodatni merni prolaz da pređu 5. `jofogas.hu` (drugi mađarski sajt) i
+dalje nekorišćen. Vlasnik treba da odluči o "Dan" obrascu (ponovljeni
+privatni nalog bez formalne poslovne oznake).

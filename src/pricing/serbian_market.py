@@ -39,6 +39,12 @@ PRICING_VERSION = "pricing-v1"
 
 SOLD_TYPES = frozenset({PriceType.SOLD, PriceType.COMPLETED})
 
+# D-020: a dealer's list price or a manually-entered reference is not a peer
+# market clearing price — it carries a margin (or an unknown basis) a private
+# ASKING/SOLD observation doesn't. Mixing it into the percentile sample is the
+# same error D-013 forbids for currency, just on seller type instead.
+REFERENCE_TYPES = frozenset({PriceType.DEALER_REFERENCE, PriceType.MANUAL_REFERENCE})
+
 # D-013: Serbian GPU listings are quoted in EUR at least as often as in RSD, so
 # both are valid observation currencies. What stays forbidden is *mixing* them
 # in one sample — a percentile over two currencies is arithmetic on unlike
@@ -162,6 +168,9 @@ def _filter(
         elif obs.currency != sample_currency:
             # Not a bad observation — just not in this sample's currency.
             reason = f"currency_not_sample:{obs.currency}"
+        elif obs.price_type in REFERENCE_TYPES:
+            # D-020: dealer/manual reference prices are not peer market prices.
+            reason = f"reference_price_not_peer:{obs.price_type.value}"
         elif obs.is_bundle:
             reason = "bundle_price_is_not_a_gpu_price"
         elif obs.condition is Condition.FOR_PARTS:

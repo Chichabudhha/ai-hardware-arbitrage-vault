@@ -248,3 +248,33 @@ Trgovina van koridora EU→RS **nije odobrena** i sistem je ne računa. Pre nego
 
 Ovo **ne** odobrava trgovinu van koridora EU→RS. Otvorena pitanja iz D-018
 (pravni i poreski položaj izvoza, naplata i rizik na daljinu) i dalje stoje.
+
+## D-020 — Diler cene (dealer_reference) isključene iz P25/medijana/P75 uzorka
+
+**Odobreno od vlasnika 2026-08-24.**
+
+Nalaz: merni prolaz kroz `olx.bg` (D-017) je otkrio da je od 9 upisanih RTX
+3080 Ti oglasa 7 od preprodavaca hardvera (dileri: PCFlip.BG, MyPCcamp,
+Komputri bg — stranica ih eksplicitno označava kao "Бизнес", za razliku od
+"Частна" za privatne prodavce), a samo 2 od privatnih lica. `PriceObservation`
+je već imao `dealer_reference` kao poseban `price_type`
+(`observation_type` u `data/DATA-MODEL.md`), ali `src/pricing/serbian_market.py`
+(koji i `matrix` i srpska procena koriste) ga nije razdvajao od `asking` —
+oba su ulazila u isti P25/medijana/P75 račun. Rezultat: olx-bg ćelija u matrici
+je bila mešavina privatne i diler cene, a diler cena po pravilu nosi maržu
+koju privatni prodavac nema — ista vrsta greške koju D-013 zabranjuje za
+valute ("uzorak se nikad ne meša"), samo neprimenjena na tip prodavca.
+
+Odlučeno:
+
+- **`DEALER_REFERENCE` i `MANUAL_REFERENCE` se isključuju iz P25/medijana/P75
+  uzorka** za svako tržište (i srpsku procenu i `matrix`). U uzorak i dalje
+  ulaze samo `ASKING`, `SOLD`, `COMPLETED`.
+- **Opservacije se i dalje čuvaju** (princip 6) — `dealer_reference` ostaje u
+  `data/observations/serbia.jsonl`, samo se ne broji u statistiku. Vidljiv je
+  u `ResaleEstimate.explanation` kao isključen sa razlogom.
+- Razlog za `MANUAL_REFERENCE` isti kao za `DEALER_REFERENCE`: oba su po
+  imenu i nameni referentne, ne peer market cene — dosledno se tretiraju
+  isto dok ne postoji suprotna odluka.
+- Ovo je opšte pravilo, ne specifično za olx.bg — primenjuje se retroaktivno
+  na sve postojeće i buduće opservacije na svim tržištima.

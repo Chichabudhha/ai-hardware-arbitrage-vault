@@ -123,5 +123,65 @@
     ],
     "source_decision": "D-017",
     "notes": "Merni prolaz 2026-08-19: gole 3080 Ti 1700-2399 PLN."
+  },
+  {
+    "marketplace": "olx-bg",
+    "country": "BG",
+    "base_url": "https://www.olx.bg",
+    "listing_id_pattern": "-ID([A-Za-z0-9]{4,})",
+    "title": [
+      "h1"
+    ],
+    "price": [
+      "[data-testid=\"ad-price-container\"]"
+    ],
+    "description": [
+      "[data-cy=\"ad_description\"]"
+    ],
+    "listing_link": [
+      "a[href*=\"/d/ad/\"]"
+    ],
+    "source_decision": "D-017",
+    "notes": "Merni prolaz 2026-08-24: gole 3080 Ti 400-499 EUR. Segment dominiraju dileri (7 od 9 nadjenih oglasa \"Biznes\" oznaka) - videti D-020 za dealer_reference isključivanje iz statistike."
+  },
+  {
+    "marketplace": "2dehands",
+    "country": "BE",
+    "base_url": "https://www.2dehands.be",
+    "listing_id_pattern": "/(m\\d{6,})-",
+    "title": [
+      "h1"
+    ],
+    "price": [
+      "[class*=\"Price\"]"
+    ],
+    "description": [
+      "[class*=\"Description\"]"
+    ],
+    "listing_link": [
+      "a[href*=\"/v/\"]"
+    ],
+    "source_decision": "D-017",
+    "notes": "Merni prolaz 2026-08-24: gole 3080 Ti 450-500 EUR, n=3 (ispod praga 5), sve privatni prodavci."
+  },
+  {
+    "marketplace": "marktplaats",
+    "country": "NL",
+    "base_url": "https://www.marktplaats.nl",
+    "listing_id_pattern": "/(m\\d{6,})-",
+    "title": [
+      "h1"
+    ],
+    "price": [
+      "[class*=\"Price\"]"
+    ],
+    "description": [
+      "[class*=\"Description\"]"
+    ],
+    "listing_link": [
+      "a[href*=\"/v/\"]"
+    ],
+    "source_decision": "D-017",
+    "notes": "Merni prolaz 2026-08-24: gole 3080 Ti 400-575 EUR, n=12 posle IQR (13 privatnih upisano, 1 diler - Hardriven Technologies, sopstveni sajt - isključen po D-020). Trenutno najveća DE->izlaz razlika u matrici."
   }
 ]

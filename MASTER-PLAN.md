@@ -99,12 +99,12 @@ Postupak: `operations/PAPER-TRADING.md`.
 **Gate:** vlasnik može za <60 sekundi da proceni priliku.
 
 ### W8 — Scale
-- [x] Više EU marketplace-a. (9 tržišta u matrici na dan 2026-08-23 — dodate
-      Mađarska i Rumunija/Hrvatska proširene; generički MANUAL konektor —
-      novi sajt je red u `marketplace/sites.json`, ne nova klasa. Slovenija
-      merena i prazna za ovaj model; Češka jedan uzorak, bez FX kursa —
-      #čeka-provere: `bazos.cz` nema odluku poput D-017, pristupljen van
-      odobrenog spiska sajtova.)
+- [x] Više EU marketplace-a. (12 tržišta na dan 2026-08-24 — dodate Bugarska,
+      Belgija, Holandija ovom sesijom (D-017 ih je već pokrivao, samo nisu
+      ranije korišćene); generički MANUAL konektor — novi sajt je red u
+      `marketplace/sites.json`, ne nova klasa. Slovenija merena i prazna za
+      ovaj model; Češka jedan uzorak, bez FX kursa — #čeka-provere: `bazos.cz`
+      nema odluku poput D-017, pristupljen van odobrenog spiska sajtova.)
 - [ ] Više GPU modela.
 - [ ] Complete PCs / bundles.
 - [ ] Seller intelligence.
@@ -162,11 +162,12 @@ posmatranom cenom. Od 6 pratećih austrijskih oglasa samo je 1 stvarno nestao
 protiv teze o brzoj prodaji po 499-550 € nego u njenu korist.
 
 Uz W6 je otvoren i **W8-ranije nego planirano**: matrica cena po tržištima
-(D-018) sada pokriva 9 tržišta (dodata Mađarska, proširena Hrvatska). Najveća
-neto razlika više nije DE→AT nego **DE→HU: +128,74 € (45,5%)** — Mađarska je
-u prvom mernom prolazu (D-017, 19.08.) odbačena na jednom skupom uzorku
-(195.000 Ft); sa 5 sopstvenih uzoraka (158.900-199.999 Ft) izgleda potpuno
-drugačije. I ovo je i dalje samo asking cena bez ijedne potvrđene prodaje.
+(D-018) sada pokriva 12 tržišta (dodate Bugarska, Belgija, Holandija
+2026-08-24). Najveća neto razlika više nije DE→HU nego **DE→NL: +137 €
+(47,9%)** — otkriveno u istom mernom prolazu koji je otkrio i arhitekturni
+nalaz: pricing engine nije razdvajao diler cene od privatnih (D-020, odobreno
+2026-08-24, isključuje `dealer_reference`/`manual_reference` iz statistike
+svuda). I ovo je i dalje samo asking cena bez ijedne potvrđene prodaje.
 
 ## Rizici
 

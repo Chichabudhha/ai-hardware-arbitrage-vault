@@ -120,6 +120,30 @@ def test_bundle_price_is_not_a_gpu_price():
     assert any(x.reason == "bundle_price_is_not_a_gpu_price" for x in estimate.excluded)
 
 
+def test_dealer_reference_is_not_a_peer_price():
+    observations = sample(BASE)
+    observations.append(
+        obs("250000", price_type=PriceType.DEALER_REFERENCE, listing_id="kp-dealer")
+    )
+    estimate = estimate_resale(observations, "rtx-3090", now=NOW)
+    assert estimate.sample_size == len(BASE)
+    assert any(
+        x.reason == "reference_price_not_peer:dealer_reference" for x in estimate.excluded
+    )
+
+
+def test_manual_reference_is_not_a_peer_price():
+    observations = sample(BASE)
+    observations.append(
+        obs("250000", price_type=PriceType.MANUAL_REFERENCE, listing_id="kp-manual")
+    )
+    estimate = estimate_resale(observations, "rtx-3090", now=NOW)
+    assert estimate.sample_size == len(BASE)
+    assert any(
+        x.reason == "reference_price_not_peer:manual_reference" for x in estimate.excluded
+    )
+
+
 def test_for_parts_is_excluded():
     observations = sample(BASE)
     observations.append(obs("30000", condition=Condition.FOR_PARTS, listing_id="kp-parts"))
