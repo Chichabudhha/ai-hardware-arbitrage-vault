@@ -852,3 +852,47 @@ kao stvarno uklonjen oglas.
 **Sledeći korak:** `arbitrage watch` za svih 15 otvorenih subjekata (ispravnim
 willhaben URL-ovima), `watch --add hardverapro` i `watch --add njuskalo`, i
 odluka vlasnika o `bazos.cz`.
+
+## 2026-08-24 `[claude-code]` — Druga provera liste praćenja; HU i HR ulaze u watchlist
+
+Sesija je počela sa `gde-smo-stali`. Predlog sledećeg taska (provera 15
+otvorenih watch-subjekata + dodavanje HU/HR) potvrđen — nije bio blokiran,
+`hardverapro.hu` i `njuskalo.hr` su već pokriveni D-017.
+
+**Provereno svih 15 subjekata**, willhaben URL-ovi ovog puta sa slug-om
+(`/d/x-{id}/`) po lekciji od 23.08:
+- 5 willhaben (AT): svih 5 živo, cene nepromenjene (450, 499, 499, 500, 550 €).
+- 8 olx-pl (PL): svih 8 živo, cene nepromenjene (1999–2399 zł).
+- 2 kleinanzeigen (DE): 1 živ nepromenjen (350 €), **1 stvarno DELISTED**
+  (EVGA 3080Ti, 300 €) — stranica nosi eksplicitnu oznaku "Gelöscht" iznad
+  naslova, ne generički 404, pa je nalaz pouzdan po pravilu iz
+  `reference/naucene-lekcije.md`.
+
+**Uzgredan nalaz:** za drugi kleinanzeigen oglas je `get_page_text` prvi put
+vratio tekst potpuno nepovezanog oglasa (drugi grad, drugi model, druga
+cena) — izgleda kao da je pokupio sadržaj reklamnog/preporučenog vidžeta na
+stranici umesto glavnog članka, ne stvarna promena sadržaja. Provereno
+screenshot-om posle skrolovanja: pravi oglas je i dalje živ, cena
+nepromenjena. **Lekcija:** kad `get_page_text` vrati sadržaj koji ne
+odgovara očekivanom oglasu (drugi grad/model/cena), ne uzimati to kao dokaz
+o promeni bez vizuelne provere — može biti da je izvučen pogrešan DOM
+element.
+
+**15 outcome linija upisano** (append-only): 14 UNSOLD, 1 DELISTED. Ukupno u
+`data/paper/outcomes.jsonl` sada 39 linija (10 DELISTED, 29 UNSOLD), **i
+dalje 0 SOLD, 0 sa cenom** — pet dana bez ijedne potvrđene prodaje na 15 pod
+nadzorom, što i dalje ide protiv teze o brzoj apsorpciji po posmatranim
+asking cenama.
+
+**Dodato na watchlist:** `watch --add hardverapro --product-id rtx-3080-ti`
+(5 subjekata) i `watch --add njuskalo --product-id rtx-3080-ti` (4
+subjekta) — Mađarska je matematički najbolja prodajna destinacija u matrici
+(D-018), ali do sada samo na asking cenama; ovo je prvi korak ka merenju
+stvarnog ishoda tamo. Sada 23 otvorena subjekta ukupno.
+
+215 testova i dalje prolazi (bez izmene koda ove sesije, samo podaci).
+`bazos.cz` odluka ostaje otvorena (#čeka-provere), nije dirana ove sesije.
+
+**Sledeći korak:** za nekoliko dana `arbitrage watch` za svih 23 subjekta.
+Ako treći prolaz i dalje da 0 SOLD, razmotriti da li 5-dnevni interval
+provere uopšte hvata realan ciklus prodaje, ili treba duži razmak.

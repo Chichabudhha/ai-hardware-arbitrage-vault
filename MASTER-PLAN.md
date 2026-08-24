@@ -150,6 +150,12 @@ Prva provera liste praćenja izvršena 2026-08-23: 24 ishoda upisano, **0 SOLD**
 willhaben-ov routing, ne stvaran nestanak oglasa — vidi
 `reference/naucene-lekcije.md`).
 
+Druga provera 2026-08-24: svih 15 subjekata provereno (ispravnim slug
+URL-ovima), 14 UNSOLD nepromenjeno, 1 stvarno DELISTED (kleinanzeigen,
+potvrđeno oznakom "Gelöscht", ne ambiguozan 404). HU (hardverapro) i HR
+(njuskalo) dodati na listu praćenja — 23 otvorena subjekta ukupno. I dalje
+0 SOLD posle 5 dana na 15 pod nadzorom.
+
 Ostalo je i dalje **vreme i ishodi**: gate traži 100 kandidata i 20 ishoda sa
 posmatranom cenom. Od 6 pratećih austrijskih oglasa samo je 1 stvarno nestao
 (bez potvrde prodaje), ostalih 5 stoji nepromenjeno 4-11 dana — to pre ide

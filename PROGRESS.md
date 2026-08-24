@@ -1,6 +1,6 @@
 ---
-updated: 2026-08-23
-status: matrica proširena na 9 tržišta; Mađarska se pojavila kao nova vodeća prodajna destinacija; willhaben bug ispravljen
+updated: 2026-08-24
+status: druga provera liste praćenja (14/15 UNSOLD, 1 DELISTED); HU i HR dodati u watchlist; i dalje 0 SOLD
 ---
 
 # PROGRESS — AI Hardware Arbitrage Serbia
@@ -8,15 +8,33 @@ status: matrica proširena na 9 tržišta; Mađarska se pojavila kao nova vodeć
 ## Gde smo stali
 Lanac radi od kraja do kraja na stvarnim podacima: nemački oglas → product match
 → landed cost → srpska procena iz stvarnih oglasa → verdikt → zapisana
-predikcija. Matrica cena sada pokriva **9 tržišta** (dodati Mađarska i Češka
-ovom sesijom, Hrvatska proširena sa 1 na 4 uzorka).
+predikcija. Matrica cena pokriva **9 tržišta** (Mađarska i Češka dodate
+2026-08-23, Hrvatska proširena sa 1 na 4 uzorka).
 
-Prva provera liste praćenja (2026-08-23) je isprva pogrešno prijavila 6/6
-austrijskih oglasa kao nestale — **bio je bug**: sačuvan URL bez SEO sluga je
-rušio willhaben-ov SPA routing (404 na formu bez sluga), ne stvarno uklanjanje.
-Ispravljeno: 5 od 6 je zapravo živo i nepromenjeno; samo 1 (400 €) je stvarno
-nestao (willhaben eksplicitno vraća "Anzeige nicht mehr verfügbar"). I dalje
-0 ishoda sa posmatranom cenom.
+Druga provera liste praćenja (2026-08-24): svih 15 otvorenih subjekata
+provereno sa ispravnim (slug) URL-ovima. **14/15 i dalje UNSOLD, nepromenjena
+cena** (5 willhaben, 8 olx-pl, 1 kleinanzeigen). **1 kleinanzeigen oglas
+(EVGA 3080Ti, 300 €) stvarno DELISTED** — stranica nosi eksplicitnu oznaku
+"Gelöscht", ne generički 404, pa je nalaz pouzdan (vidi lekciju o anti-bot
+404 vs. stvarno uklanjanje). Uzgred otkriven parsing-kvirk: `get_page_text`
+je za drugi kleinanzeigen oglas prvi put vratio tekst nepovezanog
+reklamnog/preporučenog vidžeta umesto članka — potvrđeno screenshot-om da je
+pravi oglas i dalje živ, nepromenjen. I dalje **0 ishoda sa posmatranom
+cenom** — 5 dana bez nijedne potvrđene prodaje na 15 pod nadzorom.
+
+Mađarska (hardverapro) i Hrvatska (njuskalo) su ovom sesijom prvi put dodate
+na listu praćenja (`watch --add`, D-017 već pokriva oba sajta) — 5 + 4 = 9
+novih subjekata, sada 23 ukupno otvorenih. Ranije je Mađarska bila samo u
+matrici asking cena, bez merenja stvarnog ishoda.
+
+## Brojevi na dan 2026-08-24
+- **39 ishoda upisano ukupno** (append-only, uklj. istorijske ispravke):
+  10 DELISTED, 29 UNSOLD, **0 SOLD, 0 sa cenom**. +15 novih outcome linija
+  ove sesije (14 UNSOLD, 1 DELISTED).
+- **23 subjekta otvoreno** na listi praćenja (14 preostalih iz prošlog
+  prolaza + 9 novih: 5 hardverapro/HU, 4 njuskalo/HR).
+- Matrica cena i srpska procena nepromenjene (nema novih opservacija ove
+  sesije, samo watch-provera i outcome upisi).
 
 ## Brojevi na dan 2026-08-23
 - **81 opservacija** u `data/observations/serbia.jsonl`, **9 tržišta**
@@ -96,14 +114,15 @@ nestao (willhaben eksplicitno vraća "Anzeige nicht mehr verfügbar"). I dalje
 
 ## U toku
 - ⏳ **Čeka se da ishodi sazru.** Gate traži 100 kandidata i 20 ishoda sa cenom;
-  imamo 3+21 subjekata, 24 ishoda upisano ali 0 sa cenom (svi DELISTED/UNSOLD).
+  imamo 3 predikcije + 23 otvorena watch-subjekta, 39 ishoda upisano ukupno
+  ali i dalje 0 sa cenom (svi DELISTED/UNSOLD).
 - ⏳ Uzorci ispod minimuma: RTX 3090 n=3, RTX 4080 Super n=2, njuskalo (HR) n=4,
   bazos (CZ) n=1.
-- ⏳ **Otvoreno pitanje (posle ispravke):** samo 1 od 6 willhaben oglasa je
-  stvarno nestao (400 €, potvrđeno "nije više dostupan"); ostalih 5 stoji
-  nepromenjeno 4-11 dana. To ne podržava "brzu apsorpciju po 499-550 €" —
-  ako nešto govori, to je da AT oglasi dugo stoje po toj ceni, ne da se brzo
-  prodaju. Nema potvrde prodaje ni u jednom pravcu.
+- ⏳ **Otvoreno pitanje, sada jače podržano:** od 15 subjekata praćenih 5 dana
+  (19.08 → 24.08), samo 1 je nestao (kleinanzeigen, potvrđeno "Gelöscht");
+  ostalih 14 stoji nepromenjeno na istoj ceni. To i dalje ide protiv teze o
+  brzoj apsorpciji po posmatranim asking cenama — bez ijedne potvrđene
+  prodaje ni u jednom pravcu, ni posle dve provere.
 - ⏳ CZK kurs i dalje nedostaje (cnb.cz, ecb.europa.eu blokirani); 1 češki
   uzorak čeka konverziju.
 
@@ -132,17 +151,21 @@ nestao (willhaben eksplicitno vraća "Anzeige nicht mehr verfügbar"). I dalje
   nije na njemu). Treba ili proširiti D-017 na Češku ili povući taj upis.
 
 ## Sledeći zadatak
-Za nekoliko dana: `arbitrage watch`, pa proći kroz preostalih 15 subjekata
-(koristeći URL sa slugom za willhaben, ne goli ID) i zabeležiti šta se desilo.
-Vredi dodati par mađarskih i hrvatskih kartica na listu praćenja (`watch --add
-hardverapro`, `watch --add njuskalo`) da se i tamo meri stvarna prodaja, ne
-samo asking — Mađarska je sada matematički najbolja prodajna destinacija, ali
-to je i dalje samo asking cena bez sold potvrde.
+Za nekoliko dana: `arbitrage watch`, pa proći kroz svih 23 otvorena subjekta
+(14 stari + 9 novi HU/HR) i zabeležiti šta se desilo. Ako i posle trećeg
+prolaza ostane 0 SOLD na celoj listi, vredi razmotriti da li 5-dnevni interval
+uopšte hvata realan ciklus prodaje na ovim tržištima, ili treba duži razmak
+između provera.
 
 Kod koji nedostaje, a ne zavisi od podataka: W5 liquidity, friction i
 deal/confidence score.
 
 ## Poslednje sesije
+- 2026-08-24 — Druga provera liste praćenja: svih 15 subjekata (slug URL-ovi
+  za willhaben), 14 UNSOLD + 1 stvarno DELISTED (potvrđeno "Gelöscht", ne
+  ambiguozan 404). Dodati hardverapro (HU, 5) i njuskalo (HR, 4) na listu
+  praćenja — 23 otvorena subjekta ukupno. I dalje 0 SOLD posle 5 dana. 215
+  testova prolazi (bez izmene koda, samo podaci).
 - 2026-08-23 (drugi deo) — Traženje novih oglasa na 8 tržišta (DE, AT, PL, RS,
   IT, RO, HR, HU, SI, CZ — poslednja dva ispitana, SI prazno, CZ 1 uzorak).
   +22 nove opservacije. Otkriven i ispravljen willhaben URL bug (5/6 lažnih
