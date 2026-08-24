@@ -203,3 +203,44 @@ nepoznat ID kao grešku. Test za ovakav bug mora da postavi both-and-scenario
 (bar jedan zapis iz svake strukture sa svojim outcome-om) — test koji koristi
 samo jednu vrstu ne bi ovo uhvatio, što je i razlog zašto je bug prošao kroz
 213 postojećih testova.
+
+## "Uzorak se ne meša" važi i za tip prodavca, ne samo za valutu
+
+D-013 zabranjuje mešanje valuta u jednom P25/medijana/P75 uzorku. Isti princip
+je prećutno prekršen na drugom mestu: `PriceObservation` je od početka imao
+`dealer_reference` kao poseban `price_type` (za razliku od `asking`), ali
+`src/pricing/serbian_market.py` ga nikad nije isključivao iz statistike — samo
+`SOLD`/`COMPLETED` je imao posebno tretiranje u `_basis()`. Diler cena nosi
+maržu koju privatni prodavac nema; mešana u uzorak, sistematski gura medijanu
+naviše.
+
+Nalaz je slučajan: merni prolaz kroz `olx.bg` (2026-08-24) je otkrio da je
+7 od 9 nađenih oglasa za isti model bilo od preprodavaca hardvera (sajt ih
+eksplicitno označava "Бизнес" nasuprot "Частна"), a samo 2 privatna — prva
+verzija ćelije u matrici (n=8) bila je mešavina koja je izgledala kao normalan
+rezultat, bez ikakve greške ili crasha koji bi je odao.
+
+**Pravilo:** svaki dodatni `price_type`/`observation_type` u modelu podataka
+mora da ima **odgovarajuću granu u filteru** koji hrani statistiku, ne samo da
+postoji kao opcija u enumu. Prisustvo tipa u modelu nije dokaz da je obrađen u
+proračunu — proveri filter, ne samo šemu. Ispravljeno u D-020: `dealer_reference`
+i `manual_reference` isključeni iz uzorka (razlog `reference_price_not_peer:*`),
+opservacije ostaju upisane (princip 6), samo se ne broje.
+
+## Platformska oznaka za diler/privatno nije univerzalna — proveri poslovni identitet i kad oznaka nedostaje
+
+Kriterijum za dealer_reference (D-020) je platformska oznaka ("Бизнес" na
+olx.bg, "Zakelijk" na 2dehands/marktplaats). Ali `marktplaats.nl` oglas
+"ROG Strix RTX 3080 Ti — Japan Import | Hardriven" nije nosio takvu oznaku u
+tekstu koji se čita, a prodavac je bio nedvosmisleno firma: ime "Hardriven
+Technologies", sopstveni sajt (hardriven.nl) sa test izveštajem, profesionalan
+dvojezičan opis. Klasifikovan kao dealer_reference na osnovu tih signala, ne
+platformske oznake koje nije bilo.
+
+**Pravilo:** platformska oznaka je *dovoljan* dokaz za dealer_reference, ali
+nije *neophodan* — jasan poslovni identitet u samom oglasu (ime firme,
+sopstveni sajt, profesionalan copy) je isti kvalitet dokaza. Obrnuto: visok
+broj ocena ili ponovljeni oglasi kod *privatnog* naloga bez ijednog od tih
+znakova (npr. "Dan" na marktplaats.nl, 205 ocena, 3 skoro identična oglasa)
+nije dovoljan dokaz sam po sebi — zabeleži kao otvoreno pitanje
+(#čeka-vlasnika), ne izjednačavaj tiho sa diler statusom bez odluke.

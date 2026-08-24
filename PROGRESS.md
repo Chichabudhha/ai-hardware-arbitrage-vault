@@ -164,6 +164,15 @@ Nakon fixa:
   rizik prodaje na daljinu — risk model pokriva kupovinu, ne prodaju.
 - 🟡 Minimalna confidence za BUY (#čeka-vlasnika). Odgovor treba da dođe iz
   kalibracionog izveštaja, ne iz pretpostavke.
+- 🟡 **#čeka-vlasnika (novo 2026-08-24): ponovljeni privatni nalog kao
+  neformalni diler.** "Dan" na marktplaats.nl (2 god. na sajtu, 205 ocena)
+  je izvor 3 od 12 holandskih opservacija u uzorku, gotovo identičan tekst
+  oglasa/grad. Nema formalnu "Zakelijk" (poslovni) oznaku sajta, pa je upisan
+  kao privatni po istom kriterijumu kao ostali (D-020: oznaka platforme), ali
+  obrazac (visok broj ocena, ponovljen šablon) liči na neformalnog
+  preprodavca. Nije isključeno — samo zabeleženo. Treba odluka: da li nalog
+  sa X+ ponovljenih oglasa za isti model treba tretirati kao diler bez obzira
+  na platformsku oznaku, i ako da, koji prag (broj oglasa/ocena).
 
 ## Blokirano
 - 🔴 Verifikacija dozvoljenog automatizovanog pristupa (#čeka-provere) — blokira
@@ -180,14 +189,6 @@ Nakon fixa:
   i upisana opservacija 2026-08-23 pre nego što je postojala eksplicitna
   odluka za taj sajt (D-012/D-014/D-017 nabrajaju tačan spisak i `bazos.cz`
   nije na njemu). Treba ili proširiti D-017 na Češku ili povući taj upis.
-- 🟡 **Novo (2026-08-24): "Dan" na marktplaats.nl** — jedan privatni nalog
-  (2 god. na sajtu, 205 ocena) je izvor 3 od 12 holandskih opservacija u
-  uzorku, gotovo identičan tekst oglasa/grad. Nema formalnu "Zakelijk"
-  (poslovni) oznaku sajta, pa je upisan kao privatni po istom kriterijumu kao
-  ostali (D-020: oznaka platforme), ali obrazac (visok broj ocena, ponovljeni
-  šablon) liči na neformalnog preprodavca. Nije isključeno — samo zabeleženo;
-  vlasnik treba da odluči da li nalog sa X+ ponovljenih oglasa za isti model
-  treba tretirati kao diler bez obzira na platformsku oznaku.
 
 ## Sledeći zadatak
 Za nekoliko dana: `arbitrage watch`, pa proći kroz svih 23 otvorena subjekta
