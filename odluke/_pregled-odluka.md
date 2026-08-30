@@ -278,3 +278,18 @@ Odlučeno:
   isto dok ne postoji suprotna odluka.
 - Ovo je opšte pravilo, ne specifično za olx.bg — primenjuje se retroaktivno
   na sve postojeće i buduće opservacije na svim tržištima.
+
+**Primena 2026-08-30 (ispravka greške pri unosu, ne nova odluka):** treći
+watch prolaz je otkrio da su 2 njuskalo (HR) opservacije ("eRadar Tech
+d.o.o.", registrovana firma) i 1 hardverapro (HU) opservacija ("MvilágKft",
+d.o.o.) bile pri unosu 23.08. pogrešno upisane kao `asking` umesto
+`dealer_reference` — tip prodavca se do tada nije proveravao van olx.bg/NL.
+Vlasnik je odobrio da se ispravi odmah. Pošto `_filter()` u
+`serbian_market.py` broji svaki red iz `serbia.jsonl` nezavisno bez dedup
+po `source_listing_id`, ispravka je morala biti izmena postojećeg
+`price_type` polja na sve 3 opservacije, ne novi append red (append-only
+princip 6 se odnosi na brisanje/prepisivanje zbog *nove procene*, ne na
+ispravku pogrešno unetog polja — ista logika kao ispravka willhaben URL
+bug-a, samo na drugoj strukturi podataka). Posledica: hardverapro (HU)
+pada ispod praga uzorka (n=5→4), ispada iz matrice — raniji nalaz
+"DE→HU najbolja prodajna destinacija" više ne stoji.
