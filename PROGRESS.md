@@ -1,6 +1,6 @@
 ---
-updated: 2026-08-24
-status: matrica proširena na BG/BE/NL; Holandija (marktplaats) sada najveća DE-izlaz razlika; D-020 diler cene isključene iz statistike
+updated: 2026-08-30
+status: prvi SOLD ishod (willhaben, 429 EUR); dva dilera otkrivena na HU/HR i ispravljena (D-020 primena) — Mađarska ispala iz matrice ispod praga uzorka
 ---
 
 # PROGRESS — AI Hardware Arbitrage Serbia
@@ -8,8 +8,35 @@ status: matrica proširena na BG/BE/NL; Holandija (marktplaats) sada najveća DE
 ## Gde smo stali
 Lanac radi od kraja do kraja na stvarnim podacima: nemački oglas → product match
 → landed cost → srpska procena iz stvarnih oglasa → verdikt → zapisana
-predikcija. Matrica cena pokriva **9 tržišta** (Mađarska i Češka dodate
-2026-08-23, Hrvatska proširena sa 1 na 4 uzorka).
+predikcija. Matrica cena pokriva **9 tržišta sa dovoljno uzorka**
+(kleinanzeigen, kupujemprodajem, subito, olx-ro, willhaben, olx-pl,
+marktplaats — hardverapro i njuskalo su 2026-08-30 pale ispod praga posle
+ispravke diler cena, vidi niže).
+
+**Treći watch prolaz (2026-08-30):** svih 23 otvorena subjekta provereno.
+**Prvi SOLD ishod u projektu** — willhaben oglas 1095225831 eksplicitno
+markiran "(verkauft)"/"VERKAUFT", cena 429 € (bilo 450 € pri poslednjem
+viđenju; verovatno sniženo pre prodaje, 429 € nije potvrđena pregovarana
+cena). 5 DELISTED (2 olx-pl eksplicitnom porukom, 3 hardverapro sa
+novootkrivenim obrascem "Archív –"/"Archivált hirdetés" — arhivirano,
+tretirano kao DELISTED ne SOLD jer ne potvrđuje prodaju). 17 UNSOLD
+nepromenjeno. 17 subjekata ostaje otvoreno.
+
+**Veći nalaz: 2 dilera otkrivena na tržištima gde se tip prodavca do sada
+nije proveravao.** "eRadar Tech d.o.o." (registrovana firma, samo-
+sertifikovan trgovac) je izvor 2 od 4 njuskalo (HR) opservacija; "MvilágKft"
+(d.o.o., plaćena Ultra objava, radnja u Pečuju) je izvor 1 od 5 hardverapro
+(HU) opservacija. Sve tri su pri unosu 23.08. pogrešno upisane kao
+`asking` umesto `dealer_reference` — ista klasa greške koju je D-020 već
+rešio za olx.bg/marktplaats. Pošto D-020 kaže da se primenjuje retroaktivno
+na sve opservacije, i pošto je izmena postojećeg polja (ne novi red)
+jedini način da ispravka stvarno utiče na `_filter()` (koji broji svaki red
+iz `serbia.jsonl` nezavisno, bez dedup po `source_listing_id`), vlasnik je
+pitan i odobrio ispravku odmah. **Posledica: hardverapro pada sa n=5 na
+n=4 (ispod praga, ispada iz matrice) — Mađarska više nije "matematički
+najbolja prodajna destinacija"; njuskalo pada sa n=3 na n=2.** Nova najveća
+neto razlika ostaje DE→NL +137 € (47,9%, marktplaats), ispred DE→PL
++122,13 €. 217 testova i dalje prolazi (bez izmene koda, samo podaci).
 
 Druga provera liste praćenja (2026-08-24): svih 15 otvorenih subjekata
 provereno sa ispravnim (slug) URL-ovima. **14/15 i dalje UNSOLD, nepromenjena
@@ -66,6 +93,35 @@ Nakon fixa:
 - **D-020 doneta i primenjena**: dealer_reference/manual_reference isključeni
   iz P25/medijana/P75 svuda, retroaktivno. Nijedna postojeća opservacija van BG/NL
   nije bila diler-tip, pa se nijedna stara ćelija matrice nije promenila.
+  **Ispravka 2026-08-30: ovaj poslednji zaključak je bio netačan** — HU i HR
+  su i dalje imale neotkrivene diler opservacije, samo nisu bile proverene
+  do trećeg watch prolaza (vidi niže).
+
+## Brojevi na dan 2026-08-30
+- **Treći watch prolaz**: svih 23 otvorena subjekta provereno. **1 SOLD**
+  (willhaben 1095225831, 429 €, prvi put u projektu), **5 DELISTED** (2
+  olx-pl eksplicitnom porukom, 3 hardverapro sa novootkrivenim obrascem
+  "Archivált hirdetés"), **17 UNSOLD** nepromenjeno. 17 subjekata ostaje
+  otvoreno.
+- **`data/paper/outcomes.jsonl`: 62 linije ukupno** (1 SOLD, 15 DELISTED,
+  46 UNSOLD).
+- **2 dilera otkrivena i ispravljena** (D-020 primena na pogrešno
+  klasifikovane opservacije, ne nova odluka): "eRadar Tech d.o.o." (2
+  njuskalo opservacije, 500 € i 490 €) i "MvilágKft" (1 hardverapro
+  opservacija, 179.500 Ft). Sve tri su bile upisane kao `asking` umesto
+  `dealer_reference` pri unosu 2026-08-23; ispravljeno direktnom izmenom
+  `price_type` polja u `data/observations/serbia.jsonl` (jedini način da
+  ispravka utiče na `_filter()`, koji ne dedup-uje po `source_listing_id`).
+  Vlasnik odobrio ispravku istog dana.
+- **Posledica na matricu:** hardverapro (HU) pada sa n=5 na **n=4, ispod
+  praga uzorka** — Mađarska više nije "matematički najbolja prodajna
+  destinacija" (ranije DE→HU +128,74 €, 45,5%, sad `INSUFFICIENT_DATA`).
+  njuskalo (HR) pada sa n=3 na n=2. willhaben (AT) raste sa n=9 na n=10
+  zbog nove SOLD opservacije.
+- **Nova najveća neto razlika: DE→NL +137 € (47,9%, marktplaats)** ostaje
+  nepromenjena kao prva, ispred DE→PL +122,13 € — Mađarska je ispala iz
+  poređenja umesto da bude druga.
+- 217 testova i dalje prolazi (bez izmene koda, samo podaci).
 
 ## Brojevi na dan 2026-08-23
 - **81 opservacija** u `data/observations/serbia.jsonl`, **9 tržišta**
@@ -191,11 +247,16 @@ Nakon fixa:
   nije na njemu). Treba ili proširiti D-017 na Češku ili povući taj upis.
 
 ## Sledeći zadatak
-Za nekoliko dana: `arbitrage watch`, pa proći kroz svih 23 otvorena subjekta
-(14 stari + 9 novi HU/HR) i zabeležiti šta se desilo. Ako i posle trećeg
-prolaza ostane 0 SOLD na celoj listi, vredi razmotriti da li 5-dnevni interval
-uopšte hvata realan ciklus prodaje na ovim tržištima, ili treba duži razmak
-između provera.
+Za nekoliko dana: `arbitrage watch` za preostalih 17 subjekata. Sad kad
+postoji 1 SOLD ishod, vredi pratiti da li se obrazac ponavlja ili je bio
+izolovan slučaj.
+
+Vredi proveriti preostale asking opservacije na HU/HR/BG/NL/BE na isti način
+kao što je slučajno otkriven eRadar/MvilágKft (ime prodavca, pravni podaci
+na dnu oglasa) da se uhvate eventualni dalji neotkriveni dileri — do sada su
+svi nađeni slučajno tokom watch provere, ne sistematskom proverom pri
+unosu. Mađarska (hardverapro) treba novi merni prolaz da vrati n≥5 sa
+privatnim prodavcima pošto je ispala iz matrice.
 
 Vredi i vratiti se na Belgiju (2dehands, n=2) i Bugarsku (olx.bg, n=2 posle
 D-020) sa još jednim mernim prolazom da pređu prag uzorka od 5 — trenutno
@@ -205,6 +266,16 @@ Kod koji nedostaje, a ne zavisi od podataka: W5 liquidity, friction i
 deal/confidence score.
 
 ## Poslednje sesije
+- 2026-08-30 — Treći watch prolaz, svih 23 subjekta: **1 SOLD** (prvi u
+  projektu, willhaben 429 €, eksplicitna "verkauft" oznaka), 5 DELISTED (2
+  olx-pl, 3 hardverapro sa novootkrivenim "Archivált hirdetés" obrascem),
+  17 UNSOLD. Usput otkrivena **2 dilera na HU/HR** ("eRadar Tech d.o.o." na
+  njuskalo, "MvilágKft" na hardverapro) pogrešno upisana kao `asking` pri
+  unosu 23.08 — ispravljeno direktnom izmenom `price_type` na 3 postojeća
+  reda (D-020 primena na grešku pri unosu, ne nova odluka; vlasnik odobrio).
+  **Mađarska ispala iz matrice** (hardverapro n=5→4, ispod praga) —
+  prethodni nalaz "DE→HU najbolja destinacija" više ne važi dok se ne
+  nađe novi privatni uzorak. 217 testova prolazi (bez izmene koda).
 - 2026-08-24 (drugi deo) — Merni prolaz na 3 nova tržišta iz D-017 spiska
   koja do sada nisu korišćena: Bugarska (olx.bg), Belgija (2dehands.be),
   Holandija (marktplaats.nl). Usput otkriven arhitekturni nalaz: pricing

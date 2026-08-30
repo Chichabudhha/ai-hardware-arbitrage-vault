@@ -975,3 +975,100 @@ sa `olx-bg`, `2dehands`, `marktplaats` redovima (D-017 kao source_decision).
 vredi dodatni merni prolaz da pređu 5. `jofogas.hu` (drugi mađarski sajt) i
 dalje nekorišćen. Vlasnik treba da odluči o "Dan" obrascu (ponovljeni
 privatni nalog bez formalne poslovne oznake).
+
+## 2026-08-30 `[claude-code]` — Treći watch prolaz: prvi SOLD ishod; diler cene otkrivene na HU/HR (D-020 primena)
+
+Sesija je počela sa `gde-smo-stali`. Predlog sledećeg taska (treći
+`arbitrage watch` prolaz kroz svih 23 otvorena subjekta, 6 dana od poslednje
+provere) potvrđen — nije bio blokiran, sve u okviru već odobrenih
+D-012/D-014/D-017.
+
+**Svih 23 subjekta provereno**, willhaben URL-ovi sa slug-om
+(`/d/x-{id}/`) po lekciji od 23.08:
+
+- **1 SOLD — prvi put u projektu**, posle 39 ranijih ishoda i 3 prethodna
+  prolaza sa 0 SOLD. Willhaben oglas 1095225831 nosi eksplicitnu oznaku
+  "(verkauft)"/"VERKAUFT" (sajt-native oznaka, ne 404). Prikazana cena
+  429 € (bilo 450 € pri poslednjem viđenju 24.08) — upisano kao SOLD
+  opservacija sa `--record-observation`, uz napomenu da 429 € nije nužno
+  potvrđena pregovarana cena (willhaben nema posebno polje za finalnu
+  transakcionu cenu, samo prikazuje cenu koja je stajala kad je oglas
+  markiran prodatim; prodavac je verovatno spustio cenu sa 450 na 429 pre
+  prodaje).
+- **5 DELISTED**: 2 olx-pl (eksplicitna poruka "to ogłoszenie nie jest już
+  dostępne", ne generički redirect), **3 hardverapro** — prvi put viđen
+  hardverapro-ov eksplicitni obrazac za nestale oglase: naslov dobija
+  prefiks "Archív –" i stranica pokazuje "Archivált hirdetés" (arhivirana
+  objava). Tretirano kao DELISTED, ne SOLD — arhiviranje ne potvrđuje
+  prodaju (princip 2, UNKNOWN ≠ 0), isti oprez kao kod willhaben-ovog
+  "verkauft" koji SE smatra dovoljno eksplicitnim jer sadrži reč "prodato",
+  dok "arhivirano" ne sadrži.
+- **17 UNSOLD**, sve cene nepromenjene (4 willhaben, 1 kleinanzeigen
+  predikcija, 6 olx-pl, 4 njuskalo, 2 hardverapro).
+
+**Drugi nalaz, veći od prvog: dva dilera otkrivena na HU/HR, neprimećena pri
+unosu 23.08.** Provera prodavaca (do sada nebitna, jer se pratila samo
+cena) je pokazala:
+- **2 od 4 njuskalo (HR) oglasa** (51071226 — 500 €, 49147086 — 490 €) su
+  od istog prodavca **"eRadar Tech d.o.o."** — registrovana firma sa
+  adresom, matičnim brojem i samo-sertifikacijom kao trgovac po Aktu o
+  digitalnim uslugama (čl. 30), vidljivo u pravnim podacima na dnu oglasa.
+- **1 od 5 hardverapro (HU) oglasa** (msi_geforce_rtx_3080_ti_ventus_3x_oc,
+  179.500 Ft) je od **"MvilágKft"** (Kft = d.o.o.) — plaćena Ultra objava,
+  adresa/radno vreme radnje u Pečuju, 69 drugih oglasa, ponuda otkupa
+  stare kartice. Jasan diler.
+
+Sve tri opservacije su pri unosu 23.08. upisane kao `price_type: asking`
+umesto `dealer_reference` — ista klasa greške koju je D-020 već rešio za
+olx.bg/marktplaats, samo neotkrivena na HR/HU jer se tip prodavca prvi put
+proveravao tek sad. **D-020 već kaže da se diler cene isključuju iz
+statistike i da se primenjuje retroaktivno na sve postojeće opservacije na
+svim tržištima** — ovo nije nova poslovna odluka, samo ispravka pogrešne
+klasifikacije pri unosu (ista vrsta ispravke kao willhaben URL bug).
+Pitao sam vlasnika da li da ispravim odmah pošto direktna izmena
+`price_type` polja na 3 postojeća reda dira finansijske brojeve u matrici
+(za razliku od append-only ishoda, `_filter()` u `serbian_market.py` broji
+svaki red nezavisno, bez dedup po `source_listing_id`, pa dodavanje NOVOG
+reda ne bi ništa ispravilo — mora se ispraviti postojeći red).
+**Odgovor: ispravi odmah.**
+
+Ispravljena 3 reda u `data/observations/serbia.jsonl` (samo `price_type`
+polje, `asking` → `dealer_reference`; cena, datum i ostala polja
+netaknuta): njuskalo 51071226, njuskalo 49147086, hardverapro
+msi_geforce_rtx_3080_ti_ventus_3x_oc_12gb_garancia. 217 testova i dalje
+prolazi (bez izmene koda).
+
+**Posledica na matricu je velika:**
+- **hardverapro (HU) pada sa n=5 na n=4** — ispod praga uzorka od 5,
+  ispada iz matrice kao `INSUFFICIENT_DATA`. Mađarska je do sada bila
+  "matematički najbolja prodajna destinacija" (DE→HU +128,74 €, 45,5%) —
+  taj nalaz je bio zasnovan delom na diler ceni i više ne stoji dok se ne
+  nađe još jedan privatni uzorak.
+- **njuskalo (HR) pada sa n=3 na n=2** (posle IQR filtera je već bio n=3
+  od 4 sirova reda) — i dalje ispod praga, samo dalje od njega nego pre.
+- **willhaben (AT) raste sa n=9 na n=10** zbog nove SOLD opservacije,
+  ostaje `OK` status u matrici.
+- Nova najveća neto razlika posle ispravke: **DE→NL +137 € (47,9%,
+  marktplaats)**, ispred DE→PL +122,13 € — Holandija ostaje prva, ali
+  Mađarska je ispala iz poređenja umesto da bude druga.
+
+**Lekcija za `reference/naucene-lekcije.md`:** kad se otkrije da je
+opservacija pogrešno klasifikovana (tip prodavca, ne cena/datum), ispravka
+nije novi append red nego izmena postojećeg polja — jer `_filter()` u
+pricing engine-u broji svaki red iz `serbia.jsonl` nezavisno, bez dedup po
+`source_listing_id` (za razliku od `outcomes.jsonl`, gde `watch`/`report`
+uzima najnoviji ishod po `prediction_id`). Isto pravilo (D-020, primeni se
+svuda) samo se ovog puta prvi put stvarno primenilo na pogrešno unetu
+opservaciju umesto na novu.
+
+**17 subjekata ostaje otvoreno na listi praćenja** (1 SOLD + 5 DELISTED
+otpalo od 23). `data/paper/outcomes.jsonl` ima sada 62 linije ukupno
+upisanih od početka (39 pre ove sesije + 23 nove), od čega **1 SOLD, 15
+DELISTED, 46 UNSOLD**.
+
+**Sledeći korak:** još jedan watch prolaz za preostalih 17 subjekata za
+nekoliko dana — sad kad postoji 1 SOLD, vredi pratiti da li se obrazac
+ponavlja. Vredi proveriti i preostale asking opservacije na HU/HR/BG/NL/BE
+na isti način (ime prodavca, pravni podaci) da se uhvate eventualni dalji
+neotkriveni dileri, umesto da se čeka da ih sledeći watch prolaz slučajno
+otkrije.

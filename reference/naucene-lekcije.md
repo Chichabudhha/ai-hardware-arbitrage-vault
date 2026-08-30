@@ -244,3 +244,43 @@ broj ocena ili ponovljeni oglasi kod *privatnog* naloga bez ijednog od tih
 znakova (npr. "Dan" na marktplaats.nl, 205 ocena, 3 skoro identična oglasa)
 nije dovoljan dokaz sam po sebi — zabeleži kao otvoreno pitanje
 (#čeka-vlasnika), ne izjednačavaj tiho sa diler statusom bez odluke.
+
+## Diler se često otkrije tek kad se prati ishod, ne pri prvom unosu
+
+Na njuskalo.hr i hardverapro.hu je diler status prošao neprimećen pri prvom
+unosu opservacija (23.08) — ime prodavca i pravni podaci se čitaju tek na
+detaljnoj stranici oglasa, a pri masovnom unosu se pažnja usmerava na cenu i
+specifikaciju, ne na prodavca. Otkriveno je tek 2026-08-30, slučajno, tokom
+`watch` provere istog oglasa (gde se stranica ionako otvara ponovo). Dva
+primera: "eRadar Tech d.o.o." (njuskalo, pravni podaci sa matičnim brojem i
+samo-sertifikacijom po Aktu o digitalnim uslugama) i "MvilágKft" (hardverapro,
+Kft = d.o.o., plaćena Ultra objava, radnja sa radnim vremenom, 69 drugih
+oglasa).
+
+**Pravilo:** dealer_reference klasifikacija (D-020) nije jednokratna provera
+pri unosu — vredi je ponoviti kad god se stranica oglasa ponovo otvara (watch
+provera, price_cut, bilo koji razlog za povratak), jer se prvi put lako
+previdi. Ako se otkrije pogrešna klasifikacija na **postojećoj** opservaciji
+(ne na novoj), ispravka nije novi append red nego izmena `price_type` polja
+na postojećem redu — `_filter()` u `serbian_market.py` broji svaki red iz
+`serbia.jsonl` nezavisno, bez dedup po `source_listing_id`, pa bi dodavanje
+novog reda samo udvostručilo opservaciju umesto da je ispravi. Ovo je
+suprotno od `outcomes.jsonl`, gde `watch`/`report` uzima najnoviji ishod po
+`prediction_id` i ispravka ide kroz nov append red (vidi lekciju o willhaben
+URL bugu) — dve različite strukture podataka, dva različita načina ispravke.
+
+## hardverapro.hu ima sopstvenu eksplicitnu oznaku za nestao oglas: "Archív –" / "Archivált hirdetés"
+
+Kao i willhaben ("verkauft"/"Anzeige nicht mehr verfügbar") i olx ("to
+ogłoszenie nie jest już dostępne"), i hardverapro ima specifičnu, ne-generičku
+oznaku kad oglas više nije aktivan: naslov dobija prefiks "Archív –" i
+stranica sadrži tekst "Archivált hirdetés". Otkriveno 2026-08-30 na 3 od 5
+praćenih hardverapro oglasa.
+
+**Važno:** "arhivirano" ≠ "prodato". Za razliku od willhaben-ovog "verkauft"
+(koje sadrži samu reč "prodato" i tretira se kao SOLD), hardverapro-ovo
+"archivált" ne tvrdi ništa o razlogu uklanjanja — oglas može biti arhiviran i
+zato što je prodat, i zato što ga je prodavac povukao, i zato što je istekao.
+Tretirano kao DELISTED, ne SOLD, po principu 2 (UNKNOWN ≠ 0) — isti oprez kao
+za generički 404, samo sa čvršćim dokazom da je stranica namerno uklonjena
+(ne anti-bot blokada ili URL bug).

@@ -167,7 +167,20 @@ Uz W6 je otvoren i **W8-ranije nego planirano**: matrica cena po tržištima
 (47,9%)** — otkriveno u istom mernom prolazu koji je otkrio i arhitekturni
 nalaz: pricing engine nije razdvajao diler cene od privatnih (D-020, odobreno
 2026-08-24, isključuje `dealer_reference`/`manual_reference` iz statistike
-svuda). I ovo je i dalje samo asking cena bez ijedne potvrđene prodaje.
+svuda).
+
+**2026-08-30 — prvi SOLD ishod i druga primena D-020.** Treći watch prolaz
+(23 subjekta) doneo je prvi potvrđen SOLD u projektu (willhaben, 429 €,
+eksplicitna "verkauft" oznaka) posle 39 ranijih ishoda bez ijedne prodaje.
+Isti prolaz je otkrio da su 2 njuskalo (HR) i 1 hardverapro (HU) opservacija
+zapravo od registrovanih firmi ("eRadar Tech d.o.o.", "MvilágKft"), pogrešno
+upisane kao `asking` pri unosu 23.08 umesto `dealer_reference` — D-020 već
+kaže da se to isključuje i primenjuje retroaktivno, pa je ovo ispravka
+greške pri unosu, ne nova odluka. Vlasnik odobrio direktnu izmenu 3 reda u
+`serbia.jsonl`. **Posledica: Mađarska (hardverapro) pala je ispod praga
+uzorka (n=5→4) i ispala iz matrice** — raniji nalaz "DE→HU najbolja
+prodajna destinacija" više ne stoji. I dalje samo 1 potvrđena prodaja
+ukupno — nedovoljno za bilo kakav zaključak o brzini apsorpcije.
 
 ## Rizici
 
