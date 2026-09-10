@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "UPUTSTVO-KORISCENJE.md",
+                "file": "dnevnik/deals/kleinanzeigen-3508001901-asus-rog-strix-geforce-rtx-3080-ti-12gb-top-zustand.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "UPUTSTVO-KORISCENJE"
+              "title": "kleinanzeigen-3508001901-asus-rog-strix-geforce-rtx-3080-ti-12gb-top-zustand"
             }
           }
         ]
@@ -197,6 +197,12 @@
   },
   "active": "78ce39ea444888b9",
   "lastOpenFiles": [
+    "DNEVNIK-NAPRETKA.md.tmp.12368.83de22f62411",
+    "PROGRESS.md.tmp.12368.0c4cdd9c1450",
+    "PROGRESS.md.tmp.12368.dd08c7ca6021",
+    "PROGRESS.md.tmp.12368.f26b66345f16",
+    "PROGRESS.md.tmp.12368.9c51a56629ec",
+    "UPUTSTVO-KORISCENJE.md",
     "DNEVNIK-NAPRETKA.md.tmp.12368.8a681543a792",
     "reference/naucene-lekcije.md.tmp.12368.71b6ec035b0f",
     "tests/test_cli.py.tmp.12368.171aac8c1d1b",
@@ -208,11 +214,6 @@
     "dashboard/KANBAN.md",
     "dashboard/DASHBOARD.md",
     "DNEVNIK-NAPRETKA.md.tmp.12368.0461757b3d7c",
-    "PROGRESS.md.tmp.12368.1c3cba05f149",
-    "data/listings/kleinanzeigen/3507903810.html",
-    "data/listings/kleinanzeigen/3507903810.html.tmp.12368.3b830479baf9",
-    "data/listings/kleinanzeigen/3507530223.html",
-    "data/listings/kleinanzeigen/3507530223.html.tmp.12368.9b5652d2fb93",
     "research/eu-izvori-merni-prolaz.md",
     "dnevnik/deals/kupujemprodajem-111222-rtx-3090-24gb-gigabyte-gaming-oc.md",
     "dnevnik/deals/kupujemprodajem-555-rtx-3080-10gb-gigabyte-gaming-oc.md",

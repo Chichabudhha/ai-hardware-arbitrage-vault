@@ -1261,3 +1261,39 @@ upisana kao DELISTED (prva sa napomenom o slabijem, ali dvostruko
 potkrepljenom dokazu). **Sistem trenutno nema nijednu otvorenu predikciju
 niti kandidata za kupovinu** — sve tri od 19.08 su sada zatvorene, nijedna
 nije dala posmatranu prodajnu cenu. 217 testova i dalje prolazi.
+
+## 2026-09-10 `[claude-code]` — Zatvaranje sesije: rezime
+
+Sesija u četiri dela, sve na zahtev vlasnika u istom danu:
+
+1. **Četvrti watch prolaz** (17 subjekata, 11 dana od prošlog): 2. SOLD
+   (willhaben, 500 €), 7 DELISTED (2 nova sajt-obrasca: njuskalo "Ovaj
+   oglas je neaktivan", hardverapro ❄️ "Jegelve"), 9 UNSOLD. 9 subjekata
+   ostaje otvoreno.
+2. **Provera 2 stare predikcije** (NEGOTIATE, WATCH od 19.08) na pitanje
+   "ima li dobrih prilika" — obe nestale, nula otvorenih predikcija.
+3. **Nov merni prolaz kroz kleinanzeigen**: 14 novih kandidata, 4 ocenjena,
+   **prva BUY preporuka u projektu** (240 €, profit 88 €, ROI 30,14%).
+4. **Obsidian beleška + bug fix**: `arbitrage note` nikad nije mogao da
+   izračuna profit za EUR-procenjen model (pisan pre D-013, nikad
+   ažuriran) — ispravljeno, beleška za BUY kandidata sad ispravno
+   prikazuje sve brojeve.
+
+**Stanje na kraju sesije:**
+- `data/paper/outcomes.jsonl`: 79 linija (2 SOLD, 22 DELISTED, 55 UNSOLD).
+- `data/paper/predictions.jsonl`: 8 predikcija, **1 BUY** (prva u
+  projektu), 1 nedovršen INSUFFICIENT_DATA pokušaj, ostalo SKIP/zatvoreno.
+- **9 watch-subjekata otvoreno**, **0 otvorenih predikcija van BUY
+  kandidata**.
+- **218 testova prolazi** (217 + 1 novi za `note`/`predict` konzistentnost).
+- Nijedna nova poslovna odluka — D-013 već pokriva EUR procenu, D-020 već
+  pokriva diler isključenje; sve primene ove sesije su ispravke grešaka
+  pri unosu/koda, ne nove odluke u `odluke/`.
+
+**#čeka-vlasnika:** odluka o BUY kandidatu (kleinanzeigen 3508001901) —
+beleška u `dnevnik/deals/`. Kad se zna ishod, upisati `outcome`.
+
+**Sledeća sesija:** watch prolaz za preostalih 9 subjekata (za nekoliko
+dana), razmotriti proširenje mernog prolaza na ostale modele iz kataloga
+(D-011), i proveru preostalih HU/HR/BG/NL/BE opservacija na dalje
+neotkrivene dilere.

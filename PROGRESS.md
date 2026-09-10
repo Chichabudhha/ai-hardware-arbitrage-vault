@@ -32,6 +32,30 @@ prolazi (bez izmene koda, samo podaci). Nova SOLD opservacija podiže
 willhaben (AT) sa n=10 na n=11, confidence 0.69 (najviša u matrici) — matrica
 i najveća neto razlika (DE→NL +137 €) ostaju nepromenjene.
 
+**Isti dan, novi merni prolaz kroz kleinanzeigen — prva BUY preporuka u
+projektu.** Posle zatvaranja 2 stare predikcije (obe nestale bez ijedne
+prodaje), pretraga "rtx 3080 ti" je dala 14 novih samostalnih kandidata.
+Ocenjena 4 (240–460 €, blizu ili ispod medijane 425 €) preko `predict
+--evaluate`: **240 € kandidat (ASUS ROG STRIX, Neuss) je BUY** — profit
+88 €, ROI 30,14%, landed cost 292 €, resale procena 380 € (P25,
+kupujemprodajem, n=9, confidence 0,53). Preostala 3 (400/450/460 €) su
+SKIP. Break-even za ovaj model je ~330 € asking — preostalih ~10 nađenih
+kandidata (489+ €) nije pojedinačno ocenjeno, predvidljivo SKIP. **Vlasnik
+odlučuje o kupovini (princip 8, D-003)** — obaveštavan tabelom i Obsidian
+beleškom (`dnevnik/deals/kleinanzeigen-3508001901-...md`).
+
+**Bug fix isti dan:** `arbitrage note` (generator Obsidian beleške po
+dealu) je bio pisan pre D-013 i nikad ažuriran da prihvati EUR-procenjenu
+srpsku prodajnu stranu — jedini ulaz je bio ručni `--expected-sale-rsd`
+(čist RSD), pa je za svaki EUR-procenjen model (uklj. RTX 3080 Ti, trenutni
+uzorak) uvek vraćao `INSUFFICIENT_DATA` bez obzira na stvaran rezultat.
+Otkriveno kad je prva beleška za BUY kandidata izašla sa praznim
+finansijskim poljima. Ispravljeno: `note` sad prvo poziva
+`estimate_resale()` iz observation store-a, isto kao `predict`;
+`--expected-sale-rsd` ostaje kao ručni override. Nije nova poslovna odluka
+(D-013 već dozvoljava EUR) — samo usklađivanje sa postojećim pravilom. Nova
+test pokriva razliku (217 → 218 testova).
+
 **Treći watch prolaz (2026-08-30):** svih 23 otvorena subjekta provereno.
 **Prvi SOLD ishod u projektu** — willhaben oglas 1095225831 eksplicitno
 markiran "(verkauft)"/"VERKAUFT", cena 429 € (bilo 450 € pri poslednjem
@@ -240,15 +264,15 @@ Nakon fixa:
 
 ## U toku
 - ⏳ **Čeka se da ishodi sazru.** Gate traži 100 kandidata i 20 ishoda sa cenom;
-  imamo 3 predikcije + 23 otvorena watch-subjekta, 39 ishoda upisano ukupno
-  ali i dalje 0 sa cenom (svi DELISTED/UNSOLD).
-- ⏳ Uzorci ispod minimuma: RTX 3090 n=3, RTX 4080 Super n=2, njuskalo (HR) n=4,
+  na dan 2026-09-10 imamo 8 predikcija (1 BUY) + 9 otvorenih watch-subjekata,
+  79 ishoda upisano ukupno, **2 sa cenom** (oba SOLD, oba willhaben/AT, 429 €
+  i 500 €) — i dalje daleko od 20, ali više nije 0. Oba potvrđena SOLD-a su
+  na istom tržištu; PL/HR/HU/DE i dalje 0 SOLD.
+- ⏳ Uzorci ispod minimuma: RTX 3090 n=3, RTX 4080 Super n=2, njuskalo (HR) n=2
+  (posle isključivanja dilera), hardverapro (HU) n=4, olx-bg n=2, 2dehands n=2,
   bazos (CZ) n=1.
-- ⏳ **Otvoreno pitanje, sada jače podržano:** od 15 subjekata praćenih 5 dana
-  (19.08 → 24.08), samo 1 je nestao (kleinanzeigen, potvrđeno "Gelöscht");
-  ostalih 14 stoji nepromenjeno na istoj ceni. To i dalje ide protiv teze o
-  brzoj apsorpciji po posmatranim asking cenama — bez ijedne potvrđene
-  prodaje ni u jednom pravcu, ni posle dve provere.
+- ⏳ **BUY kandidat čeka odluku vlasnika** (kleinanzeigen 3508001901, 240 €,
+  profit 88 €, ROI 30%) — prva BUY preporuka u projektu, još nema ishod.
 - ⏳ CZK kurs i dalje nedostaje (cnb.cz, ecb.europa.eu blokirani); 1 češki
   uzorak čeka konverziju.
 
@@ -258,7 +282,10 @@ Nakon fixa:
   #čeka-provere: pravni i poreski položaj izvoza iz Srbije. #čeka-vlasnika:
   rizik prodaje na daljinu — risk model pokriva kupovinu, ne prodaju.
 - 🟡 Minimalna confidence za BUY (#čeka-vlasnika). Odgovor treba da dođe iz
-  kalibracionog izveštaja, ne iz pretpostavke.
+  kalibracionog izveštaja, ne iz pretpostavke. **Sad ima konkretan slučaj:**
+  prva BUY preporuka u projektu (kleinanzeigen 3508001901, 2026-09-10) nosi
+  confidence 0,53 (ASKING osnova, n=9) — nije poznato da li je to iznad ili
+  ispod praga koji bi vlasnik smatrao prihvatljivim, jer prag ne postoji.
 - 🟡 **#čeka-vlasnika (novo 2026-08-24): ponovljeni privatni nalog kao
   neformalni diler.** "Dan" na marktplaats.nl (2 god. na sajtu, 205 ocena)
   je izvor 3 od 12 holandskih opservacija u uzorku, gotovo identičan tekst
@@ -286,49 +313,24 @@ Nakon fixa:
   nije na njemu). Treba ili proširiti D-017 na Češku ili povući taj upis.
 
 ## Sledeći zadatak
+**#čeka-vlasnika:** odluka o BUY kandidatu (kleinanzeigen 3508001901, 240 €,
+profit 88 €, ROI 30%) — beleška u `dnevnik/deals/`. Kad se zna ishod
+(kupljeno/odbijeno/pretekao neko), upisati `outcome` za kalibraciju.
+
 Za nekoliko dana: `arbitrage watch` za preostalih 9 subjekata. Sad kad
 postoje 2 SOLD ishoda (oba willhaben/AT), vredi pratiti da li se AT obrazac
 nastavlja ili je i dalje izolovan na jedno tržište — 0 SOLD i dalje na
 PL/HR/HU/DE.
 
-**Novi merni prolaz kroz kleinanzeigen (2026-09-10, isti dan):** posle
-zatvaranja stare 2 predikcije (obe nestale, nijedna nije dala BUY), pretraga
-"rtx 3080 ti" je dala 27 rezultata, 14 samostalnih kartica (ostalo PC
-bundle-ovi, jedan "traži" oglas, jedna čista zamena bez cene). Ocenjena su
-4 najjeftinija/najbliža medijani (240, 400, 450, 460 €) preko `predict
---evaluate`:
+Vredi razmotriti i novi merni prolaz kroz kleinanzeigen na ostale modele iz
+kataloga (D-011: RTX 3090, 3090 Ti, 4090, A4000/A5000/A6000, 4080 Super,
+4070 Ti Super) — do sada je merenje skoro isključivo na RTX 3080 Ti, pa je
+nepoznato da li isti break-even obrazac (~330 € za 3080 Ti) važi i za druge
+modele.
 
-| Kandidat | Cena | Profit | ROI | Verdikt |
-|---|---|---|---|---|
-| ASUS ROG STRIX, 3508001901 | 240 € | **+88,00 €** | **30,14%** | **BUY** |
-| NVIDIA generic (VB), 3508436220 | 400 € | -80,00 € | -17,39% | SKIP |
-| ASUS TUF (verkauf/tausch), 3507530223 | 450 € | -132,50 € | -25,85% | SKIP |
-| Gigabyte AORUS MASTER, 3507903810 | 460 € | -143,00 € | -27,34% | SKIP |
-
-**Prva BUY preporuka u celom projektu.** Break-even (ROI=0 nasuprot RS
-resale P25=380 €) je otprilike oko 330 € asking cene za ovaj model —
-preostalih ~10 nađenih kandidata su svi ≥489 €, van budžeta za profit, pa
-nisu pojedinačno ocenjeni (predvidljivo SKIP na osnovu iste formule). BUY
-kandidat je oglas star 1 dan (09.09.2026), stanje "Sehr Gut", OVP i račun za
-garanciju postoje, prodavac prelazi na RTX 5070 Ti. Landed cost 292 € (D-015
-prevoz+D-010 posrednik), resale procena 380 € (P25, kupujemprodajem, n=9,
-confidence 0,53 — ASKING osnova, ne SOLD). **Vlasnik odlučuje o kupovini
-(princip 8, D-003) — sistem samo preporučuje.** 8 predikcija ukupno u
-`data/paper/predictions.jsonl` (bilo 3, +1 nedovršen pokušaj bez `--evaluate`
-za BUY kandidata — vraćen `INSUFFICIENT_DATA`, ostaje upisan kao istorijski
-trag, princip 6 — +4 nova sa `--evaluate`). 217 testova prolazi.
-
-**Bug fix isti dan:** `arbitrage note` (Obsidian beleška po dealu) je bio
-pisan pre D-013 i nikad ažuriran — jedini ulaz za prodajnu stranu bio je
-ručni `--expected-sale-rsd`, pa je za svaki EUR-procenjen model (RTX 3080
-Ti, trenutni uzorak) uvek vraćao `INSUFFICIENT_DATA`, bez obzira na stvaran
-rezultat. Otkriveno kad je beleška za BUY kandidata (3508001901) izašla sa
-praznim finansijskim poljima iako je `predict` dao jasan BUY. Ispravljeno:
-`note` sad prvo poziva `estimate_resale()` iz observation store-a (isto kao
-`predict`), `--expected-sale-rsd` ostaje kao ručni override. Nova test
-pokriva razliku. 217 → 218 testova. Beleška regenerisana:
-`buy_price_eur: 240.00`, `est_profit_eur: 88.00`,
-`est_sell_price_rsd: UNKNOWN` (ispravno, procena je u evrima).
+Preostalih ~10 kleinanzeigen kandidata iz ovosesijske pretrage (489+ €)
+nije pojedinačno ocenjeno — ako cene padnu ili se pojave novi ispod ~330 €,
+vredi ih oceniti.
 
 Vredi proveriti preostale asking opservacije na HU/HR/BG/NL/BE na isti način
 kao što je slučajno otkriven eRadar/MvilágKft (ime prodavca, pravni podaci
@@ -354,7 +356,14 @@ deal/confidence score.
   9 subjekata ostaje otvoreno. Oba nova obrasca zabeležena u
   `reference/naucene-lekcije.md`. willhaben (AT) raste n=10→11,
   confidence 0.69. Matrica i rang nepromenjeni (DE→NL i dalje najveća neto
-  razlika). 217 testova prolazi (bez izmene koda, samo podaci).
+  razlika). 217 testova prolazi (bez izmene koda, samo podaci). **Isti dan,
+  nastavak sesije:** proverena i zatvorena 2 stare predikcije (obe
+  nestale, 0 BUY); nov merni prolaz kroz kleinanzeigen pronašao 14 novih
+  kandidata, 4 ocenjena, **prva BUY preporuka u projektu** (240 €, profit
+  88 €, ROI 30%) — beleška u `dnevnik/deals/`. Usput otkriven i ispravljen
+  bug: `arbitrage note` nikad nije mogao da izračuna profit za EUR-procenjen
+  model (pisan pre D-013, nikad ažuriran) — sad koristi isti
+  `estimate_resale()` izvor kao `predict`. 217 → 218 testova.
 - 2026-08-30 — Treći watch prolaz, svih 23 subjekta: **1 SOLD** (prvi u
   projektu, willhaben 429 €, eksplicitna "verkauft" oznaka), 5 DELISTED (2
   olx-pl, 3 hardverapro sa novootkrivenim "Archivált hirdetés" obrascem),

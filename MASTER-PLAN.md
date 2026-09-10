@@ -179,6 +179,13 @@ ovaj model je ~330 € asking, pa preostalih ~10 nađenih kandidata (489+ €)
 nije pojedinačno ocenjeno. 8 predikcija ukupno. 217 testova prolazi.
 Odluka o kupovini je i dalje na vlasniku (D-003, princip 8).
 
+Usput ispravljen bug: `arbitrage note` (generator Obsidian beleške) je bio
+pisan pre D-013 i nikad ažuriran da prihvati EUR-procenjenu srpsku prodajnu
+stranu, pa je za svaki EUR-procenjen model uvek vraćao `INSUFFICIENT_DATA`
+bez obzira na stvaran rezultat — otkriveno kad je prva beleška za BUY
+kandidata izašla prazna. Sad koristi isti `estimate_resale()` izvor kao
+`predict`. 217 → 218 testova.
+
 **2026-09-10 — drugi SOLD ishod, četvrti watch prolaz.** Svih 17 otvorenih
 subjekata provereno (11 dana od prošlog prolaza). **Drugi SOLD u projektu**
 — opet willhaben (AT), 500 €, eksplicitna "VERKAUFT" oznaka; obe dosadašnje
