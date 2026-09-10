@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "dashboard/DASHBOARD.md",
+                "file": "UPUTSTVO-KORISCENJE.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "DASHBOARD"
+              "title": "UPUTSTVO-KORISCENJE"
             }
           }
         ]
@@ -197,6 +197,14 @@
   },
   "active": "78ce39ea444888b9",
   "lastOpenFiles": [
+    "tests/test_cli.py.tmp.12368.171aac8c1d1b",
+    "tests/test_cli.py.tmp.12368.3a47751f17b9",
+    "src/cli.py.tmp.12368.b3a9db4761d2",
+    "dnevnik/deals/kleinanzeigen-3508001901-asus-rog-strix-geforce-rtx-3080-ti-12gb-top-zustand.md",
+    "deal-engine/DEAL-ENGINE.md",
+    "marketplace/MARKETPLACE-STRATEGY.md",
+    "dashboard/KANBAN.md",
+    "dashboard/DASHBOARD.md",
     "DNEVNIK-NAPRETKA.md.tmp.12368.0461757b3d7c",
     "PROGRESS.md.tmp.12368.1c3cba05f149",
     "data/listings/kleinanzeigen/3507903810.html",
@@ -205,15 +213,11 @@
     "data/listings/kleinanzeigen/3507530223.html.tmp.12368.9b5652d2fb93",
     "data/listings/kleinanzeigen/3508436220.html",
     "data/listings/kleinanzeigen/3508436220.html.tmp.12368.62743eb9191e",
-    "data/listings/kleinanzeigen/3508001901.html",
-    "DNEVNIK-NAPRETKA.md.tmp.12368.7e0fe03cdb09",
-    "PROGRESS.md.tmp.12368.2d3da50bdb91",
     "research/eu-izvori-merni-prolaz.md",
     "dnevnik/deals/kupujemprodajem-111222-rtx-3090-24gb-gigabyte-gaming-oc.md",
     "dnevnik/deals/kupujemprodajem-555-rtx-3080-10gb-gigabyte-gaming-oc.md",
     "operations/AI-ORKESTRACIJA.md",
     "src/README.md",
-    "dashboard/KANBAN.md",
     "blokovi/DEAL-template.md.md",
     "tasks/HA-002-gpu-arbitrage-engine.md",
     "blokovi/DEAL-template.md"

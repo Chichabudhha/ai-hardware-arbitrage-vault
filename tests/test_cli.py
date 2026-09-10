@@ -13,11 +13,12 @@ from argparse import Namespace
 from datetime import datetime, timezone
 from decimal import Decimal
 
-from src.cli import cmd_report, cmd_watch
-from src.core.models import RiskLevel, Verdict
+from src.cli import cmd_note, cmd_report, cmd_watch
+from src.core.models import Condition, PriceObservation, PriceType, RiskLevel, Verdict
 from src.paper.records import OutcomeType, PaperOutcome, PaperPrediction
 from src.paper.store import append_outcome, append_prediction
 from src.paper.watchlist import WatchItem, append_watch_items
+from src.pricing.observations import append_observation
 
 NOW = datetime(2026, 8, 19, 12, 0, tzinfo=timezone.utc)
 
@@ -120,3 +121,75 @@ def test_report_does_not_choke_on_a_watch_items_outcome(tmp_path, capsys):
     assert cmd_report(args) == 1
     out = capsys.readouterr().out
     assert "INSUFFICIENT_DATA" in out
+
+
+def test_note_pulls_resale_from_the_pricing_engine_when_no_manual_rsd_given(
+    tmp_path, monkeypatch, capsys
+):
+    """`note` must source the resale side the same way `predict` does.
+
+    Before this fix, `--expected-sale-rsd` was the only way to give `note` a
+    resale figure, so a EUR-quoted Serbian estimate (D-013) could never reach
+    it — the note always came out INSUFFICIENT_DATA even when `predict` on
+    the same listing would return a real verdict. `evaluate` stays False here
+    (no LLM call in tests), so "evaluation" is expected to remain missing —
+    the point of this test is that "expected_sale_rsd" is not also missing.
+    """
+    import src.cli as cli_module
+
+    written: dict[str, object] = {}
+
+    class FakeWriter:
+        def write(self, opportunity, overwrite=False):
+            written["opportunity"] = opportunity
+            return tmp_path / "fake-note.md"
+
+    monkeypatch.setattr(cli_module, "DealNoteWriter", FakeWriter)
+
+    html_path = tmp_path / "listing.html"
+    html_path.write_text(
+        '<div id="viewad-title">ASUS ROG STRIX GeForce RTX 3080 Ti 12GB</div>'
+        '<div id="viewad-price">240 EUR</div>'
+        '<div id="viewad-description-text">Sehr guter Zustand, RTX 3080 Ti 12GB.</div>',
+        encoding="utf-8",
+    )
+
+    observations_path = tmp_path / "serbia.jsonl"
+    for i, price in enumerate(["350", "380", "390", "400", "410"]):
+        append_observation(
+            str(observations_path),
+            PriceObservation(
+                product_id="rtx-3080-ti",
+                price_amount=Decimal(price),
+                currency="EUR",
+                price_type=PriceType.ASKING,
+                condition=Condition.USED,
+                observed_at=NOW,
+                marketplace="kupujemprodajem",
+                source_listing_id=f"kp-{i}",
+            ),
+        )
+
+    args = Namespace(
+        path=str(html_path),
+        marketplace="kleinanzeigen",
+        listing_id="999",
+        url="https://www.kleinanzeigen.de/s-anzeige/x/999",
+        evaluate=False,
+        shipping_eur=None,
+        import_buffer_eur=None,
+        intermediary_fee_eur=None,
+        expected_sale_rsd=None,
+        product_id=None,
+        observations=str(observations_path),
+        condition="used",
+        overwrite=False,
+    )
+
+    assert cmd_note(args) == 0
+
+    opportunity = written["opportunity"]
+    assert opportunity.missing_inputs == ["evaluation"]
+
+    out = capsys.readouterr().out
+    assert "expected_sale_rsd" not in out

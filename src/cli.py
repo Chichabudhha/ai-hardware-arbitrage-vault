@@ -14,7 +14,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-from src.core.models import Condition, PriceObservation, PriceType
+from src.core.models import Condition, PriceObservation, PriceType, ResaleEstimate
 from src.core.money import round_money
 
 from src.obsidian_sync.writer import DealNoteWriter
@@ -91,7 +91,14 @@ def cmd_price(args: argparse.Namespace) -> int:
 
 
 def cmd_note(args: argparse.Namespace) -> int:
-    """Manual file -> listing -> (optional LLM evaluation) -> opportunity -> note."""
+    """Manual file -> listing -> (optional LLM evaluation) -> opportunity -> note.
+
+    The resale side prefers the Serbian pricing engine (same source `predict`
+    uses), so a deal note reflects the estimate the engine would actually give
+    — including one quoted in EUR (D-013). `--expected-sale-rsd` remains as an
+    explicit manual override for the rare case the owner wants to type a
+    number in by hand instead.
+    """
     listing = import_file(args.path, args.marketplace, args.listing_id, args.url)
 
     # Deterministic identity first — the catalog, not the LLM, decides the chip.
@@ -103,16 +110,32 @@ def cmd_note(args: argparse.Namespace) -> int:
 
         evaluation = reconcile_with_llm(product_match, ListingEvaluator().evaluate(listing))
 
+    expected_sale: Decimal | ResaleEstimate | None
+    if args.expected_sale_rsd:
+        expected_sale = Decimal(args.expected_sale_rsd)
+    else:
+        expected_sale = None
+        product_id = args.product_id or product_match.product_id
+        if product_id:
+            try:
+                observations = load_observations(args.observations)
+            except ObservationError as exc:
+                print(f"observations unavailable: {exc}")
+                observations = None
+            if observations is not None:
+                expected_sale = estimate_resale(
+                    observations, product_id, condition=Condition(args.condition)
+                )
+
     fx = None
     purchase_fx = None
-    if args.expected_sale_rsd is not None:
-        try:
-            rates = load_rates()
-            fx = latest_rate("EUR", "RSD", rates)
-            if listing.currency and listing.currency.upper() != "EUR":
-                purchase_fx = rate_to_eur(listing.currency, rates)
-        except Exception as exc:  # InsufficientData and IO errors alike
-            print(f"FX unavailable: {exc}")
+    try:
+        rates = load_rates()
+        fx = latest_rate("EUR", "RSD", rates)
+        if listing.currency and listing.currency.upper() != "EUR":
+            purchase_fx = rate_to_eur(listing.currency, rates)
+    except Exception as exc:  # InsufficientData and IO errors alike
+        print(f"FX unavailable: {exc}")
 
     opportunity = build_opportunity(
         listing=listing,
@@ -127,9 +150,7 @@ def cmd_note(args: argparse.Namespace) -> int:
             if args.intermediary_fee_eur
             else None,
         ),
-        expected_sale_rsd=Decimal(args.expected_sale_rsd)
-        if args.expected_sale_rsd
-        else None,
+        expected_sale_rsd=expected_sale,
         eur_rsd=fx,
         purchase_fx=purchase_fx,
         product_match=product_match,
@@ -609,7 +630,18 @@ def build_parser() -> argparse.ArgumentParser:
         dest="intermediary_fee_eur",
         help="EU intermediary fee in EUR; required for imports (D-010)",
     )
-    note.add_argument("--expected-sale-rsd", dest="expected_sale_rsd")
+    note.add_argument(
+        "--expected-sale-rsd",
+        dest="expected_sale_rsd",
+        help="manual override; default is the Serbian pricing engine estimate (any currency, D-013)",
+    )
+    note.add_argument("--product-id", dest="product_id", help="override the matched product")
+    note.add_argument(
+        "--observations",
+        default="data/observations/serbia.jsonl",
+        help="JSONL file of Serbian price observations",
+    )
+    note.add_argument("--condition", default="used", choices=["used", "new"])
     note.add_argument("--overwrite", action="store_true")
     note.set_defaults(func=cmd_note)
 
