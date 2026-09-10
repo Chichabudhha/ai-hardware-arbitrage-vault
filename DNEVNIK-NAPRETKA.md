@@ -1204,6 +1204,49 @@ kandidata, ishod (kupljeno/odbijeno/pretekao neko drugi) treba upisati kao
 modele iz kataloga (D-011: 3090, 3090 Ti, 4090, A4000/A5000/A6000, 4080
 Super, 4070 Ti Super) — do sada je merenje skoro isključivo na RTX 3080 Ti.
 
+## 2026-09-10 `[claude-code]` (četvrti deo) — Bug fix: `note` komanda nikad nije mogla da izračuna profit za EUR procenu
+
+Vlasnik je zatražio Obsidian belešku za BUY kandidata (`arbitrage note`).
+Prvi pokušaj je vratio `INSUFFICIENT_DATA` i sva finansijska polja
+`UNKNOWN`, iako je `predict` istog kandidata minut ranije dao jasan BUY
+(profit 88 €, ROI 30,14%).
+
+**Uzrok:** `cmd_note` je napisan pre D-013 (EUR kao validna srpska valuta,
+2026-08-19) i nikad ažuriran da to odrazi. Jedini način da dobije prodajnu
+cenu bio je `--expected-sale-rsd` — čisto RSD ulaz koji vlasnik kuca ručno.
+Za RTX 3080 Ti, čiji je srpski uzorak (kupujemprodajem) trenutno u evrima,
+to znači da `note` nikad nije mogao da izračuna profit/ROI ni za jedan
+kandidat ovog modela — dosledno je vraćao INSUFFICIENT_DATA bez obzira na
+stvaran rezultat. `cmd_predict`, pisan/ažuriran posle D-013, ispravno vuče
+procenu iz `estimate_resale()` (observation store, bilo koja valuta). Dve
+komande dele isti `build_opportunity()` ugovor, ali samo je jedna
+ažurirana kad se ugovor promenio.
+
+**Ispravka:** `cmd_note` sada prvo pokušava `estimate_resale()` iz
+observation store-a (isti poziv kao `predict`, sa novim `--product-id`,
+`--observations`, `--condition` argumentima koji nedostaju), i pada nazad
+na `--expected-sale-rsd` samo ako je vlasnik eksplicitno da broj (ručni
+override i dalje radi, npr. za domaći KP slučaj gde se zna tačna RSD
+cena). FX blok (kurs za RSD) je sad bezuslovan kao u `predict`, jer
+`build_opportunity` sam odlučuje da li mu kurs uopšte treba.
+
+**Test:** `tests/test_cli.py::test_note_pulls_resale_from_the_pricing_engine_when_no_manual_rsd_given`
+— seje 5 EUR opservacija za rtx-3080-ti, poziva `cmd_note` bez
+`--expected-sale-rsd` (i bez `--evaluate`, LLM se ne zove u testu), i
+proverava da `missing_inputs` sadrži samo `"evaluation"` (ne i
+`"expected_sale_rsd"`) — dokazuje da je procena stigla iz observation
+store-a. `DealNoteWriter` je monkeypatch-ovan da ne piše stvaran fajl.
+217 → 218 testova, svi prolaze.
+
+Beleška za BUY kandidata (3508001901) regenerisana sa `--overwrite`:
+`buy_price_eur: 240.00`, `est_shipping_eur: 52.00`,
+`est_sell_price_rsd: UNKNOWN` (ispravno — procena je u evrima, D-013 kaže
+da se ne izmišlja konverzija), `est_profit_eur: 88.00`.
+
+Ovo nije nova poslovna odluka (D-013 već dozvoljava EUR) — ispravka
+usklađuje `note` sa pravilom koje je `predict` već poštovao. Zapisano u
+`reference/naucene-lekcije.md`.
+
 **Dodatna provera na zahtev vlasnika ("ima li dobrih prilika?"):** sistem je
 u tom trenutku imao samo 3 predikcije, sve od 19.08 (3 nedelje stare, nisu
 deo watchlist-e pa nisu automatski provaravane). Provereno ručno: **obe

@@ -335,3 +335,24 @@ proveriti screenshot-om (dugmad "Angebot machen"/"Nachricht schreiben"
 prisutna = oglas živ) pre nego što se sumnjiv status upiše. Isti oprez kao
 za `get_page_text` koji ume da pokupi nepovezan vidžet — različit mehanizam
 kvara, ista posledica (lažan zaključak o statusu bez vizuelne provere).
+
+## Kad se promeni ugovor (D-013: EUR je validna procena), proveri SVE pozivne tačke, ne samo testiranu
+
+`cmd_predict` je ispravno čitao srpsku procenu preko `estimate_resale()` iz
+observation store-a (koji po D-013 može vratiti EUR ili RSD). `cmd_note`
+(generisanje Obsidian beleške za deal) je napisan pre D-013 i nikad ažuriran
+— jedini način da dobije prodajnu stranu bio je `--expected-sale-rsd`, čisto
+RSD ulaz koji vlasnik kuca ručno. Za proizvod čiji je srpski uzorak u
+evrima (trenutni slučaj, RTX 3080 Ti), to znači da `note` **nikad** nije
+mogao da izračuna profit/ROI — uvek je vraćao INSUFFICIENT_DATA, čak i za
+oglas koji `predict` ispravno ocenjuje kao BUY. Otkriveno 2026-09-10 tek kad
+je vlasnik zatražio belešku za stvaran BUY kandidat i dobio prazna polja.
+
+**Pravilo:** kad se poslovno pravilo promeni (nova odluka, promena ugovora
+funkcije), pronađi *sve* pozivaoce te funkcije/koncepta, ne samo onaj kroz
+koji je promena otkrivena i testirana. `cmd_note` i `cmd_predict` dele isti
+`build_opportunity()` ugovor (Decimal ili `ResaleEstimate`), pa je ispravka
+bila u tome da `cmd_note` počne da poziva `estimate_resale()` isto kao
+`cmd_predict`, sa `--expected-sale-rsd` zadržanim kao ručni override. Testovi
+za ovakvu grešku ne mogu biti generički — moraju eksplicitno pozvati **oba**
+pozivaoca sa istim ulazom i uporediti da li se ponašaju isto.

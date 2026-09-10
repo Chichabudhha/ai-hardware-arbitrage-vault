@@ -318,6 +318,18 @@ confidence 0,53 — ASKING osnova, ne SOLD). **Vlasnik odlučuje o kupovini
 za BUY kandidata — vraćen `INSUFFICIENT_DATA`, ostaje upisan kao istorijski
 trag, princip 6 — +4 nova sa `--evaluate`). 217 testova prolazi.
 
+**Bug fix isti dan:** `arbitrage note` (Obsidian beleška po dealu) je bio
+pisan pre D-013 i nikad ažuriran — jedini ulaz za prodajnu stranu bio je
+ručni `--expected-sale-rsd`, pa je za svaki EUR-procenjen model (RTX 3080
+Ti, trenutni uzorak) uvek vraćao `INSUFFICIENT_DATA`, bez obzira na stvaran
+rezultat. Otkriveno kad je beleška za BUY kandidata (3508001901) izašla sa
+praznim finansijskim poljima iako je `predict` dao jasan BUY. Ispravljeno:
+`note` sad prvo poziva `estimate_resale()` iz observation store-a (isto kao
+`predict`), `--expected-sale-rsd` ostaje kao ručni override. Nova test
+pokriva razliku. 217 → 218 testova. Beleška regenerisana:
+`buy_price_eur: 240.00`, `est_profit_eur: 88.00`,
+`est_sell_price_rsd: UNKNOWN` (ispravno, procena je u evrima).
+
 Vredi proveriti preostale asking opservacije na HU/HR/BG/NL/BE na isti način
 kao što je slučajno otkriven eRadar/MvilágKft (ime prodavca, pravni podaci
 na dnu oglasa) da se uhvate eventualni dalji neotkriveni dileri — do sada su
