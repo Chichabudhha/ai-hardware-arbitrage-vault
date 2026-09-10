@@ -1137,3 +1137,18 @@ tržište, pošto PL/HR/HU/DE i dalje imaju 0 SOLD. Ako "Jegelve" status na
 hardverapro sledeći put pređe direktno u "Archivált" ili nestane bez ikad
 postati SOLD, vredi razmotriti da li prethodi arhiviranju — zabeleženo kao
 otvoreno pitanje, ne pretpostavljeno.
+
+**Dodatna provera na zahtev vlasnika ("ima li dobrih prilika?"):** sistem je
+u tom trenutku imao samo 3 predikcije, sve od 19.08 (3 nedelje stare, nisu
+deo watchlist-e pa nisu automatski provaravane). Provereno ručno: **obe
+preostale (NEGOTIATE — ASUS TUF 245 €, profit 75,40 €, ROI 24,75%; WATCH —
+EVGA 300 €) su nestale.** EVGA ima eksplicitnu "Gelöscht" oznaku. ASUS TUF
+nema eksplicitnu oznaku — direktan URL vodi na kleinanzeigen početnu
+stranicu, a oglas ne postoji ni u pretrazi po tačnom naslovu. Da isključim
+mogućnost URL-format buga (kao willhaben 23.08), testirano na kontrolnom
+živom kleinanzeigen oglasu (3478247383) sa identičnim URL formatom bez
+sufiksa — učitava se normalno, pa nedostatak sufiksa nije uzrok. Oba ishoda
+upisana kao DELISTED (prva sa napomenom o slabijem, ali dvostruko
+potkrepljenom dokazu). **Sistem trenutno nema nijednu otvorenu predikciju
+niti kandidata za kupovinu** — sve tri od 19.08 su sada zatvorene, nijedna
+nije dala posmatranu prodajnu cenu. 217 testova i dalje prolazi.

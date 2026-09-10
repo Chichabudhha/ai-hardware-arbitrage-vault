@@ -291,6 +291,12 @@ postoje 2 SOLD ishoda (oba willhaben/AT), vredi pratiti da li se AT obrazac
 nastavlja ili je i dalje izolovan na jedno tržište — 0 SOLD i dalje na
 PL/HR/HU/DE.
 
+**0 aktivnih predikcija** (sve 3 od 19.08 sada zatvorene — vidi niže).
+Sistem trenutno nema nijednog kandidata za kupovinu; sledeći merni prolaz
+kroz nemačke oglase (kleinanzeigen) bi vredeo da se ponovo napuni lista
+kandidata, pošto su i NEGOTIATE i WATCH kandidat nestali bez ijedne
+posmatrane prodajne cene.
+
 Vredi proveriti preostale asking opservacije na HU/HR/BG/NL/BE na isti način
 kao što je slučajno otkriven eRadar/MvilágKft (ime prodavca, pravni podaci
 na dnu oglasa) da se uhvate eventualni dalji neotkriveni dileri — do sada su
