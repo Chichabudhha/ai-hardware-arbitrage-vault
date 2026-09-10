@@ -1138,6 +1138,72 @@ hardverapro sledeći put pređe direktno u "Archivált" ili nestane bez ikad
 postati SOLD, vredi razmotriti da li prethodi arhiviranju — zabeleženo kao
 otvoreno pitanje, ne pretpostavljeno.
 
+## 2026-09-10 `[claude-code]` (treći deo) — Novi merni prolaz kroz kleinanzeigen: prva BUY preporuka u projektu
+
+Nastavak iste sesije, na zahtev vlasnika: "uradi novi merni prolaz kroz
+kleinanzeigen za nove kandidate" — logičan sledeći korak pošto su obe
+preostale stare predikcije (NEGOTIATE, WATCH) upravo zatvorene bez ijedne
+posmatrane prodaje (vidi prethodni deo sesije).
+
+**Pretraga** `kleinanzeigen.de/s-rtx-3080-ti/k0` je dala 27 rezultata: 1
+"SUCHE" (traži, ne prodaje), 11 PC bundle/gaming-PC oglasa (isključeni —
+matcher bi ih pogrešno cenio kao golu karticu), 1 čist "Tausch"-only bez
+cene (isključen), **14 samostalnih golih kartica**. Nijedan od 14 se ne
+poklapa sa 8 već poznatih kleinanzeigen ID-jeva u `serbia.jsonl` — svi novi.
+
+**Ocenjena 4 kandidata** (najjeftiniji i blizu medijane, 338–425 € po
+matrici): 240 €, 400 € (VB), 450 €, 460 €, preko `predict --evaluate`
+(LLM evaluator čita stanje/rizik iz opisa, D-005 princip — deterministički
+kod i dalje računa novac). HTML payload sačuvan kao izvod stvarnih DOM
+čvorova (`#viewad-title`, `#viewad-price`, `#viewad-description-text`,
+`#viewad-locality`) po D-014, ne pun page dump — isti obrazac kao ranije
+sesije.
+
+**Rezultat:**
+
+| Kandidat | Cena | Profit | ROI | Verdikt |
+|---|---|---|---|---|
+| ASUS ROG STRIX, 3508001901 | 240 € | **+88,00 €** | **30,14%** | **BUY** |
+| NVIDIA generic (VB), 3508436220 | 400 € | -80,00 € | -17,39% | SKIP |
+| ASUS TUF (verkauf/tausch), 3507530223 | 450 € | -132,50 € | -25,85% | SKIP |
+| Gigabyte AORUS MASTER, 3507903810 | 460 € | -143,00 € | -27,34% | SKIP |
+
+**Prva BUY preporuka u celom projektu** — prethodne tri predikcije (19.08)
+bile su NEGOTIATE/WATCH/SKIP, nikad BUY. Landed cost 292 € (245+prevoz
+D-015+posrednik D-010), resale procena 380 € (P25, kupujemprodajem, n=9,
+confidence 0,53, ASKING osnova). Oglas star 1 dan (09.09.2026), stanje
+"Sehr Gut", OVP i original račun postoje, prodavac prelazi na RTX 5070 Ti —
+nema vidljivih crvenih zastavica u opisu.
+
+**Uzgredan nalaz pri čitanju DOM-a:** `#viewad-title` na kleinanzeigen sadrži
+skrivene (`class="is-hidden"`) span-ove "Reserviert"/"Gelöscht" — obrazac
+labele za dugmad koje vidi samo ulogovan vlasnik oglasa (za sopstveno
+označavanje rezervisano/obrisano), uvek prisutne u markupu bez obzira na
+stvarni status oglasa. Prvi pokušaj čitanja teksta ih je pokupio i lažno
+sugerisao da je BUY kandidat obrisan/rezervisan — provereno screenshot-om
+(dugmad "Angebot machen"/"Nachricht schreiben" prisutna, oglas potpuno
+funkcionalan) i ispravljeno filtriranjem `.is-hidden` elemenata pre čitanja
+teksta. Vredi zapisati kao lekciju.
+
+**Preostalih ~10 nađenih kandidata (489–600 €) nije pojedinačno ocenjeno** —
+break-even ROI=0 je otprilike ~330 € asking cene za ovaj model naspram
+trenutne RS resale procene (380 € P25), pa bi svi bili predvidljivo SKIP po
+istoj formuli. Nije trošeno na LLM pozive za predvidljiv rezultat.
+
+**8 predikcija ukupno** u `data/paper/predictions.jsonl` (3 stare + 1
+nedovršen pokušaj za BUY kandidata bez `--evaluate`, vraćen
+`INSUFFICIENT_DATA`, ostaje upisan kao istorijski trag princip 6 + 4 nova
+sa `--evaluate`). 217 testova prolazi (bez izmene koda).
+
+**Napomena:** sistem daje preporuku, ne kupuje (princip 8, D-003). BUY
+verdikt za 3508001901 je predlog vlasniku, ne izvršena akcija.
+
+**Sledeći korak:** ako vlasnik odluči da kontaktira prodavca za BUY
+kandidata, ishod (kupljeno/odbijeno/pretekao neko drugi) treba upisati kao
+`outcome` kad se zna. Vredi razmotriti i proširenje pretrage na ostale
+modele iz kataloga (D-011: 3090, 3090 Ti, 4090, A4000/A5000/A6000, 4080
+Super, 4070 Ti Super) — do sada je merenje skoro isključivo na RTX 3080 Ti.
+
 **Dodatna provera na zahtev vlasnika ("ima li dobrih prilika?"):** sistem je
 u tom trenutku imao samo 3 predikcije, sve od 19.08 (3 nedelje stare, nisu
 deo watchlist-e pa nisu automatski provaravane). Provereno ručno: **obe

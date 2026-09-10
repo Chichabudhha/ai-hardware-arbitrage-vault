@@ -315,3 +315,23 @@ tačno status znači (sajt ne objašnjava na samoj stranici). Ako se ponovi i
 sledeći put nestane sa "Jegelve" statusa u DELISTED bez ikad postati SOLD,
 vredi proveriti da li "Jegelve" prethodi arhiviranju (moguć prelazni stadijum)
 — zabeležiti kao otvoreno pitanje, ne pretpostaviti značenje.
+
+## kleinanzeigen.de: skriveni DOM elementi u #viewad-title lažno sugerišu status
+
+Otkriveno 2026-09-10 pri čitanju kandidata za novu predikciju. `#viewad-title`
+sadrži dva `<span class="pvap-reserved-title is-hidden">` elementa sa
+tekstom "Reserviert" i "Gelöscht" — vidljivo u markupu za **svaki** oglas,
+uključujući potpuno živ i funkcionalan oglas (samo je labela za dugme koje
+vidi ulogovan vlasnik oglasa za sopstveno označavanje, sakrivena CSS klasom
+`is-hidden`, ne stvaran indikator stanja *ovog* oglasa). Čitanje
+`textContent` bez uklanjanja `.is-hidden` elemenata daje "Reserviert •
+Gelöscht • {stvaran naslov}" i lažno sugeriše da je oglas rezervisan ili
+obrisan.
+
+**Pravilo:** pri izvlačenju teksta iz kleinanzeigen DOM-a (van get_page_text
+alata, npr. direktnim JS čitanjem `#viewad-title`/`#viewad-price`/itd. za
+predikciju), ukloniti `.is-hidden` elemente pre čitanja `textContent`, ili
+proveriti screenshot-om (dugmad "Angebot machen"/"Nachricht schreiben"
+prisutna = oglas živ) pre nego što se sumnjiv status upiše. Isti oprez kao
+za `get_page_text` koji ume da pokupi nepovezan vidžet — različit mehanizam
+kvara, ista posledica (lažan zaključak o statusu bez vizuelne provere).

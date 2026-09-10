@@ -169,6 +169,16 @@ nalaz: pricing engine nije razdvajao diler cene od privatnih (D-020, odobreno
 2026-08-24, isključuje `dealer_reference`/`manual_reference` iz statistike
 svuda).
 
+**2026-09-10 (nastavak) — prvi BUY u projektu.** Novi merni prolaz kroz
+kleinanzeigen (na zahtev vlasnika, posle zatvaranja 2 stale predikcije bez
+BUY-a) pronašao je 14 novih samostalnih RTX 3080 Ti kandidata. Ocenjena 4
+(240/400/450/460 €) preko `predict --evaluate` — **240 € kandidat je prva
+BUY preporuka u projektu** (profit 88 €, ROI 30,14%, landed cost 292 €
+naspram RS resale procene 380 € P25). Preostala 3 su SKIP. Break-even za
+ovaj model je ~330 € asking, pa preostalih ~10 nađenih kandidata (489+ €)
+nije pojedinačno ocenjeno. 8 predikcija ukupno. 217 testova prolazi.
+Odluka o kupovini je i dalje na vlasniku (D-003, princip 8).
+
 **2026-09-10 — drugi SOLD ishod, četvrti watch prolaz.** Svih 17 otvorenih
 subjekata provereno (11 dana od prošlog prolaza). **Drugi SOLD u projektu**
 — opet willhaben (AT), 500 €, eksplicitna "VERKAUFT" oznaka; obe dosadašnje

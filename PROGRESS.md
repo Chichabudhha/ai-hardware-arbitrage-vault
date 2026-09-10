@@ -1,6 +1,6 @@
 ---
 updated: 2026-09-10
-status: drugi SOLD ishod (willhaben, 500 EUR); četvrti watch prolaz — 7 DELISTED (2 nova sajt-obrasca: njuskalo "neaktivan", hardverapro "Jegelve"), 9 subjekata ostaje otvoreno
+status: prvi BUY u projektu (kleinanzeigen 3508001901, 240 EUR, profit 88 EUR, ROI 30%); četvrti watch prolaz zatvorio 2 stare predikcije bez BUY-a, nov merni prolaz otvorio 4 nove, jedna BUY
 ---
 
 # PROGRESS — AI Hardware Arbitrage Serbia
@@ -291,11 +291,32 @@ postoje 2 SOLD ishoda (oba willhaben/AT), vredi pratiti da li se AT obrazac
 nastavlja ili je i dalje izolovan na jedno tržište — 0 SOLD i dalje na
 PL/HR/HU/DE.
 
-**0 aktivnih predikcija** (sve 3 od 19.08 sada zatvorene — vidi niže).
-Sistem trenutno nema nijednog kandidata za kupovinu; sledeći merni prolaz
-kroz nemačke oglase (kleinanzeigen) bi vredeo da se ponovo napuni lista
-kandidata, pošto su i NEGOTIATE i WATCH kandidat nestali bez ijedne
-posmatrane prodajne cene.
+**Novi merni prolaz kroz kleinanzeigen (2026-09-10, isti dan):** posle
+zatvaranja stare 2 predikcije (obe nestale, nijedna nije dala BUY), pretraga
+"rtx 3080 ti" je dala 27 rezultata, 14 samostalnih kartica (ostalo PC
+bundle-ovi, jedan "traži" oglas, jedna čista zamena bez cene). Ocenjena su
+4 najjeftinija/najbliža medijani (240, 400, 450, 460 €) preko `predict
+--evaluate`:
+
+| Kandidat | Cena | Profit | ROI | Verdikt |
+|---|---|---|---|---|
+| ASUS ROG STRIX, 3508001901 | 240 € | **+88,00 €** | **30,14%** | **BUY** |
+| NVIDIA generic (VB), 3508436220 | 400 € | -80,00 € | -17,39% | SKIP |
+| ASUS TUF (verkauf/tausch), 3507530223 | 450 € | -132,50 € | -25,85% | SKIP |
+| Gigabyte AORUS MASTER, 3507903810 | 460 € | -143,00 € | -27,34% | SKIP |
+
+**Prva BUY preporuka u celom projektu.** Break-even (ROI=0 nasuprot RS
+resale P25=380 €) je otprilike oko 330 € asking cene za ovaj model —
+preostalih ~10 nađenih kandidata su svi ≥489 €, van budžeta za profit, pa
+nisu pojedinačno ocenjeni (predvidljivo SKIP na osnovu iste formule). BUY
+kandidat je oglas star 1 dan (09.09.2026), stanje "Sehr Gut", OVP i račun za
+garanciju postoje, prodavac prelazi na RTX 5070 Ti. Landed cost 292 € (D-015
+prevoz+D-010 posrednik), resale procena 380 € (P25, kupujemprodajem, n=9,
+confidence 0,53 — ASKING osnova, ne SOLD). **Vlasnik odlučuje o kupovini
+(princip 8, D-003) — sistem samo preporučuje.** 8 predikcija ukupno u
+`data/paper/predictions.jsonl` (bilo 3, +1 nedovršen pokušaj bez `--evaluate`
+za BUY kandidata — vraćen `INSUFFICIENT_DATA`, ostaje upisan kao istorijski
+trag, princip 6 — +4 nova sa `--evaluate`). 217 testova prolazi.
 
 Vredi proveriti preostale asking opservacije na HU/HR/BG/NL/BE na isti način
 kao što je slučajno otkriven eRadar/MvilágKft (ime prodavca, pravni podaci
