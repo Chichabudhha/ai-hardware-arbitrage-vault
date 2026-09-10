@@ -284,3 +284,34 @@ zato što je prodat, i zato što ga je prodavac povukao, i zato što je istekao.
 Tretirano kao DELISTED, ne SOLD, po principu 2 (UNKNOWN ≠ 0) — isti oprez kao
 za generički 404, samo sa čvršćim dokazom da je stranica namerno uklonjena
 (ne anti-bot blokada ili URL bug).
+
+## njuskalo.hr ima sopstvenu eksplicitnu oznaku za nestao oglas: "Ovaj oglas je neaktivan"
+
+Otkriveno 2026-09-10, četvrti watch prolaz — prvi put viđeno na ovom sajtu (u
+prethodna tri prolaza nijedan njuskalo oglas nije nestao). Cela stranica se
+zameni jednim banerom "Ovaj oglas je neaktivan" sa linkom na slične oglase;
+originalni sadržaj (cena, opis, prodavac) više nije prikazan. Nije generički
+404 — banner je sajt-nativan i eksplicitan, isti kvalitet dokaza kao willhaben
+"verkauft"/"Gelöscht", olx "to ogłoszenie nie jest już dostępne" i hardverapro
+"Archivált hirdetés". Potvrđeno na 2 od 4 praćena njuskalo oglasa u istom
+prolazu.
+
+**Isti oprez kao za hardverapro "archivált":** "neaktivan" ne tvrdi ništa o
+razlogu (prodato, povučeno, isteklo) — tretira se kao DELISTED, ne SOLD,
+princip 2.
+
+## hardverapro.hu ima i status "Jegelve" (zamrznuto/na čekanju) — nije isto što i "Archivált"
+
+Otkriveno 2026-09-10, četvrti watch prolaz, na oba preostala hardverapro
+oglasa (uklj. poznatog dilera MvilágKft). Naslov dobija prefiks ❄️ "Jegelve –"
+ali stranica ostaje **potpuno prikazana** — cena, opis, prodavac, dugme za
+poruku, sve identično živom oglasu. Za razliku od "Archív –"/"Archivált
+hirdetés" (stranica zamenjena arhivskim prikazom), ovo izgleda kao status
+oglasa koji se i dalje normalno učitava.
+
+**Pravilo:** "Jegelve" tretirati kao UNSOLD (oglas je i dalje potpuno
+funkcionalan i cena je posmatrana), ne kao DELISTED — dok se ne otkrije šta
+tačno status znači (sajt ne objašnjava na samoj stranici). Ako se ponovi i
+sledeći put nestane sa "Jegelve" statusa u DELISTED bez ikad postati SOLD,
+vredi proveriti da li "Jegelve" prethodi arhiviranju (moguć prelazni stadijum)
+— zabeležiti kao otvoreno pitanje, ne pretpostaviti značenje.

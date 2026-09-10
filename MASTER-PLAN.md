@@ -169,6 +169,17 @@ nalaz: pricing engine nije razdvajao diler cene od privatnih (D-020, odobreno
 2026-08-24, isključuje `dealer_reference`/`manual_reference` iz statistike
 svuda).
 
+**2026-09-10 — drugi SOLD ishod, četvrti watch prolaz.** Svih 17 otvorenih
+subjekata provereno (11 dana od prošlog prolaza). **Drugi SOLD u projektu**
+— opet willhaben (AT), 500 €, eksplicitna "VERKAUFT" oznaka; obe dosadašnje
+potvrđene prodaje su na istom tržištu, 0 SOLD i dalje na PL/HR/HU/DE. 7
+DELISTED, uključujući nov obrazac prvi put viđen na njuskalo.hr ("Ovaj oglas
+je neaktivan"). Hardverapro uveo i drugi nov status, ❄️ "Jegelve", tretiran
+kao UNSOLD jer stranica ostaje potpuno prikazana (za razliku od
+"Archivált"). 9 subjekata ostaje otvoreno. `outcomes.jsonl`: 79 linija (2
+SOLD, 22 DELISTED, 55 UNSOLD). Matrica i rang nepromenjeni (DE→NL i dalje
+prva). 217 testova prolazi.
+
 **2026-08-30 — prvi SOLD ishod i druga primena D-020.** Treći watch prolaz
 (23 subjekta) doneo je prvi potvrđen SOLD u projektu (willhaben, 429 €,
 eksplicitna "verkauft" oznaka) posle 39 ranijih ishoda bez ijedne prodaje.

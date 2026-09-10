@@ -1072,3 +1072,68 @@ ponavlja. Vredi proveriti i preostale asking opservacije na HU/HR/BG/NL/BE
 na isti način (ime prodavca, pravni podaci) da se uhvate eventualni dalji
 neotkriveni dileri, umesto da se čeka da ih sledeći watch prolaz slučajno
 otkrije.
+
+## 2026-09-10 `[claude-code]` — Četvrti watch prolaz: drugi SOLD ishod; dva nova sajt-obrasca (njuskalo, hardverapro)
+
+Sesija je počela sa `gde-smo-stali`. Predlog sledećeg taska (četvrti
+`arbitrage watch` prolaz kroz svih 17 otvorenih subjekata, 11 dana od
+poslednje provere — duži razmak nego ijedan dosadašnji) potvrđen — nije bio
+blokiran, sve u okviru već odobrenih D-012/D-014/D-017; eventualna ispravka
+diler klasifikacije već pokrivena D-020 primenom kao 30.08.
+
+**Svih 17 subjekata provereno:**
+
+- **1 kleinanzeigen:** stvarno DELISTED — slika oglasa nosi eksplicitnu
+  oznaku "Gelöscht" preko fotografije (isti pouzdan obrazac kao 24.08).
+  `get_page_text` je ponovo pokupio sadržaj nepovezanog vidžeta umesto
+  članka (ista poznata mana), potvrđeno screenshot-om.
+- **4 willhaben:** svi URL-ovi zahtevali su ponovnu izmenu u slug format
+  (`/d/x-{id}/`) — goli ID i dalje vraća "Die Seite wurde nicht gefunden"
+  (lekcija od 23.08 i dalje na snazi, nije se promenila). 3 živa, cene
+  nepromenjene (499, 499, 550 €). **1 oglas (1112909857) prodat — drugi SOLD
+  u projektu**, eksplicitna oznaka "(verkauft)"/"VERKAUFT", cena 500 €
+  **nepromenjena** u odnosu na poslednje viđenu (za razliku od prvog SOLD-a
+  gde je cena bila snižena 450→429 € pre prodaje). Upisano sa
+  `--record-observation`.
+- **6 olx-pl:** 4 stvarno DELISTED (eksplicitna poruka "To ogłoszenie nie
+  jest już dostępne"), 2 živa nepromenjena (2200, 2200 zł, oba osvežena
+  "ODŚWIEŻ" dugmetom od strane prodavca).
+- **4 njuskalo:** 2 stvarno DELISTED — **nov obrazac, prvi put viđen na ovom
+  sajtu**: cela stranica se zameni banerom "Ovaj oglas je neaktivan"
+  (sajt-nativna, eksplicitna oznaka, ne generički 404 — isti kvalitet dokaza
+  kao willhaben/olx/hardverapro). Tretirano kao DELISTED, ne SOLD (princip 2
+  — "neaktivan" ne tvrdi razlog). Preostala 2 su poznati diler "eRadar Tech
+  d.o.o." (500 €, 490 €), oba živa, cene nepromenjene, `price_type` već
+  ispravno `dealer_reference` od 30.08.
+- **2 hardverapro:** oba živa, cene nepromenjene (199.999 Ft, 179.500 Ft —
+  drugi je poznati diler "MvilágKft"). **Novi status, prvi put viđen**:
+  naslov nosi prefiks ❄️ "Jegelve" ("zamrznuto/na čekanju"), ali — za razliku
+  od "Archív –"/"Archivált hirdetés" (30.08, stranica zamenjena arhivskim
+  prikazom) — stranica ostaje **potpuno prikazana** sa cenom, opisom i
+  dugmetom za poruku, identično živom oglasu. Tretirano kao UNSOLD, ne
+  DELISTED, jer sajt ne objašnjava značenje statusa na samoj stranici, a
+  sadržaj je i dalje pun i pristupačan — nagađanje da "Jegelve" znači isto
+  što i "arhivirano" bilo bi izmišljen zaključak (princip 1).
+
+**Oba nova obrasca zapisana u `reference/naucene-lekcije.md`.**
+
+**17 outcome linija upisano ove sesije** (append-only): 1 SOLD, 7 DELISTED,
+9 UNSOLD. `data/paper/outcomes.jsonl` sada ima **79 linija ukupno** (62 pre
+ove sesije + 17 nove), od čega **2 SOLD, 22 DELISTED, 55 UNSOLD**.
+
+**Posledica na matricu:** willhaben (AT) raste sa n=10 na n=11 zbog nove
+SOLD opservacije, confidence 0,69 — najviša u celoj matrici. Rang i najveća
+neto razlika (DE→NL +137 €, 47,9%) ostaju nepromenjeni — nova opservacija
+nije pomerila poredak. 217 testova i dalje prolazi (bez izmene koda, samo
+podaci).
+
+**9 subjekata ostaje otvoreno na listi praćenja**: 3 willhaben, 2 olx-pl, 2
+njuskalo (oba eRadar), 2 hardverapro (jedan MvilágKft).
+
+**Sledeći korak:** još jedan watch prolaz za preostalih 9 subjekata za
+nekoliko dana. Obe dosadašnje potvrđene prodaje su na willhaben (AT) — vredi
+pratiti da li se taj obrazac nastavlja ili je i dalje izolovan na jedno
+tržište, pošto PL/HR/HU/DE i dalje imaju 0 SOLD. Ako "Jegelve" status na
+hardverapro sledeći put pređe direktno u "Archivált" ili nestane bez ikad
+postati SOLD, vredi razmotriti da li prethodi arhiviranju — zabeleženo kao
+otvoreno pitanje, ne pretpostavljeno.

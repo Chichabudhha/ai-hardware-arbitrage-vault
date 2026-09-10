@@ -1,6 +1,6 @@
 ---
-updated: 2026-08-30
-status: prvi SOLD ishod (willhaben, 429 EUR); dva dilera otkrivena na HU/HR i ispravljena (D-020 primena) — Mađarska ispala iz matrice ispod praga uzorka
+updated: 2026-09-10
+status: drugi SOLD ishod (willhaben, 500 EUR); četvrti watch prolaz — 7 DELISTED (2 nova sajt-obrasca: njuskalo "neaktivan", hardverapro "Jegelve"), 9 subjekata ostaje otvoreno
 ---
 
 # PROGRESS — AI Hardware Arbitrage Serbia
@@ -12,6 +12,25 @@ predikcija. Matrica cena pokriva **9 tržišta sa dovoljno uzorka**
 (kleinanzeigen, kupujemprodajem, subito, olx-ro, willhaben, olx-pl,
 marktplaats — hardverapro i njuskalo su 2026-08-30 pale ispod praga posle
 ispravke diler cena, vidi niže).
+
+**Četvrti watch prolaz (2026-09-10, 11 dana od prošlog):** svih 17 otvorenih
+subjekata provereno. **Drugi SOLD ishod u projektu** — willhaben 1112909857,
+eksplicitna oznaka "(verkauft)"/"VERKAUFT", 500 € (nepromenjeno u odnosu na
+poslednju viđenu cenu, za razliku od prvog SOLD-a gde je cena bila snižena
+pre prodaje). **7 DELISTED**: kleinanzeigen (1, "Gelöscht"), olx-pl (4,
+eksplicitna poruka), njuskalo (2, **nov obrazac prvi put viđen na ovom
+sajtu**: "Ovaj oglas je neaktivan" — tretirano kao DELISTED ne SOLD, isti
+princip kao hardverapro "Archivált"). **9 UNSOLD** nepromenjeno, uključujući
+oba preostala hardverapro oglasa koja nose **nov status prvi put viđen**:
+❄️ "Jegelve" (zamrznuto/na čekanju) — za razliku od "Archivált", stranica
+ostaje potpuno prikazana sa cenom i opisom, pa je tretirano kao UNSOLD, ne
+DELISTED (vidi `reference/naucene-lekcije.md`). **9 subjekata ostaje
+otvoreno** (3 willhaben, 2 olx-pl, 2 njuskalo — oba poznati diler eRadar,
+2 hardverapro — jedan poznati diler MvilágKft). `data/paper/outcomes.jsonl`:
+**79 linija ukupno** (2 SOLD, 22 DELISTED, 55 UNSOLD). 217 testova i dalje
+prolazi (bez izmene koda, samo podaci). Nova SOLD opservacija podiže
+willhaben (AT) sa n=10 na n=11, confidence 0.69 (najviša u matrici) — matrica
+i najveća neto razlika (DE→NL +137 €) ostaju nepromenjene.
 
 **Treći watch prolaz (2026-08-30):** svih 23 otvorena subjekta provereno.
 **Prvi SOLD ishod u projektu** — willhaben oglas 1095225831 eksplicitno
@@ -96,6 +115,26 @@ Nakon fixa:
   **Ispravka 2026-08-30: ovaj poslednji zaključak je bio netačan** — HU i HR
   su i dalje imale neotkrivene diler opservacije, samo nisu bile proverene
   do trećeg watch prolaza (vidi niže).
+
+## Brojevi na dan 2026-09-10
+- **Četvrti watch prolaz**: svih 17 otvorenih subjekata provereno. **2. SOLD**
+  (willhaben 1112909857, 500 €), **7 DELISTED** (1 kleinanzeigen, 4 olx-pl,
+  2 njuskalo — prvi put "Ovaj oglas je neaktivan" obrazac), **9 UNSOLD**
+  nepromenjeno.
+- **`data/paper/outcomes.jsonl`: 79 linija ukupno** (2 SOLD, 22 DELISTED,
+  55 UNSOLD).
+- **9 subjekata ostaje otvoreno**: 3 willhaben (499, 499, 550 €), 2 olx-pl
+  (2200, 2200 zł), 2 njuskalo (500, 490 € — oba eRadar, poznat diler), 2
+  hardverapro (199.999, 179.500 Ft — jedan MvilágKft, poznat diler).
+- **Matrica nepromenjena po rangu**: willhaben (AT) raste n=10→11 zbog nove
+  SOLD opservacije, confidence 0.69 (najviša u matrici). Najveća neto razlika
+  ostaje DE→NL +137 € (47,9%), ispred DE→PL +122,13 €.
+- **2 nova sajt-specifična obrasca otkrivena i zabeležena** u
+  `reference/naucene-lekcije.md`: njuskalo "Ovaj oglas je neaktivan"
+  (tretirano kao DELISTED) i hardverapro ❄️ "Jegelve" (stranica ostaje
+  potpuno prikazana — tretirano kao UNSOLD, ne DELISTED, dok se značenje ne
+  razjasni).
+- 217 testova i dalje prolazi (bez izmene koda, samo podaci).
 
 ## Brojevi na dan 2026-08-30
 - **Treći watch prolaz**: svih 23 otvorena subjekta provereno. **1 SOLD**
@@ -247,9 +286,10 @@ Nakon fixa:
   nije na njemu). Treba ili proširiti D-017 na Češku ili povući taj upis.
 
 ## Sledeći zadatak
-Za nekoliko dana: `arbitrage watch` za preostalih 17 subjekata. Sad kad
-postoji 1 SOLD ishod, vredi pratiti da li se obrazac ponavlja ili je bio
-izolovan slučaj.
+Za nekoliko dana: `arbitrage watch` za preostalih 9 subjekata. Sad kad
+postoje 2 SOLD ishoda (oba willhaben/AT), vredi pratiti da li se AT obrazac
+nastavlja ili je i dalje izolovan na jedno tržište — 0 SOLD i dalje na
+PL/HR/HU/DE.
 
 Vredi proveriti preostale asking opservacije na HU/HR/BG/NL/BE na isti način
 kao što je slučajno otkriven eRadar/MvilágKft (ime prodavca, pravni podaci
@@ -266,6 +306,16 @@ Kod koji nedostaje, a ne zavisi od podataka: W5 liquidity, friction i
 deal/confidence score.
 
 ## Poslednje sesije
+- 2026-09-10 — Četvrti watch prolaz, svih 17 subjekata (11 dana od
+  poslednjeg): **2. SOLD** (willhaben 1112909857, 500 €, "VERKAUFT"), 7
+  DELISTED (1 kleinanzeigen "Gelöscht", 4 olx-pl eksplicitna poruka, 2
+  njuskalo — nov obrazac "Ovaj oglas je neaktivan", prvi put viđen na tom
+  sajtu), 9 UNSOLD (uklj. 2 hardverapro sa novim ❄️ "Jegelve" statusom,
+  stranica i dalje potpuno prikazana pa tretirano kao UNSOLD ne DELISTED).
+  9 subjekata ostaje otvoreno. Oba nova obrasca zabeležena u
+  `reference/naucene-lekcije.md`. willhaben (AT) raste n=10→11,
+  confidence 0.69. Matrica i rang nepromenjeni (DE→NL i dalje najveća neto
+  razlika). 217 testova prolazi (bez izmene koda, samo podaci).
 - 2026-08-30 — Treći watch prolaz, svih 23 subjekta: **1 SOLD** (prvi u
   projektu, willhaben 429 €, eksplicitna "verkauft" oznaka), 5 DELISTED (2
   olx-pl, 3 hardverapro sa novootkrivenim "Archivált hirdetés" obrascem),
