@@ -1204,6 +1204,51 @@ kandidata, ishod (kupljeno/odbijeno/pretekao neko drugi) treba upisati kao
 modele iz kataloga (D-011: 3090, 3090 Ti, 4090, A4000/A5000/A6000, 4080
 Super, 4070 Ti Super) — do sada je merenje skoro isključivo na RTX 3080 Ti.
 
+## 2026-09-23 `[claude-code]` (treći deo) — Merni prolaz RTX 4080 Super: i dalje ispod praga
+
+Na zahtev vlasnika ("nastavi"), primenjen isti obrazac na RTX 4080 Super
+(n=2, treba još 3 za prag od 5). Pretraga kupujemprodajem ("rtx 4080 super",
+zatim šire "4080 super" i "4080" da se ne propusti ništa): tržište je
+trenutno genuinski tanko.
+
+**Nađeno:**
+- Postojeći oglas (Asus ProArt, 1.150 €, #192502799) je i dalje aktivan —
+  duplikat već upisane opservacije, ne novi podatak.
+- **2 nova, nezavisna privatna oglasa**, oba upisana kao `asking`:
+  - Gigabyte RTX 4080 SUPER WINDFORCE V2 16GB, 1.100 €, Miloš Sladić
+    (Beograd/Savski venac, član od 2013, realno ime, jedini oglas sa naloga,
+    "nije trgovac").
+  - 4080 SUPER INNO3D iCHILL Black, 1.400 €, Nikola (Beograd, član od 2012,
+    realno ime, jedini oglas, "nije trgovac").
+- **1 oglas ispravno isključen** — "Rtx 4080 16Gb Zotac Trinity" (980 €,
+  Danijel, Kragujevac). Ni naslov ni opis ne pominju "Super"; Zotac Trinity
+  postoji i za vanilla RTX 4080 (nije u katalogu, D-011 dodaje samo Super
+  variantu) i za Super. Bez eksplicitne potvrde, princip 1 (ne izmišljaj
+  podatke) zabranjuje pretpostavku da je ovo Super — isključen kao
+  `different_product`, ne kao greška. Uzgred: opis oglasa ("Pogledajte i
+  ostale oglase! Veliki izbor grafičkih kartica!", politika o avansu za
+  kupce sa <20 ocena) liči na dilera po istom kriterijumu kao Graficke.rs/
+  It-Zona (D-020, poslovni identitet) — ali pošto ovaj konkretan oglas nije
+  RTX 4080 Super, nije relevantno za ovaj uzorak, samo zabeleženo za buduću
+  proveru ako se Danijelovi drugi oglasi budu pregledali.
+- Stari 950 € oglas (#194236043) se više ne pojavljuje u pretrazi —
+  verovatno delistovan, ostaje kao istorijski zapis (princip 6), nije
+  ponovo proveravan (van obima ovog mernog prolaza, nije watch subjekt).
+
+**Rezultat: RTX 4080 Super n=2 → 4.** `arbitrage price --product-id
+rtx-4080-super` i dalje vraća `sample_size: 4`, `INSUFFICIENT_DATA` — treba
+tačno 1 još pravi nov oglas, ne postojeći duplikat. Nije umetno guran preko
+praga; tržište trenutno nema dovoljno standalone ponude. 218 testova
+prolazi (bez izmene koda, samo podaci).
+
+**Nema nove odluke ove sesije** — D-021 nije ni bilo potrebno primeniti
+(nijedan nalog nije imao više istovremenih oglasa istog modela u ovom
+uzorku).
+
+**Sledeći korak:** proveriti ponovo pri sledećem mernom/watch prolazu (nova
+ponuda se pojavljuje između sesija, videćemo na RTX 3090 primeru — 4 nova
+oglasa su se pojavila samo za 5 nedelja).
+
 ## 2026-09-23 `[claude-code]` (nastavak) — Merni prolaz RTX 3090: koncentrisan nalog i D-021
 
 Posle petog watch prolaza, vlasnik je tražio nastavak ("hajde sledeće").

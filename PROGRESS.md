@@ -41,6 +41,18 @@ oglas (Zrenjanin, 900 €). **RTX 3090: n=3→5 (asking), procena sad radi**
 (`price --product-id rtx-3090`: P25 780 €, medijana 800 €, confidence 0.48,
 basis ASKING). 218 testova prolazi (bez izmene koda, samo podaci i D-021 u
 `odluke/`).
+
+**Isti nastavak — RTX 4080 Super, i dalje ispod praga.** Ista pretraga
+("rtx 4080 super", "4080 super", "4080") na kupujemprodajem je tanka: samo 2
+nova nezavisna oglasa nađena (Gigabyte WINDFORCE 1.100 €, INNO3D iCHILL
+1.400 €, oba upisana kao `asking`). Jedan dodatni oglas ("RTX 4080 16Gb
+Zotac Trinity", 980 €) je ispravno isključen — bez reči "Super" u naslovu/
+opisu ne odgovara katalogu (D-011 ne dodaje vanilla RTX 4080). Postojeći
+1.150 € oglas je i dalje aktivan (duplikat već upisane opservacije), stari
+950 € oglas više se ne pojavljuje u pretrazi (ostaje kao istorijski zapis).
+**RTX 4080 Super: n=2→4, i dalje INSUFFICIENT_DATA** (treba još 1 za prag od
+5) — tržište trenutno genuinski nema više aktivnih standalone oglasa, nije
+umetno zadržano ispod praga. 218 testova prolazi.
 Lanac radi od kraja do kraja na stvarnim podacima: nemački oglas → product match
 → landed cost → srpska procena iz stvarnih oglasa → verdikt → zapisana
 predikcija. Matrica cena pokriva **9 tržišta sa dovoljno uzorka**
@@ -303,10 +315,11 @@ Nakon fixa:
   79 ishoda upisano ukupno, **2 sa cenom** (oba SOLD, oba willhaben/AT, 429 €
   i 500 €) — i dalje daleko od 20, ali više nije 0. Oba potvrđena SOLD-a su
   na istom tržištu; PL/HR/HU/DE i dalje 0 SOLD.
-- ⏳ Uzorci ispod minimuma: RTX 4080 Super n=2, njuskalo (HR) n=2
-  (posle isključivanja dilera), hardverapro (HU) n=4, olx-bg n=2, 2dehands n=2,
-  bazos (CZ) n=1. **RTX 3090 je 2026-09-23 prešao prag (n=3→5), više nije na
-  ovoj listi.**
+- ⏳ Uzorci ispod minimuma: **RTX 4080 Super n=4** (2026-09-23: n=2→4, tržište
+  na kupujemprodajem trenutno nema više standalone oglasa — treba još 1 pravi
+  novi oglas, ne postojeći), njuskalo (HR) n=2 (posle isključivanja dilera),
+  hardverapro (HU) n=4, olx-bg n=2, 2dehands n=2, bazos (CZ) n=1. **RTX 3090
+  je 2026-09-23 prešao prag (n=3→5), više nije na ovoj listi.**
 - ⏳ **BUY kandidat čeka odluku vlasnika** (kleinanzeigen 3508001901, 240 €,
   profit 88 €, ROI 30%) — prva BUY preporuka u projektu, još nema ishod.
 - ⏳ CZK kurs i dalje nedostaje (cnb.cz, ecb.europa.eu blokirani); 1 češki
@@ -362,9 +375,9 @@ nepoznato da li isti break-even obrazac (~330 € za 3080 Ti) važi i za druge
 modele. RTX 3090 sad ima RS uzorak (n=5) pa bi kleinanzeigen strana konačno
 mogla da se oceni za taj model, ne samo da se upiše asking cena bez procene.
 
-**Sledeći prirodan korak za srpski uzorak: RTX 4080 Super (n=2, treba još 3
-za prag od 5)** — isti obrazac kao RTX 3090 danas, primeniti D-021 ako se
-opet pojavi koncentrisan nalog.
+**RTX 4080 Super ostaje na n=4** (2026-09-23: n=2→4, tržište trenutno nema
+više standalone oglasa na kupujemprodajem) — proveriti ponovo pri sledećem
+watch/mernom prolazu, ne izmišljati peti uzorak.
 
 Preostalih ~10 kleinanzeigen kandidata iz ovosesijske pretrage (489+ €)
 nije pojedinačno ocenjeno — ako cene padnu ili se pojave novi ispod ~330 €,
@@ -385,6 +398,10 @@ Kod koji nedostaje, a ne zavisi od podataka: W5 liquidity, friction i
 deal/confidence score.
 
 ## Poslednje sesije
+- 2026-09-23 (treći deo) — Merni prolaz kupujemprodajem za RTX 4080 Super:
+  samo 2 nova nezavisna oglasa nađena (1.100 €, 1.400 €), tržište trenutno
+  nema više standalone ponude. n=2→4, i dalje INSUFFICIENT_DATA (treba još
+  1). Nema nove odluke, čist merni prolaz. 218 testova prolazi.
 - 2026-09-23 (nastavak) — Merni prolaz kupujemprodajem za RTX 3090. Otkriven
   koncentrisan "privatni" nalog (Igor, 4 istovremena flagship oglasa) — isto
   pitanje kao "Dan"/marktplaats iz 08-24, sad na srpskom resale tržištu.
