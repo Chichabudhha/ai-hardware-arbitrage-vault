@@ -185,6 +185,25 @@ Ispravka pogrešnog upisa ide kao **nova outcome linija** (append-only, princip
 6), sa napomenom da ispravlja raniji pogrešan upis — stara linija ostaje na
 disku kao trag greške, ne briše se.
 
+## willhaben `?fromExpiredAdId=` poruka NIJE dokaz uklanjanja — pojavljuje se za bilo koji ID
+
+Otkriveno 2026-09-23, peti watch prolaz, dok se proveravao dvosmislen 404 na
+`watch:willhaben:1186046370`. Kad se kategorijska stranica otvori sa query
+parametrom `?fromExpiredAdId=<bilo koji broj>`, willhaben uvek prikazuje
+baner "Diese Anzeige ist nicht mehr verfügbar" — **čak i za potpuno izmišljen
+ID koji nikad nije postojao** (testirano sa `999999999999`). Ovo je
+klijentska poruka vezana za prisustvo parametra, ne za proveru da li je taj
+ID ikad postojao ili je stvarno istekao.
+
+**Pravilo:** ova poruka se ne sme koristiti kao dokaz DELISTED ishoda.
+Umesto nje, koristiti direktan `/d/{bilo-koji-slug}-{id}/` pristup (isti trik
+kao za URL-bug bez sluga): ako se stranica učita normalno, oglas je živ (kao
+kod `1421623773`); ako se dosledno vrati generički "Die Seite wurde nicht
+gefunden" **i sa slug prefiksom** (probano sa najmanje 2 različita
+izmišljena sluga, da se isključi format kao uzrok), to je pouzdaniji znak da
+ID ne postoji više — mada i dalje ne tvrdi *zašto* (prodato/povučeno/
+isteklo), princip 2.
+
 ## Dva izvora koja dele isti outcome namespace moraju da se filtriraju pre spajanja
 
 Predikcije (`predictions.jsonl`) i praćeni oglasi (`watchlist.jsonl`) su
@@ -315,6 +334,14 @@ tačno status znači (sajt ne objašnjava na samoj stranici). Ako se ponovi i
 sledeći put nestane sa "Jegelve" statusa u DELISTED bez ikad postati SOLD,
 vredi proveriti da li "Jegelve" prethodi arhiviranju (moguć prelazni stadijum)
 — zabeležiti kao otvoreno pitanje, ne pretpostaviti značenje.
+
+**Potvrđeno 2026-09-23, peti watch prolaz:** jedan od dva "Jegelve" oglasa
+(ASUS TUF, `asus_tuf_gaming_rtx_3080_ti_12gb_oc_2`) je između četvrtog i petog
+prolaza prešao u "Archív –"/"Archivált hirdetés". Hipoteza da "Jegelve" može
+biti prelazni stadijum pre arhiviranja se potvrđuje na ovom jednom primeru —
+i dalje nije poznato da li je pravilo (n=1), ali nije više samo nagađanje.
+Drugi "Jegelve" oglas (MvilágKft) ostaje "Jegelve" i posle 13 dana od prošlog
+viđenja, pa "Jegelve" ne mora brzo da vodi u arhiviranje.
 
 ## kleinanzeigen.de: skriveni DOM elementi u #viewad-title lažno sugerišu status
 

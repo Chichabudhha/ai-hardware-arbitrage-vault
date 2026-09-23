@@ -1,11 +1,30 @@
 ---
-updated: 2026-09-10
-status: prvi BUY u projektu (kleinanzeigen 3508001901, 240 EUR, profit 88 EUR, ROI 30%); četvrti watch prolaz zatvorio 2 stare predikcije bez BUY-a, nov merni prolaz otvorio 4 nove, jedna BUY
+updated: 2026-09-23
+status: peti watch prolaz zatvorio 2 od 9 subjekata (oba hardverapro/willhaben DELISTED), 7 ostaje otvoreno; BUY kandidat (kleinanzeigen 3508001901) i dalje čeka odluku vlasnika
 ---
 
 # PROGRESS — AI Hardware Arbitrage Serbia
 
 ## Gde smo stali
+
+**Peti watch prolaz (2026-09-23, 13 dana od prošlog):** svih 9 otvorenih
+subjekata provereno (3 willhaben, 2 olx-pl, 2 njuskalo, 2 hardverapro).
+**2 DELISTED, 7 UNSOLD, 0 SOLD.** willhaben 1186046370 (499 €) — genuine 404
+potvrđen sa 2 različita slug prefiksa (isključen URL-bug, isti trik radi za
+žive oglase); usput otkriveno da willhaben-ov `?fromExpiredAdId=` baner
+**nije pouzdan dokaz** uklanjanja (pojavljuje se i za izmišljen ID koji nikad
+nije postojao — vidi `reference/naucene-lekcije.md`). hardverapro ASUS TUF
+oglas je prešao iz "Jegelve" (prošli prolaz) u "Archivált hirdetés" —
+potvrđuje hipotezu da "Jegelve" može prethoditi arhiviranju (n=1). Preostalih
+7: 2 willhaben (499, 550 €) i dalje UNSOLD nepromenjeno; 2 olx-pl (2200 zł)
+nepromenjeno; 2 njuskalo (500, 490 €, oba diler eRadar) nepromenjeno; 1
+hardverapro (179.500 Ft, diler MvilágKft) i dalje "Jegelve", nepromenjeno.
+`data/paper/outcomes.jsonl`: **90 linija ukupno** (2 SOLD, 24 DELISTED, 64
+UNSOLD). 218 testova i dalje prolazi (bez izmene koda, samo podaci). **7
+subjekata ostaje otvoreno.**
+
+BUY kandidat (kleinanzeigen 3508001901, 240 €, profit 88 €, ROI 30%) i dalje
+čeka odluku vlasnika — nije deo watch liste, nije dirnut ovim prolazom.
 Lanac radi od kraja do kraja na stvarnim podacima: nemački oglas → product match
 → landed cost → srpska procena iz stvarnih oglasa → verdikt → zapisana
 predikcija. Matrica cena pokriva **9 tržišta sa dovoljno uzorka**
@@ -317,10 +336,9 @@ Nakon fixa:
 profit 88 €, ROI 30%) — beleška u `dnevnik/deals/`. Kad se zna ishod
 (kupljeno/odbijeno/pretekao neko), upisati `outcome` za kalibraciju.
 
-Za nekoliko dana: `arbitrage watch` za preostalih 9 subjekata. Sad kad
-postoje 2 SOLD ishoda (oba willhaben/AT), vredi pratiti da li se AT obrazac
-nastavlja ili je i dalje izolovan na jedno tržište — 0 SOLD i dalje na
-PL/HR/HU/DE.
+Za nekoliko dana: `arbitrage watch` za preostalih 7 subjekata (2 willhaben, 2
+olx-pl, 2 njuskalo, 1 hardverapro). I dalje 0 SOLD na PL/HR/HU/DE — oba
+dosadašnja SOLD ishoda su na willhaben/AT.
 
 Vredi razmotriti i novi merni prolaz kroz kleinanzeigen na ostale modele iz
 kataloga (D-011: RTX 3090, 3090 Ti, 4090, A4000/A5000/A6000, 4080 Super,
@@ -347,6 +365,17 @@ Kod koji nedostaje, a ne zavisi od podataka: W5 liquidity, friction i
 deal/confidence score.
 
 ## Poslednje sesije
+- 2026-09-23 — Peti watch prolaz, svih 9 otvorenih subjekata (13 dana od
+  poslednjeg): **2 DELISTED** (willhaben 1186046370 — genuine 404 potvrđen sa
+  2 slug prefiksa; hardverapro ASUS TUF — prešao iz "Jegelve" u "Archivált
+  hirdetés", potvrđuje hipotezu iz prošlog prolaza), **7 UNSOLD** nepromenjeno
+  (2 willhaben, 2 olx-pl, 2 njuskalo diler eRadar, 1 hardverapro diler
+  MvilágKft i dalje "Jegelve"). Usput otkriveno da willhaben `?fromExpiredAdId=`
+  baner nije pouzdan dokaz uklanjanja (test sa izmišljenim ID-jem dao istu
+  poruku) — zabeleženo u `reference/naucene-lekcije.md`, korišćen pouzdaniji
+  test (genuine 404 sa 2 različita slug prefiksa). `outcomes.jsonl`: 90 linija
+  (2 SOLD, 24 DELISTED, 64 UNSOLD). 7 subjekata ostaje otvoreno. 218 testova
+  prolazi (bez izmene koda, samo podaci).
 - 2026-09-10 — Četvrti watch prolaz, svih 17 subjekata (11 dana od
   poslednjeg): **2. SOLD** (willhaben 1112909857, 500 €, "VERKAUFT"), 7
   DELISTED (1 kleinanzeigen "Gelöscht", 4 olx-pl eksplicitna poruka, 2
