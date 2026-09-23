@@ -105,7 +105,10 @@ Postupak: `operations/PAPER-TRADING.md`.
       `marketplace/sites.json`, ne nova klasa. Slovenija merena i prazna za
       ovaj model; Češka jedan uzorak, bez FX kursa — #čeka-provere: `bazos.cz`
       nema odluku poput D-017, pristupljen van odobrenog spiska sajtova.)
-- [ ] Više GPU modela.
+- [ ] Više GPU modela. (u toku: RTX 3090 je 2026-09-23 prvi put dobio radnu
+      srpsku procenu, n=5 na kupujemprodajem — ali nema BUY na kleinanzeigen,
+      DE je trenutno skuplje tržište za ovaj model, van koridora. RTX 4080
+      Super na n=4, blizu praga. Ostalih 6 modela iz D-011 još bez RS uzorka.)
 - [ ] Complete PCs / bundles.
 - [ ] Seller intelligence.
 - [ ] Learning loop.
@@ -209,6 +212,31 @@ greške pri unosu, ne nova odluka. Vlasnik odobrio direktnu izmenu 3 reda u
 uzorka (n=5→4) i ispala iz matrice** — raniji nalaz "DE→HU najbolja
 prodajna destinacija" više ne stoji. I dalje samo 1 potvrđena prodaja
 ukupno — nedovoljno za bilo kakav zaključak o brzini apsorpcije.
+
+**2026-09-23 — Peti watch prolaz, D-021 (koncentrisan nalog), prvi model
+posle RTX 3080 Ti dobija radnu procenu.** Sesija u pet delova. (1) Peti
+watch prolaz (9 subjekata, 13 dana od prošlog): 2 DELISTED, 7 UNSOLD, 0
+SOLD; usput otkriveno da willhaben-ov `?fromExpiredAdId=` baner nije
+pouzdan dokaz uklanjanja (test sa izmišljenim ID-jem dao istu poruku). (2)
+Merni prolaz kroz kupujemprodajem za RTX 3090 otkrio koncentrisan "privatni"
+nalog (Igor, 4 istovremena RTX 3090 oglasa) — isto pitanje kao "Dan" iz
+2026-08-24, sad na samom srpskom resale tržištu. **Doneta D-021**: u
+P25/medijana/P75 uzorak ulazi samo 1 (medijalni) oglas takvog naloga,
+ostali kao `manual_reference`. **RTX 3090 n=3→5 — prvi put ijedan model
+osim RTX 3080 Ti ima radnu srpsku procenu** (P25 780 €). (3) Isti pokušaj za
+RTX 4080 Super: samo 2 nova nezavisna oglasa, n=2→4, i dalje ispod praga —
+tržište trenutno genuinski nema više standalone ponude. (4) Prvi merni
+prolaz kroz kleinanzeigen za RTX 3090: **nema BUY kandidata** (svi nemački
+oglasi 1.049–1.350 €, duboko iznad RS procene) — otkriven **obrnut cenovni
+jaz** (DE skuplje od RS za ovaj model, verovatno zbog AI/LLM potražnje),
+van odobrenog EU→RS koridora (D-018), samo zapažanje. (5) Sistematska
+provera preostalih HU/HR/BG/NL/BE opservacija (23) na neotkrivene dilere —
+**"Dan" (marktplaats.nl) potvrđen sa mnogo jačim dokazom** (nov RTX 5080,
+gaming PC 2.000 €), **D-021 primenjena retroaktivno** (marktplaats n=12→10,
+DE→NL razlika sad +142 €/49,4%, bilo +137 €/47,9% — rang nepromenjen).
+Jedan granični slučaj ("dvdee" na hardverapro, visok obim ali različiti
+modeli) zabeležen bez akcije — D-021 ne pokriva raznovrstan asortiman.
+218 testova prolazi kroz ceo dan (bez izmene koda, samo podaci i odluke).
 
 ## Rizici
 

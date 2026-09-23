@@ -383,3 +383,38 @@ bila u tome da `cmd_note` počne da poziva `estimate_resale()` isto kao
 `cmd_predict`, sa `--expected-sale-rsd` zadržanim kao ručni override. Testovi
 za ovakvu grešku ne mogu biti generički — moraju eksplicitno pozvati **oba**
 pozivaoca sa istim ulazom i uporediti da li se ponašaju isto.
+
+## Alat za čitanje stranice (get_page_text) je nepouzdan na grid/SPA listing stranicama — koristi read_page ili screenshot
+
+Otkriveno 2026-09-23 na više sajtova istog dana: kupujemprodajem, kleinanzeigen,
+2dehands i marktplaats sve dele isti obrazac. Kad se stranica sastoji od liste
+kartica (rezultati pretrage, "još oglasa od ovog prodavca"), `get_page_text`
+ume da pokupi tekst iz **proizvoljne** `<article>` na stranici — često
+sponzorisan/promovisan oglas sa vrha, ili čak prethodno posećen oglas — umesto
+glavnog sadržaja koji se traži. Simptom: rezultat izgleda validno (stvaran
+naslov, cena, prodavac), ali je za pogrešan oglas, i to se ne vidi dok se
+podaci ne uporede sa onim što se očekuje.
+
+**Pravilo:** za bilo koju stranicu sa više kartica/oglasa na istoj stranici
+(rezultati pretrage, profil prodavca sa "još oglasa"), ne koristiti
+`get_page_text` za izvlačenje podataka o konkretnoj kartici. Koristiti
+`read_page` (accessibility tree, filter "interactive") da se dobiju tačni
+href linkovi ka svakom oglasu, ili screenshot da se vizuelno potvrdi sadržaj.
+`get_page_text` ostaje pouzdan samo na stranici pojedinačnog oglasa (jedan
+glavni `<article>`), što je i potvrđeno raditi ispravno na njuskalo.hr i
+hardverapro.hu tokom iste sesije.
+
+## D-021 (koncentrisan nalog) važi samo za ISTI model, ne za opšti visok obim
+
+D-021 (2026-09-23) rešava slučaj kad isti "privatni" nalog ima više
+istovremenih oglasa **istog skupog modela** (Igor: 4x RTX 3090; Dan: 3x RTX
+3080 Ti). Isti dan je nađen graničan slučaj koji NE spada u D-021: "dvdee"
+na hardverapro.hu ima 354 pozitivne ocene i 8+ oglasa, ali svaki oglas je
+**drugačiji model** (RX 580, RTX 3070 Ti, RTX 2060 Super, RTX 3080 Ti...).
+
+**Pravilo:** pre primene D-021, proveriti da li se radi o **istom
+proizvodu** koji se ponavlja u uzorku (statistička koncentracija koju D-021
+rešava), a ne samo o visokom obimu/reputaciji naloga uopšte. Visok obim sa
+raznovrsnim modelima je i dalje samo D-020 pitanje (jasan poslovni identitet
+— ime firme, sajt) ili ostaje otvoreno kao neformalni diler bez odluke. Mešanje
+ova dva kriterijuma bi nepotrebno izbacilo validne opservacije iz uzorka.

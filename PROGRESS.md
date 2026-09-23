@@ -395,8 +395,9 @@ Nakon fixa:
   godina, 8+ oglasa) — visok obim, ali RAZLIČITI modeli grafičkih (ne isti
   model ponavljan kao Igor/Dan), pa D-021 ne pokriva slučaj. Nema poslovnog
   imena/sajta za D-020. Isti tip otvorenog pitanja kao "Dan" je bio pre
-  D-021 — nije rešeno, samo zabeleženo dok se ne pojavi jasniji dokaz ili
-  vlasnik ne odluči da proširi kriterijum i na "raznovrstan visok obim".
+  D-021. #čeka-vlasnika: da li "raznovrstan visok obim kod jednog naloga"
+  (bez ijednog D-020 signala) treba tretirati kao neformalni diler i po koji
+  kriterijum — nije rešeno, samo zabeleženo dok se ne pojavi jasniji dokaz.
 
 ## Blokirano
 - 🔴 Verifikacija dozvoljenog automatizovanog pristupa (#čeka-provere) — blokira
@@ -423,12 +424,13 @@ Za nekoliko dana: `arbitrage watch` za preostalih 7 subjekata (2 willhaben, 2
 olx-pl, 2 njuskalo, 1 hardverapro). I dalje 0 SOLD na PL/HR/HU/DE — oba
 dosadašnja SOLD ishoda su na willhaben/AT.
 
-Vredi razmotriti i novi merni prolaz kroz kleinanzeigen na ostale modele iz
-kataloga (D-011: RTX 3090, 3090 Ti, 4090, A4000/A5000/A6000, 4080 Super,
-4070 Ti Super) — do sada je merenje skoro isključivo na RTX 3080 Ti, pa je
-nepoznato da li isti break-even obrazac (~330 € za 3080 Ti) važi i za druge
-modele. RTX 3090 sad ima RS uzorak (n=5) pa bi kleinanzeigen strana konačno
-mogla da se oceni za taj model, ne samo da se upiše asking cena bez procene.
+✅ **Završeno 2026-09-23 za RTX 3090:** kleinanzeigen ocenjen sad kad postoji
+RS uzorak (n=5) — nema BUY kandidata (svi nemački oglasi 1.049–1.350 €,
+duboko iznad RS procene), otkriven obrnut cenovni jaz DE>RS (van koridora,
+samo zapažanje). Vredi razmotriti isto za preostale modele iz D-011 (3090
+Ti, 4090, A4000/A5000/A6000, 4070 Ti Super) — svi i dalje bez RS uzorka, pa
+bi prvo trebalo srpski uzorak (isti obrazac kao RTX 3090/4080 Super danas),
+tek onda kleinanzeigen stranu meriti.
 
 **RTX 4080 Super ostaje na n=4** (2026-09-23: n=2→4, tržište trenutno nema
 više standalone oglasa na kupujemprodajem) — proveriti ponovo pri sledećem

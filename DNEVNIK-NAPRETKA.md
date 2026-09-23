@@ -1204,6 +1204,73 @@ kandidata, ishod (kupljeno/odbijeno/pretekao neko drugi) treba upisati kao
 modele iz kataloga (D-011: 3090, 3090 Ti, 4090, A4000/A5000/A6000, 4080
 Super, 4070 Ti Super) — do sada je merenje skoro isključivo na RTX 3080 Ti.
 
+## 2026-09-23 `[claude-code]` — Zatvaranje sesije: rezime
+
+Sesija u pet delova, sve na zahtev vlasnika u istom danu (počelo sa "gde
+smo stali?", nastavljeno kroz "hajde sledeće" / "preostalih 7" / "šta ima
+dalje?" / "1 pa 2").
+
+1. **Peti watch prolaz** (9 subjekata, 13 dana od prošlog): 2 DELISTED
+   (willhaben 1186046370 — genuine 404 potvrđen sa 2 slug prefiksa;
+   hardverapro ASUS TUF — "Jegelve"→"Archivált", potvrđuje hipotezu iz
+   prošlog prolaza), 7 UNSOLD. Usput otkriveno da willhaben `?fromExpiredAdId=`
+   baner nije pouzdan dokaz uklanjanja (test sa izmišljenim ID-jem dao istu
+   poruku) — zapisano u naučenim lekcijama.
+2. **Merni prolaz kupujemprodajem za RTX 3090**: otkriven koncentrisan
+   "privatni" nalog ("Igor", 4 istovremena flagship oglasa) — isto pitanje
+   kao "Dan" iz 2026-08-24, sad na samom srpskom resale tržištu. **Doneta
+   D-021**: u uzorak ulazi samo 1 (medijalni) oglas takvog naloga, ostali
+   kao `manual_reference`. Usput nađena i 2 jasna dilera (Graficke.rs,
+   It-Zona — pokriveni D-020 bez nove odluke). **RTX 3090 n=3→5 — prvi put
+   ijedan model osim RTX 3080 Ti ima radnu srpsku procenu** (P25 780 €).
+3. **Isti pokušaj za RTX 4080 Super**: samo 2 nova nezavisna oglasa, n=2→4,
+   i dalje ispod praga — tržište trenutno genuinski nema više standalone
+   ponude na kupujemprodajem.
+4. **Prvi merni prolaz kroz kleinanzeigen za RTX 3090**: nema BUY kandidata
+   (svi nemački oglasi 1.049–1.350 €, duboko iznad RS procene, aritmetički
+   SKIP bez LLM poziva). Otkriven **obrnut cenovni jaz** — DE trenutno
+   skuplje tržište od RS za ovaj model (moguće zbog AI/LLM potražnje), van
+   odobrenog EU→RS koridora (D-018), samo zapažanje.
+5. **Sistematska provera 23 preostale HU/HR/BG/NL/BE opservacije** na
+   neotkrivene dilere. Nađen samo 1 problem: "Dan" (marktplaats.nl)
+   potvrđen sa mnogo jačim dokazom nego 2026-08-24 (raznovrstan
+   visokovredan inventar: nov RTX 5080, gaming PC 2.000 €). **D-021
+   primenjena retroaktivno** (2 od 3 njegova oglasa → `manual_reference`,
+   marktplaats n=12→10, DE→NL razlika sad +142 €/49,4%, bilo +137 €/47,9% —
+   rang nepromenjen). Jedan granični slučaj ("dvdee" na hardverapro, visok
+   obim ali različiti modeli) zabeležen bez akcije — D-021 ne pokriva
+   raznovrstan asortiman, samo koncentraciju istog modela.
+
+**Stanje na kraju sesije:**
+- `data/paper/outcomes.jsonl`: 90 linija (2 SOLD, 24 DELISTED, 64 UNSOLD),
+  **7 watch-subjekata otvoreno**.
+- **RTX 3090: prva radna procena posle RTX 3080 Ti** (n=5, P25 780 €,
+  confidence 0,48), ali bez BUY kandidata na kleinanzeigen.
+- **RTX 4080 Super: n=4**, treba tačno 1 nov nezavisan oglas za prag.
+- **D-021 doneta i primenjena 2x isti dan** (Igor/kupujemprodajem,
+  Dan/marktplaats retroaktivno).
+- **marktplaats n=12→10** (RTX 3080 Ti), DE→NL i dalje najveća neto razlika,
+  sad preciznija cifra (+142 €/49,4%).
+- **218 testova prolazi** ceo dan (bez izmene koda — samo podaci, D-021 i
+  primene).
+- Nove trajne lekcije: willhaben `fromExpiredAdId` nepouzdan; `get_page_text`
+  nepouzdan na grid/SPA listing stranicama (4 sajta istog dana); D-021 važi
+  samo za koncentraciju istog modela, ne za opšti visok obim.
+
+**#čeka-vlasnika (otvoreno):**
+- Odluka o BUY kandidatu (kleinanzeigen 3508001901, 240 €, profit 88 €,
+  ROI 30%) — i dalje bez ishoda, nedirnuto ovom sesijom.
+- Da li "dvdee" (hardverapro, visok obim/različiti modeli, bez D-020
+  signala) treba tretirati kao neformalni diler i po koji kriterijum.
+- Minimalna prihvatljiva confidence za BUY (i dalje nema odgovor iz
+  kalibracionog izveštaja — nedovoljno priceovanih ishoda).
+
+**Sledeća sesija:** watch prolaz za preostalih 7 subjekata za nekoliko dana
+(ne odmah — isti dan provereno, nema smisla ponoviti za par sati). Vredi
+razmotriti srpski uzorak za ostale D-011 modele (3090 Ti, 4090,
+A4000/A5000/A6000, 4070 Ti Super) pre nego što se meri kleinanzeigen strana
+za njih — isti redosled kao danas za RTX 3090/4080 Super.
+
 ## 2026-09-23 `[claude-code]` (četvrti deo) — Prvi merni prolaz kleinanzeigen za RTX 3090: nema BUY, obrnut cenovni jaz
 
 Na zahtev vlasnika ("1 pa 2" — prvo meriti RTX 3090 na kleinanzeigen, sada
