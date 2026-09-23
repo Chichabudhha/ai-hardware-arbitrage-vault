@@ -1204,6 +1204,80 @@ kandidata, ishod (kupljeno/odbijeno/pretekao neko drugi) treba upisati kao
 modele iz kataloga (D-011: 3090, 3090 Ti, 4090, A4000/A5000/A6000, 4080
 Super, 4070 Ti Super) — do sada je merenje skoro isključivo na RTX 3080 Ti.
 
+## 2026-09-23 `[claude-code]` (četvrti deo) — Prvi merni prolaz kleinanzeigen za RTX 3090: nema BUY, obrnut cenovni jaz
+
+Na zahtev vlasnika ("1 pa 2" — prvo meriti RTX 3090 na kleinanzeigen, sada
+kad ima RS procenu, pa onda proveru dilera na HU/HR/BG/NL/BE), prvi put
+mereno RTX 3090 na nemačkom izvornom tržištu. Do sada je RTX 3090 imao samo
+srpski (resale) uzorak — bez njega je svaki nemački kandidat bio
+INSUFFICIENT_DATA bez obzira na cenu; sad ima P25/medijanu za poređenje.
+
+**Pretraga:** kleinanzeigen.de, kategorija Grafikkarten, filter "Privat"
+(anbieter:privat) i "Angebote" (ne "Gesuche" — mnoge "tražim" objave se
+pojavljuju u rezultatima jer sadrže reč "3090" u tekstu). I dalje su se
+provlačile pogrešno kategorisane objave (npr. "Suche NVIDIA RTX 3090" tagovan
+kao Angebot, ali tekst jasno "ich suche" — tretiran po sadržaju, ne po
+platformskoj oznaci).
+
+**Isključeno (ne greška, van obima):**
+- "Nvidia RTX 3080 20GB VRAM ... * Nicht 3090" — eksplicitno NIJE 3090
+  (modifikovana kartica).
+- Coolers/waterblocks/backplate/karton/sticker-only oglasi (Zotac Trinity
+  Heatsink "KEINE KARTE", EK-Quantum waterblock, EKWB Backplate, ASUS TUF
+  "KARTON... ohne GPU", nVidia sticker) — nijedan nije stvarna kartica.
+- Bundle oglasi (RTX3090 SUPRIM X + 2x32GB RAM; MSI RTX 3090Ti + RTX 3090
+  zajedno) — mešaju proizvod sa drugom robom, cena nije za samu karticu.
+- "Evega RTX 3090 FTW3 Kühler ... Defekt ... Ersatzteile" — verovatno samo
+  hladnjak/za delove, ne funkcionalna kartica.
+
+**Nađeno — 7 standalone, nezavisnih, privatnih oglasa:**
+
+| Oglas | Cena | Grad |
+|---|---|---|
+| Phoenix rtx 3090 highend gpu Gaming | 1.049 € | Schweinfurt |
+| NVIDIA GeForce RTX 3090 Grafikkarte | 1.200 € | — |
+| ASUS TUF RTX 3090 OC 24GB GDDR6X | 1.250 € | Taufkirchen |
+| KFA2 GeForce RTX 3090 SG 24GB GDDR6X mit OVP | 1.249 € | Konzell |
+| ASUS TUF Gaming RTX 3090 OC 24GB GDDR6X \| OVP | 1.299 € | Bergedorf |
+| ASUS ROG Strix RTX 3090 OC White Edition | 1.300 € | Kaufering |
+| NVIDIA GeForce RTX 3090 Founders Edition | 1.350 € | Südstadt-Bult |
+
+**Nijedan BUY kandidat.** RS procena (kupujemprodajem, iz iste sesije ranije)
+je P25 780 €, P75 840 €. Svih 7 nemačkih cena (1.049–1.350 €) je iznad ili
+duboko iznad ove procene — **aritmetički SKIP pre bilo kakvog prevoza,
+posrednika ili rizik-rezerve**. Nije trošeno na LLM `predict --evaluate` ni
+za jedan kandidat — isti princip kao 2026-09-10 sesija ("nije trošeno na LLM
+pozive za predvidljiv rezultat"), pošto sama aritmetika (buy > resale
+ceiling) već isključuje BUY bez obzira na stanje/opis kartice.
+
+**Otkriven obrnut cenovni jaz.** `arbitrage matrix --product-id rtx-3090`:
+
+| tržište | n | P25 | medijana | P75 |
+|---|---|---|---|---|
+| kupujemprodajem (RS) | 5 | 780 € | 800 € | 840 € |
+| kleinanzeigen (DE) | 6 | 1.249 € | 1.275 € | 1.300 € |
+
+Nemačka je za ovaj model trenutno **skuplje** tržište od Srbije — suprotno od
+uobičajenog obrasca (DE jeftino, RS/PL/AT skuplje, viđeno kod RTX 3080 Ti).
+Alat prijavljuje "RS→DE +470 € neto (63,5%)" kao najveću razliku, ali to je
+**van odobrenog EU→RS koridora** (D-018 i dalje nerešen za obrnut smer,
+princip 8/D-003 ionako zabranjuje automatsku kupovinu) — zabeleženo kao
+zapažanje, ne kao prilika za akciju.
+
+**Moguće objašnjenje (nije potvrđeno, samo hipoteza):** RTX 3090 (24GB
+VRAM) je popularna kartica za lokalni AI/LLM rad, potražnja u Nemačkoj može
+biti neproporcionalno visoka u odnosu na srpsko tržište; srpski uzorak je
+tek n=5 (uključujući 4 opservacije iz iste sesije, D-021 primenjeno na 3 od
+njih) i možda ne odražava punu sliku srpskog tržišta. Vredi ponovo meriti
+kad oba uzorka porastu.
+
+**7 novih opservacija upisano** (`kleinanzeigen`, `asking`, sve privatni
+prodavci, potvrđeno standalone kartice bez bundle/pribora). 218 testova
+prolazi (bez izmene koda, samo podaci).
+
+**Sledeći korak (u istoj sesiji):** provera preostalih HU/HR/BG/NL/BE
+opservacija na dalje neotkrivene dilere (drugi deo vlasnikovog zahteva).
+
 ## 2026-09-23 `[claude-code]` (treći deo) — Merni prolaz RTX 4080 Super: i dalje ispod praga
 
 Na zahtev vlasnika ("nastavi"), primenjen isti obrazac na RTX 4080 Super

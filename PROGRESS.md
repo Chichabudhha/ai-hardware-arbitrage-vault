@@ -53,6 +53,53 @@ opisu ne odgovara katalogu (D-011 ne dodaje vanilla RTX 4080). Postojeći
 **RTX 4080 Super: n=2→4, i dalje INSUFFICIENT_DATA** (treba još 1 za prag od
 5) — tržište trenutno genuinski nema više aktivnih standalone oglasa, nije
 umetno zadržano ispod praga. 218 testova prolazi.
+
+**Isti nastavak — prvi merni prolaz kroz kleinanzeigen za RTX 3090: nema BUY
+kandidata, otkriven obrnut cenovni jaz.** Pretražen kleinanzeigen.de (privat,
+"Angebote" ne "Gesuche", isključeni bundle/cooler-only/pogrešno kategorisani
+oglasi) za RTX 3090. **Nijedan standalone privatni oglas ispod 1.000 €** —
+najjeftiniji nađen kandidat je 1.049 € (Phoenix), ostalih 6 su 1.200–1.350 €.
+Pošto je RS resale procena (kupujemprodajem) P25 780 €/P75 840 €, svaki od
+ovih je aritmetički SKIP i pre dodavanja prevoza/posrednika — nije trošeno na
+LLM evaluaciju (isti princip kao 2026-09-10: ne troši pozive na predvidljiv
+rezultat).
+
+**Matrica (`arbitrage matrix --product-id rtx-3090`) otkriva obrnut jaz:**
+kupujemprodajem P25 780 € (n=5) < kleinanzeigen P25 1.249 € (n=6, jedan
+outlier od 7 upisanih isključen IQR filterom) — DE je trenutno **skuplje**
+tržište za ovaj model, ne jeftinije. Neto razlika RS→DE +470 € (63,5%) je
+izvan odobrenog EU→RS koridora (D-018 i dalje nerešen za obrnut smer) — **nije
+trgovinska prilika, samo zapažanje**. Verovatno objašnjenje: RTX 3090 (24GB)
+je popularan za lokalni AI/LLM rad, potražnja u Nemačkoj može biti
+neproporcionalno visoka; srpski uzorak je mali (n=5) i može ne odražavati
+punu sliku. 7 novih kleinanzeigen opservacija upisano (`asking`). 218
+testova prolazi (bez izmene koda, samo podaci).
+
+**Isti nastavak — sistematska provera preostalih HU/HR/BG/NL/BE opservacija
+na neotkrivene dilere** (drugi deo vlasnikovog zahteva "1 pa 2"). Provereno
+svih preostalih 23 `asking` opservacija (2 njuskalo, 4 hardverapro, 2
+olx-bg, 3 2dehands, 13 marktplaats — jedna delistovana na olx-bg nije mogla
+da se proveri). **Rezultat: samo "Dan" (marktplaats.nl) potvrđen kao
+problem** — sad sa mnogo jačim dokazom nego 2026-08-24 (raznovrstan,
+visokovredan inventar: nov RTX 5080, kompletan gaming PC 2.000 €, više
+modela grafičkih). Primenjena **D-021 retroaktivno** (kako je i predviđeno u
+samoj odluci): od 3 identična Dan oglasa (svi 500 €), 1 ostaje `asking`
+(m2411760679), 2 prebačena na `manual_reference` (izmena postojećeg polja,
+ne novi red — isti princip kao ranije price_type ispravke). marktplaats
+n=12→10, medijana 500→505 €, DE→NL najveća neto razlika sada +142 €
+(49,4%, bilo +137 €/47,9%) — rang tržišta nepromenjen, samo tačnija cifra.
+
+Jedan dodatni granični slučaj zabeležen, ali **nije reklasifikovan**:
+hardverapro prodavac "dvdee" (354 pozitivne, 7 godina, 8+ različitih
+oglasa) — visok obim, ali RAZLIČITI modeli (ne isti kao Igor/Dan slučaj),
+pa D-021 ne važi (kriterijum je koncentracija ISTOG modela). Nema poslovnog
+imena/sajta za D-020. Zabeleženo kao otvoreno pitanje istog tipa kao "Dan"
+je bio, dok se ne nađe jasniji dokaz.
+
+Svih ostalih 20 provera: potvrđeno genuinski privatni prodavci (lična
+imena, casual ton, mešoviti asortiman kod "još oglasa"). Nema izmena.
+218 testova prolazi.
+
 Lanac radi od kraja do kraja na stvarnim podacima: nemački oglas → product match
 → landed cost → srpska procena iz stvarnih oglasa → verdikt → zapisana
 predikcija. Matrica cena pokriva **9 tržišta sa dovoljno uzorka**
@@ -340,8 +387,16 @@ Nakon fixa:
   se ponovilo 2026-09-23 na kupujemprodajem ("Igor", 4 istovremena RTX 3090
   oglasa). Vlasnik odlučio: u P25/medijana/P75 uzorak ulazi samo 1 (medijalni)
   oglas takvog naloga, ostali se upisuju kao `manual_reference` (posmatrano,
-  van statistike). Pravilo je opšte i pokriva i "Dan" retroaktivno (nije
-  ponovo obrađen — nema akutnu potrebu, RTX 3080 Ti/NL uzorak već ima n=12).
+  van statistike). Pravilo je opšte. **Primenjeno retroaktivno na "Dan" isti
+  dan** (sistematska provera HU/HR/BG/NL/BE) — sad sa jačim dokazom (raznovrstan
+  visokovredan inventar, nov RTX 5080, gaming PC 2.000 €): 2 od 3 njegova
+  oglasa prebačena na `manual_reference`, marktplaats n=12→10.
+- 🟡 **Novo 2026-09-23: hardverapro prodavac "dvdee"** (354 pozitivne ocene, 7
+  godina, 8+ oglasa) — visok obim, ali RAZLIČITI modeli grafičkih (ne isti
+  model ponavljan kao Igor/Dan), pa D-021 ne pokriva slučaj. Nema poslovnog
+  imena/sajta za D-020. Isti tip otvorenog pitanja kao "Dan" je bio pre
+  D-021 — nije rešeno, samo zabeleženo dok se ne pojavi jasniji dokaz ili
+  vlasnik ne odluči da proširi kriterijum i na "raznovrstan visok obim".
 
 ## Blokirano
 - 🔴 Verifikacija dozvoljenog automatizovanog pristupa (#čeka-provere) — blokira
@@ -398,6 +453,12 @@ Kod koji nedostaje, a ne zavisi od podataka: W5 liquidity, friction i
 deal/confidence score.
 
 ## Poslednje sesije
+- 2026-09-23 (četvrti deo) — Prvi merni prolaz kroz kleinanzeigen za RTX
+  3090: nijedan standalone privatni oglas ispod 1.000 € (najjeftiniji
+  1.049 €), svi aritmetički SKIP naspram RS procene (P25 780 €). Matrica
+  otkriva obrnut cenovni jaz (kupujemprodajem jeftinije od kleinanzeigen za
+  ovaj model) — van odobrenog koridora (D-018), samo zapažanje. 7 novih
+  opservacija upisano. 218 testova prolazi.
 - 2026-09-23 (treći deo) — Merni prolaz kupujemprodajem za RTX 4080 Super:
   samo 2 nova nezavisna oglasa nađena (1.100 €, 1.400 €), tržište trenutno
   nema više standalone ponude. n=2→4, i dalje INSUFFICIENT_DATA (treba još
