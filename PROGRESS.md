@@ -453,6 +453,14 @@ Kod koji nedostaje, a ne zavisi od podataka: W5 liquidity, friction i
 deal/confidence score.
 
 ## Poslednje sesije
+- 2026-09-23 (peti deo) — Sistematska provera preostalih HU/HR/BG/NL/BE
+  opservacija (23 ukupno) na neotkrivene dilere. Nađen samo 1 problem:
+  "Dan" (marktplaats.nl) potvrđen sa jačim dokazom (raznovrstan inventar,
+  nov RTX 5080, gaming PC), D-021 primenjena retroaktivno (2 od 3 njegova
+  oglasa → `manual_reference`, marktplaats n=12→10). Jedan granični slučaj
+  zabeležen bez akcije ("dvdee" na hardverapro — visok obim, različiti
+  modeli, D-021 ne pokriva). Ostalih 20 potvrđeno genuinski privatno. 218
+  testova prolazi.
 - 2026-09-23 (četvrti deo) — Prvi merni prolaz kroz kleinanzeigen za RTX
   3090: nijedan standalone privatni oglas ispod 1.000 € (najjeftiniji
   1.049 €), svi aritmetički SKIP naspram RS procene (P25 780 €). Matrica

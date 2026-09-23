@@ -338,3 +338,13 @@ Medijana sva 4 Igorova oglasa (840/840/845/899, sortirano) je 842,50 € —
 tačno između Zotac (840 €) i MSI Ventus (845 €), podjednako blizu oba.
 Odabran je Zotac kao tiebreaker po nižem ID-ju oglasa (#195348803 <
 #195349310, dakle raniji unos na sajtu).
+
+**Primena na "Dan"/marktplaats.nl (2026-09-23, retroaktivno, isti dan):**
+sistematska provera preostalih HU/HR/BG/NL/BE opservacija je ponovo naišla
+na "Dan" (3 identična RTX 3080 Ti oglasa, svi 500 €, otvoreno pitanje od
+2026-08-24) — ovog puta sa mnogo jačim dokazom: "Meer van Dan" pokazuje
+raznovrstan, delom nov, visokovredan inventar (nov RTX 5080 1.500 €,
+kompletan gaming PC 2.000 €). `m2411760679` (najniži ID) ostaje `asking`,
+`m2417801157` i `m2415741253` prebačeni na `manual_reference`. marktplaats
+n=12→10, medijana 500→505 €; DE→NL najveća neto razlika i dalje prva, sada
++142 € (49,4%), bilo +137 € (47,9%).

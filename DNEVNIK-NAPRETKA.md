@@ -1278,6 +1278,80 @@ prolazi (bez izmene koda, samo podaci).
 **Sledeći korak (u istoj sesiji):** provera preostalih HU/HR/BG/NL/BE
 opservacija na dalje neotkrivene dilere (drugi deo vlasnikovog zahteva).
 
+## 2026-09-23 `[claude-code]` (peti deo) — Sistematska provera dilera na HU/HR/BG/NL/BE: "Dan" potvrđen, D-021 primenjena retroaktivno
+
+Drugi deo vlasnikovog zahteva ("1 pa 2"): provera preostalih `asking`
+opservacija na HU (hardverapro), HR (njuskalo), BG (olx-bg), NL (marktplaats),
+BE (2dehands) na neotkrivene dilere — isti obrazac kojim su ranije slučajno
+nađeni eRadar, MvilágKft, Graficke.rs, It-Zona (ime prodavca, ton opisa,
+"još oglasa" tog naloga), samo sad sistematski umesto slučajno.
+
+**njuskalo (2 preostala `asking`):** oba potvrđena privatna — lična
+korisnička imena ("jurkoviccccc98", "MarPetar"), lični ton opisa, nema
+pravnih podataka na dnu stranice (za razliku od eRadar/It-Zona stranica).
+
+**hardverapro (4 preostala, 1 već dealer_reference):**
+- `asus_tuf_gaming_rtx_3080_ti_12gb_oc_2` — proveren već u petom watch
+  prolazu isti dan (fuze111, lično, DELISTED).
+- `asus_tuf_rtx_3080_ti_12gb_oc` — "standardman", 12 god. registrovan, 50
+  pozitivnih, lični ton ("Szívesen megtartanám mert baromi jó kis kártya").
+  Privatno.
+- `zotac_gaming_rtx_3080_ti` — "Zsombi67", samo 2 druga oglasa (PS3,
+  MacBook) — jasno lični, mešoviti asortiman. Privatno.
+- `gainward_geforce_phoenix_rtx_3080_ti_12gb_gddr6x_3_3` — **"dvdee", 354
+  pozitivne / 1 negativna, 7 godina, 8+ oglasa** (RX 580, RTX 3070 Ti, RTX
+  2060 Super — RAZLIČITI modeli, ne isti kao Igor/Dan). Visok obim, ali bez
+  poslovnog imena/sajta (D-020 kriterijum) i bez koncentracije ISTOG modela
+  (D-021 kriterijum). **Nije reklasifikovan** — zabeležen kao novo otvoreno
+  pitanje istog tipa kao što je "Dan" bio pre D-021.
+
+**olx-bg (2 preostala):** jedan (`9FS7S`) je **stvarno uklonjen** —
+"Тази обява вече не е налична" (eksplicitna olx.bg poruka o uklanjanju,
+za razliku od kleinanzeigen-ovog nepouzdanog `fromExpiredAdId`), nije mogao
+da se proveri seler. Drugi (`9WjhX`) nosi eksplicitnu platformsku oznaku
+"Частна" (privatno) — Roberto, član od dec. 2023. Privatno.
+
+**2dehands (3 preostala):** sva tri potvrđena privatna preko "još oglasa"
+istog naloga — mešoviti lični predmeti (Atakan Ozkonakci: ništa drugo;
+Van Haver: PS5 igre; Underxperia: Nintendo Switch). Nijedan GPU-fokusiran
+obrazac.
+
+**marktplaats (13 preostalih `asking`, 1 već dealer_reference/Hardriven):**
+10 potvrđeno privatnih (Z/Zwolle, damian, R../Rotterdam, Bart, BK/Amersfoort,
+K.Z.B./Gigabyte 530€, Jon/MSI Suprim, Cas/tuf gaming, Tim/MSI Trio,
+Nick/Aorus Master — svi lična imena ili inicijali, "još oglasa" pokazuje
+mešoviti asortiman gde je vidljivo, nijedna poslovna oznaka).
+
+**"Dan" (3 oglasa, svi tačno 500 €, sve "Lage Zwaluwe") — potvrđen sa mnogo
+jačim dokazom nego 2026-08-24.** Sekcija "Meer van Dan" na aktivnoj stranici
+pokazuje: AMD RX 6900 XT, **NOVI** RTX 5080 Gigabyte AORUS Master (1.500 €,
+označen "NIEUW"), RTX 3080 Founders Edition, RTX 3070 Ti Founders Edition,
+**kompletan gaming PC i9-11900K/RTX 5080/32GB/1,5TB za 2.000 €**, i još.
+Ovo je kvalitativno drugačiji dokaz od ranijeg zapažanja (samo "gotovo
+identičan tekst, 205 ocena") — raznovrstan, visokovredan, delom NOV
+inventar liči na profesionalnu prodaju, ne na ličnu kolekciju koja se
+rasprodaje.
+
+**Primenjena D-021 retroaktivno** (tačno kako je predviđeno u tekstu same
+odluke od danas): od 3 identična Dan oglasa, **1 ostaje `asking`**
+(`m2411760679`, najniži ID = najraniji unos — isti tiebreaker kao za Igora),
+**2 prebačena na `manual_reference`** (`m2417801157`, `m2415741253`) —
+izmena postojećeg `price_type` polja direktno u `serbia.jsonl`, ne novi red
+(princip: ispravka klasifikacije menja postojeći red, isto kao MvilágKft/
+eRadar ispravka 2026-08-30, ne kao outcome append-only).
+
+**Posledica na matricu:** marktplaats n=12→10, medijana 500→505 €. DE→NL
+ostaje najveća neto razlika, sada +142 € (49,4%), bilo +137 € (47,9%) —
+rang tržišta nepromenjen, samo preciznija cifra pošto je dvostruko-brojan
+jedan prodavač uklonjen iz uzorka.
+
+218 testova prolazi (bez izmene koda, samo podaci i D-021 primena).
+
+**Sledeći korak:** nema hitnog — ovo je bila jednokratna sistematska
+provera. Vredi ponoviti isti postupak kad god se ovi markets ponovo mere
+(watch prolaz ili novi merni prolaz), pošto je "diler otkriven tek pri
+ponovnoj poseti" već poznat obrazac (eRadar/MvilágKft).
+
 ## 2026-09-23 `[claude-code]` (treći deo) — Merni prolaz RTX 4080 Super: i dalje ispod praga
 
 Na zahtev vlasnika ("nastavi"), primenjen isti obrazac na RTX 4080 Super
