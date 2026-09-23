@@ -1,6 +1,6 @@
 ---
 updated: 2026-09-23
-status: peti watch prolaz zatvorio 2 od 9 subjekata (oba hardverapro/willhaben DELISTED), 7 ostaje otvoreno; BUY kandidat (kleinanzeigen 3508001901) i dalje čeka odluku vlasnika
+status: peti watch prolaz zatvoren (2 DELISTED, 7 otvoreno); D-021 doneta; RTX 3090 prvi put prešao prag uzorka (n=5), procena sad radi; BUY kandidat i dalje čeka odluku vlasnika
 ---
 
 # PROGRESS — AI Hardware Arbitrage Serbia
@@ -25,6 +25,22 @@ subjekata ostaje otvoreno.**
 
 BUY kandidat (kleinanzeigen 3508001901, 240 €, profit 88 €, ROI 30%) i dalje
 čeka odluku vlasnika — nije deo watch liste, nije dirnut ovim prolazom.
+
+**Isti dan, nastavak sesije — RTX 3090 prvi put prešao prag uzorka.** Merni
+prolaz kroz kupujemprodajem (cilj: dodati 2 nova RTX 3090 oglasa da se pređe
+prag od 5, n je bilo 3) je otkrio da su **skoro svi trenutno aktivni privatni
+oglasi za ovaj model na jednom nalogu** ("Igor", Beograd/Voždovac, 4
+istovremena flagship RTX 3090 oglasa, samo-izjašnjen kao "nije trgovac").
+Isto pitanje kao otvoreno 08-24 (marktplaats "Dan"), sad na samom srpskom
+resale tržištu. Vlasnik je odlučio (**D-021**, nova odluka u `odluke/`): u
+uzorak ulazi samo 1 (medijalni) Igorov oglas kao `asking`, ostala 3 upisana
+kao `manual_reference` (posmatrano, van statistike, princip 6). Usput nađena
+2 jasna diler naloga ("@Graficke.rs", "It-Zona" — poslovna imena, D-020
+kriterijum bez potrebe za novom odlukom) i 1 genuinski nezavisan privatni
+oglas (Zrenjanin, 900 €). **RTX 3090: n=3→5 (asking), procena sad radi**
+(`price --product-id rtx-3090`: P25 780 €, medijana 800 €, confidence 0.48,
+basis ASKING). 218 testova prolazi (bez izmene koda, samo podaci i D-021 u
+`odluke/`).
 Lanac radi od kraja do kraja na stvarnim podacima: nemački oglas → product match
 → landed cost → srpska procena iz stvarnih oglasa → verdikt → zapisana
 predikcija. Matrica cena pokriva **9 tržišta sa dovoljno uzorka**
@@ -287,9 +303,10 @@ Nakon fixa:
   79 ishoda upisano ukupno, **2 sa cenom** (oba SOLD, oba willhaben/AT, 429 €
   i 500 €) — i dalje daleko od 20, ali više nije 0. Oba potvrđena SOLD-a su
   na istom tržištu; PL/HR/HU/DE i dalje 0 SOLD.
-- ⏳ Uzorci ispod minimuma: RTX 3090 n=3, RTX 4080 Super n=2, njuskalo (HR) n=2
+- ⏳ Uzorci ispod minimuma: RTX 4080 Super n=2, njuskalo (HR) n=2
   (posle isključivanja dilera), hardverapro (HU) n=4, olx-bg n=2, 2dehands n=2,
-  bazos (CZ) n=1.
+  bazos (CZ) n=1. **RTX 3090 je 2026-09-23 prešao prag (n=3→5), više nije na
+  ovoj listi.**
 - ⏳ **BUY kandidat čeka odluku vlasnika** (kleinanzeigen 3508001901, 240 €,
   profit 88 €, ROI 30%) — prva BUY preporuka u projektu, još nema ishod.
 - ⏳ CZK kurs i dalje nedostaje (cnb.cz, ecb.europa.eu blokirani); 1 češki
@@ -305,15 +322,13 @@ Nakon fixa:
   prva BUY preporuka u projektu (kleinanzeigen 3508001901, 2026-09-10) nosi
   confidence 0,53 (ASKING osnova, n=9) — nije poznato da li je to iznad ili
   ispod praga koji bi vlasnik smatrao prihvatljivim, jer prag ne postoji.
-- 🟡 **#čeka-vlasnika (novo 2026-08-24): ponovljeni privatni nalog kao
-  neformalni diler.** "Dan" na marktplaats.nl (2 god. na sajtu, 205 ocena)
-  je izvor 3 od 12 holandskih opservacija u uzorku, gotovo identičan tekst
-  oglasa/grad. Nema formalnu "Zakelijk" (poslovni) oznaku sajta, pa je upisan
-  kao privatni po istom kriterijumu kao ostali (D-020: oznaka platforme), ali
-  obrazac (visok broj ocena, ponovljen šablon) liči na neformalnog
-  preprodavca. Nije isključeno — samo zabeleženo. Treba odluka: da li nalog
-  sa X+ ponovljenih oglasa za isti model treba tretirati kao diler bez obzira
-  na platformsku oznaku, i ako da, koji prag (broj oglasa/ocena).
+- ✅ **Rešeno 2026-09-23 (D-021):** ponovljeni privatni nalog kao neformalni
+  diler. Isto pitanje otvoreno 2026-08-24 za "Dan" (marktplaats.nl, 3 oglasa)
+  se ponovilo 2026-09-23 na kupujemprodajem ("Igor", 4 istovremena RTX 3090
+  oglasa). Vlasnik odlučio: u P25/medijana/P75 uzorak ulazi samo 1 (medijalni)
+  oglas takvog naloga, ostali se upisuju kao `manual_reference` (posmatrano,
+  van statistike). Pravilo je opšte i pokriva i "Dan" retroaktivno (nije
+  ponovo obrađen — nema akutnu potrebu, RTX 3080 Ti/NL uzorak već ima n=12).
 
 ## Blokirano
 - 🔴 Verifikacija dozvoljenog automatizovanog pristupa (#čeka-provere) — blokira
@@ -344,7 +359,12 @@ Vredi razmotriti i novi merni prolaz kroz kleinanzeigen na ostale modele iz
 kataloga (D-011: RTX 3090, 3090 Ti, 4090, A4000/A5000/A6000, 4080 Super,
 4070 Ti Super) — do sada je merenje skoro isključivo na RTX 3080 Ti, pa je
 nepoznato da li isti break-even obrazac (~330 € za 3080 Ti) važi i za druge
-modele.
+modele. RTX 3090 sad ima RS uzorak (n=5) pa bi kleinanzeigen strana konačno
+mogla da se oceni za taj model, ne samo da se upiše asking cena bez procene.
+
+**Sledeći prirodan korak za srpski uzorak: RTX 4080 Super (n=2, treba još 3
+za prag od 5)** — isti obrazac kao RTX 3090 danas, primeniti D-021 ako se
+opet pojavi koncentrisan nalog.
 
 Preostalih ~10 kleinanzeigen kandidata iz ovosesijske pretrage (489+ €)
 nije pojedinačno ocenjeno — ako cene padnu ili se pojave novi ispod ~330 €,
@@ -365,6 +385,14 @@ Kod koji nedostaje, a ne zavisi od podataka: W5 liquidity, friction i
 deal/confidence score.
 
 ## Poslednje sesije
+- 2026-09-23 (nastavak) — Merni prolaz kupujemprodajem za RTX 3090. Otkriven
+  koncentrisan "privatni" nalog (Igor, 4 istovremena flagship oglasa) — isto
+  pitanje kao "Dan"/marktplaats iz 08-24, sad na srpskom resale tržištu.
+  Vlasnik doneo **D-021**: u uzorak ulazi samo 1 medijalni oglas takvog
+  naloga, ostali kao `manual_reference`. Usput 2 jasna dilera (Graficke.rs,
+  It-Zona — poslovna imena, D-020 bez nove odluke) i 1 nezavisan privatni
+  oglas (Zrenjanin). **RTX 3090 n=3→5, procena sad radi** (P25 780 €,
+  confidence 0.48). 218 testova prolazi.
 - 2026-09-23 — Peti watch prolaz, svih 9 otvorenih subjekata (13 dana od
   poslednjeg): **2 DELISTED** (willhaben 1186046370 — genuine 404 potvrđen sa
   2 slug prefiksa; hardverapro ASUS TUF — prešao iz "Jegelve" u "Archivált

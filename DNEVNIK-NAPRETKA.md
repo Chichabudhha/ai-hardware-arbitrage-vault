@@ -1204,6 +1204,85 @@ kandidata, ishod (kupljeno/odbijeno/pretekao neko drugi) treba upisati kao
 modele iz kataloga (D-011: 3090, 3090 Ti, 4090, A4000/A5000/A6000, 4080
 Super, 4070 Ti Super) — do sada je merenje skoro isključivo na RTX 3080 Ti.
 
+## 2026-09-23 `[claude-code]` (nastavak) — Merni prolaz RTX 3090: koncentrisan nalog i D-021
+
+Posle petog watch prolaza, vlasnik je tražio nastavak ("hajde sledeće").
+Umesto novog mernog prolaza kroz kleinanzeigen (nemački izvor) za druge
+modele iz D-011, odabran je prioritetniji korak: **RTX 3090 i RTX 4080
+Super nemaju dovoljan srpski (resale) uzorak** (n=3 i n=2, prag je 5) — bez
+toga `predict`/`price` za te modele uvek vraća INSUFFICIENT_DATA bez obzira
+koliko se nemačkih oglasa nađe, jer nema šta da se poredi. Odabran RTX 3090
+(bliži pragu).
+
+**Pretraga kupujemprodajem.com** (korišćeno/polovno, prodaje se, filter po
+D-006) za "rtx 3090": 251 rezultata bez filtera, 31 posle filtera stanja i
+tipa prodaje. Prvih nekoliko ("Repackaged", fabrički zapakovano) su nova
+roba dilerskog tipa — van obima (used-only fokus).
+
+**Nalaz koji je zaustavio mehanički unos:** od svih trenutno aktivnih
+oglasa koji izgledaju kao standardni privatni (`nije trgovac` samo-
+izjašnjenje), **4 različita flagship RTX 3090 oglasa** (Zotac Amp Holo 840 €,
+Palit Gamerock 899 €, PNY 840 €, MSI Ventus 845 €) su sa **istog naloga**
+— "Igor", Beograd/Voždovac, član od 2021, 570/2 ocena. Nijedan pojedinačni
+signal (platformska oznaka, ime firme, sopstveni sajt) ne postoji da bi ovo
+kvalifikovalo kao `dealer_reference` po D-020 — samo obrazac ponovljenih
+istovremenih oglasa skupog modela. Ovo je **isto pitanje već otvoreno
+2026-08-24** za "Dan" na marktplaats.nl (3 oglasa), sad prvi put na samom
+srpskom resale tržištu, gde direktno određuje P25/medijanu koju koristi
+svaki BUY/SKIP.
+
+Zaustavljen dalji mehanički unos, nalaz prijavljen vlasniku sa 4 opcije
+(upiši sve kao asking / upiši samo 1 medijalni / preskoči RTX 3090 za sada /
+formalizuj pravilo kao odluku). **Vlasnik izabrao: upiši samo 1 (medijalni)
+Igorov oglas, ostale zabeleži van uzorka.**
+
+**Doneta D-021** (`odluke/_pregled-odluka.md`): kad isti privatni nalog ima
+više istovremenih oglasa istog skupog modela, u P25/medijana/P75 uzorak
+ulazi samo jedan (medijalni po ceni), ostali se upisuju sa
+`price_type=manual_reference` (isti mehanizam isključenja kao D-020, drugi
+razlog — koncentracija kod jednog prodavca, ne diler cena). Ne menja
+klasifikaciju naloga na diler — to i dalje traži D-020 dokaz. Opšte pravilo,
+pokriva i "Dan" retroaktivno (nije ponovo obrađivan, RTX 3080 Ti/NL uzorak
+već ima n=12 pa nema akutnu potrebu).
+
+Medijana Igorova 4 oglasa (840/840/845/899, sortirano) = 842,50 € — tačno
+između Zotac (840 €) i MSI Ventus (845 €). Odabran Zotac kao tiebreaker po
+nižem ID-ju oglasa (raniji unos na sajtu).
+
+**Usput nađena i 2 jasna diler naloga**, oba odmah klasifikovana bez nove
+odluke jer već pokrivaju postojeći D-020 kriterijum ("jasan poslovni
+identitet" — isti kvalitet dokaza kao ranije nađeni "Hardriven
+Technologies"):
+- **@Graficke.rs** (Kragujevac, brend-nalik korisničko ime specijalizovano
+  za grafičke kartice) — RTX 3090 ROG Strix White, 1.050 €.
+- **It-Zona** (Beograd/Voždovac, isto brend-nalik ime, 1.898 ocena) — RTX
+  3090 Gigabyte Vision, 870 €.
+
+**I 1 genuinski nezavisan privatni oglas**: Branislav Savić, Zrenjanin
+(druga lokacija, realno ime, jedini RTX 3090 oglas sa tog naloga, član od
+2013), RTX 3090 Aorus Xtreme, 900 €.
+
+**Upisano ukupno 6 novih opservacija** za `rtx-3090`:
+- Zotac Amp Holo, 840 €, `asking` (u uzorak, Igor — medijalni izbor)
+- Palit Gamerock, 899 €, `manual_reference` (Igor, van uzorka)
+- PNY, 840 €, `manual_reference` (Igor, van uzorka)
+- MSI Ventus, 845 €, `manual_reference` (Igor, van uzorka)
+- Gigabyte Vision, 870 €, `dealer_reference` (It-Zona)
+- Asus ROG Strix White, 1.050 €, `dealer_reference` (Graficke.rs)
+- Aorus Xtreme, 900 €, `asking` (Zrenjanin, nezavisan)
+
+**Rezultat: RTX 3090 n=3 → 5 opservacija u uzorku** (stare 3: 780/800/750 €
++ nove 2: 840/900 €). `arbitrage price --product-id rtx-3090 --condition
+used` sad daje procenu umesto INSUFFICIENT_DATA: P25 780 €, medijana 800 €,
+P75 840 €, basis ASKING, confidence 0,48. Prvi put da ijedan model osim
+RTX 3080 Ti ima radnu srpsku procenu.
+
+218 testova prolazi (bez izmene koda — samo podaci i D-021 u `odluke/`).
+
+**Sledeći korak:** isti obrazac za RTX 4080 Super (n=2, treba još 3 za
+prag). Ako se opet pojavi koncentrisan nalog, primeniti D-021 direktno bez
+ponovnog pitanja vlasnika — pravilo je sada opšte.
+
 ## 2026-09-23 `[claude-code]` — Peti watch prolaz
 
 Vlasnik je zatražio nastavak sesije ("gde smo stali?" → predložen i odobren

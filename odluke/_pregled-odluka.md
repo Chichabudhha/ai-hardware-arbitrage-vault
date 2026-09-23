@@ -293,3 +293,48 @@ ispravku pogrešno unetog polja — ista logika kao ispravka willhaben URL
 bug-a, samo na drugoj strukturi podataka). Posledica: hardverapro (HU)
 pada ispod praga uzorka (n=5→4), ispada iz matrice — raniji nalaz
 "DE→HU najbolja prodajna destinacija" više ne stoji.
+
+## D-021 — Koncentrisan privatni nalog (više istovremenih oglasa istog skupog modela): u uzorak ulazi samo 1
+
+**Odobreno od vlasnika 2026-09-23.**
+
+Nalaz: merni prolaz kroz kupujemprodajem (RTX 3090, tokom pokušaja da se
+pređe prag uzorka od 5) je pokazao da je od svih trenutno aktivnih privatnih
+("nije trgovac") oglasa za ovaj model **4 od 4 sa istog naloga** ("Igor",
+Beograd/Voždovac, samo-izjašnjen kao privatno lice): Zotac Amp Holo 840 €,
+Palit Gamerock 899 €, PNY 840 €, MSI Ventus 845 €. Ovo je isto pitanje koje
+je već otvoreno 2026-08-24 za marktplaats.nl ("Dan", 3 gotovo identična
+oglasa) — platformska oznaka (D-020) ne pokriva ovaj slučaj jer nalog nema
+poslovni identitet niti platformsku "Zakelijk/Бизнес" oznaku, samo obrazac
+ponovljenih istovremenih oglasa skupog modela. Ponovljeni oglasi sami po
+sebi nisu dovoljan dokaz za `dealer_reference` (nema ime firme, sajt ni
+profesionalan copy — vidi `reference/naucene-lekcije.md`), ali upisivanje
+svih 4 kao `asking` bi učinilo da 4 od ~5-7 opservacija za RTX 3090 potiču
+od jednog prodavca — medijana bi bila Igorova cenovna politika, ne tržište.
+
+Odlučeno:
+
+- Kad isti privatni nalog ima **više istovremenih oglasa istog skupog
+  modela**, u P25/medijana/P75 uzorak ulazi **samo jedan** (medijalni po
+  ceni) oglas tog naloga za taj model.
+- Ostali oglasi istog naloga se **i dalje upisuju** (princip 6), ali sa
+  `price_type = manual_reference` — isti mehanizam isključenja kao D-020,
+  samo drugi razlog (koncentracija kod jednog prodavca, ne diler cena).
+  Vidljivo u `ResaleEstimate.explanation` kao isključeno.
+- Ovo **ne** menja klasifikaciju naloga na `dealer_reference` — nema dovoljno
+  dokaza za to (D-020 kriterijum ostaje: platformska oznaka ili jasan
+  poslovni identitet). Ovo je odvojen razlog isključenja: statistička
+  nezavisnost uzorka, ne tip prodavca.
+- Opšte pravilo, primenjuje se na sve buduće slučajeve ovog obrasca na bilo
+  kom tržištu (uklj. otvoreno pitanje "Dan"/marktplaats.nl iz 2026-08-24,
+  koje ova odluka sada rešava retroaktivno).
+- Prag za "više oglasa" nije brojčano fiksiran (npr. "3+") — svaki slučaj se
+  prepoznaje ručno pri watch/merenju, isto kao dealer_reference klasifikacija.
+
+**Primena na RTX 3090 (2026-09-23):** Zotac Amp Holo (840 €, #195348803) ušao
+u uzorak kao `asking`. Palit Gamerock (899 €, #195554619), PNY (840 €,
+#195466161) i MSI Ventus (845 €, #195349310) upisani kao `manual_reference`.
+Medijana sva 4 Igorova oglasa (840/840/845/899, sortirano) je 842,50 € —
+tačno između Zotac (840 €) i MSI Ventus (845 €), podjednako blizu oba.
+Odabran je Zotac kao tiebreaker po nižem ID-ju oglasa (#195348803 <
+#195349310, dakle raniji unos na sajtu).
