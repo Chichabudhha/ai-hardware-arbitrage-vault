@@ -1,6 +1,6 @@
 ---
 updated: 2026-09-23
-status: peti watch prolaz zatvoren (2 DELISTED, 7 otvoreno); D-021 doneta; RTX 3090 prvi put prešao prag uzorka (n=5), procena sad radi; BUY kandidat i dalje čeka odluku vlasnika
+status: sesija zatvorena (5 delova) — peti watch prolaz (2 DELISTED, 7 otvoreno); D-021 doneta i primenjena 2x (Igor/KP, Dan/NL); RTX 3090 prvi put ima radnu procenu (n=5) ali nema BUY na kleinanzeigen (obrnut cenovni jaz DE>RS); RTX 4080 Super n=4, i dalje ispod praga; sistematska provera dilera HU/HR/BG/NL/BE zatvorena; BUY kandidat (3508001901) i dalje čeka odluku vlasnika
 ---
 
 # PROGRESS — AI Hardware Arbitrage Serbia
@@ -438,12 +438,15 @@ Preostalih ~10 kleinanzeigen kandidata iz ovosesijske pretrage (489+ €)
 nije pojedinačno ocenjeno — ako cene padnu ili se pojave novi ispod ~330 €,
 vredi ih oceniti.
 
-Vredi proveriti preostale asking opservacije na HU/HR/BG/NL/BE na isti način
-kao što je slučajno otkriven eRadar/MvilágKft (ime prodavca, pravni podaci
-na dnu oglasa) da se uhvate eventualni dalji neotkriveni dileri — do sada su
-svi nađeni slučajno tokom watch provere, ne sistematskom proverom pri
-unosu. Mađarska (hardverapro) treba novi merni prolaz da vrati n≥5 sa
-privatnim prodavcima pošto je ispala iz matrice.
+✅ **Završeno 2026-09-23:** sistematska provera svih preostalih HU/HR/BG/NL/BE
+asking opservacija na neotkrivene dilere (23 provereno, "Dan" potvrđen i
+D-021 primenjena, "dvdee" zabeležen kao otvoreno pitanje) — nije više
+zadatak za sledeću sesiju, ali vredi ponoviti isti postupak kad god se ova
+tržišta ponovo mere (nov merni prolaz ili watch), pošto je "diler otkriven
+tek pri ponovnoj poseti" već poznat obrazac.
+
+Mađarska (hardverapro) treba novi merni prolaz da vrati n≥5 sa privatnim
+prodavcima pošto je ispala iz matrice (D-020, 2026-08-30).
 
 Vredi i vratiti se na Belgiju (2dehands, n=2) i Bugarsku (olx.bg, n=2 posle
 D-020) sa još jednim mernim prolazom da pređu prag uzorka od 5 — trenutno
