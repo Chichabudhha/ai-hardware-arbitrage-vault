@@ -1204,6 +1204,71 @@ kandidata, ishod (kupljeno/odbijeno/pretekao neko drugi) treba upisati kao
 modele iz kataloga (D-011: 3090, 3090 Ti, 4090, A4000/A5000/A6000, 4080
 Super, 4070 Ti Super) — do sada je merenje skoro isključivo na RTX 3080 Ti.
 
+## 2026-09-23 `[claude-code]` — Peti watch prolaz
+
+Vlasnik je zatražio nastavak sesije ("gde smo stali?" → predložen i odobren
+peti watch prolaz za preostalih 9 otvorenih subjekata, 13 dana od poslednjeg
+prolaza 2026-09-10).
+
+**Svih 9 subjekata provereno ručno kroz vlasnikov Chrome** (D-012/D-014/D-017,
+isti obrazac kao prethodna 4 prolaza): 3 willhaben, 2 olx-pl, 2 njuskalo, 2
+hardverapro.
+
+**Rezultat: 2 DELISTED, 7 UNSOLD, 0 SOLD.**
+
+**DELISTED #1 — willhaben 1186046370 (499 €).** Direktan pristup
+`/d/1186046370` je dao generički 404, kao i uvek za URL bez SEO sluga (poznat
+bug). Umesto da se to protumači kao dokaz, primenjen je trik iz naučenih
+lekcija: dodat izmišljen slug prefiks (`/d/x-1186046370`). I dalje 404 —
+"Die Seite wurde nicht gefunden". Probano i sa drugim izmišljenim slugom
+(`/d/rtx-3080ti-1186046370`) da se isključi mogućnost da je baš "x-" prefiks
+problem — isti 404. Za poređenje, isti trik na `1421623773` (živ oglas) je
+odmah učitao punu stranicu s cenom i opisom. Zaključak: 404 sa slug prefiksom
+je pouzdan znak da ID više ne postoji (za razliku od 404 bez sluga, koji je
+uvek dvosmislen).
+
+**Usput otkriven novi gotcha:** dok se tražio čvršći dokaz, isprobana je
+`?fromExpiredAdId=<id>` ruta (baner "Diese Anzeige ist nicht mehr verfügbar"
+viđen ranije na potvrđenom DELISTED oglasu 1900028284). Test sa potpuno
+izmišljenim ID-jem (`999999999999`) je vratio **identičnu poruku** — dakle
+ta poruka se prikazuje za bilo koji broj u tom parametru, bez provere da li
+je ID ikad postojao. Nije korišćena kao dokaz za 1186046370 (dokaz je genuine
+404 sa slug prefiksom, ne ovaj baner). Zapisano u
+`reference/naucene-lekcije.md` kao upozorenje za buduće provere.
+
+**DELISTED #2 — hardverapro ASUS TUF (`asus_tuf_gaming_rtx_3080_ti_12gb_oc_2`,
+199.999 Ft).** Prošli prolaz (09-10) je ovaj oglas prvi put video sa ❄️
+"Jegelve" statusom (stranica potpuno prikazana). Ovaj prolaz: status prešao u
+"Archív –"/"Archivált hirdetés" (stranica zamenjena arhivskim prikazom, isti
+obrazac kao 3 hardverapro oglasa 08-30). **Potvrđuje hipotezu** iz prošle
+sesije da "Jegelve" može biti prelazni stadijum pre arhiviranja — zabeleženo
+kao potvrđeno na n=1, ne kao pravilo.
+
+**7 UNSOLD, sve nepromenjeno:**
+- willhaben 1421623773 (499 €) — živ, potvrđen istim slug-trikom.
+- willhaben 856878159 (550 €) — živ, nepromenjeno 550 €.
+- olx-pl 17ILRO i 1aVLwi (2200 zł oba) — oba živa, nepromenjena.
+- njuskalo 51071226 i 49147086 (500 €, 490 €) — oba živa, i dalje diler
+  eRadar, nepromenjeno.
+- hardverapro MSI Ventus (179.500 Ft, diler MvilágKft) — i dalje "Jegelve"
+  status 13 dana kasnije (nije brzo prešao u arhiviranje kao ASUS TUF primer
+  iznad — "Jegelve" ne mora nužno brzo voditi u arhivu). Diler sad ima 75
+  oglasa (bilo 69 na prošlom prolazu).
+
+**Brojevi:** `data/paper/outcomes.jsonl` 81 → **90 linija** (+9), ukupno 2
+SOLD, 24 DELISTED, 64 UNSOLD. **7 subjekata ostaje otvoreno** (2 willhaben, 2
+olx-pl, 2 njuskalo, 1 hardverapro). 218 testova i dalje prolazi (bez izmene
+koda, samo podaci upisani preko `arbitrage outcome`).
+
+**Van obima ovog prolaza:** 5 kleinanzeigen predikcija (uklj. BUY kandidat
+3508001901) nisu dirnute — BUY odluka je i dalje na vlasniku (princip 8,
+D-003), a 3 SKIP predikcije (400/450/460 €) nisu deo watch liste iz
+prethodne sesije.
+
+**Sledeći korak:** watch prolaz za preostalih 7 subjekata za nekoliko dana.
+0 SOLD i dalje na PL/HR/HU — oba dosadašnja SOLD ishoda ostaju izolovana na
+willhaben/AT.
+
 ## 2026-09-10 `[claude-code]` (četvrti deo) — Bug fix: `note` komanda nikad nije mogla da izračuna profit za EUR procenu
 
 Vlasnik je zatražio Obsidian belešku za BUY kandidata (`arbitrage note`).
