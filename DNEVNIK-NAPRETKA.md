@@ -1781,3 +1781,25 @@ modeli (3090, 4080 Super, A-serija) ne mogu dobiti BUY.
 znakova), `predict --evaluate`: Isernia 425 € BUY, Bolzano 460 € NEGOTIATE,
 Crotone i Udine 550 € NEGOTIATE. 4 asking opservacije upisane. Nije kupovina;
 odluka je vlasnikova (D-003).
+
+## 2026-10-09 `[claude-code]` (četvrti deo) — Odluke vlasnika: reklasifikacija, nemački izvor, dublja provera Isernia 425 €
+
+**Reklasifikacija (vlasnik odobrio):** subito 660873695 (RTX 3080 Ti, 300 €,
+sumnja na lažan oglas) prebačen u `manual_reference` izmenom tog jednog reda;
+subito P25 3080 Ti ostao 425 € (n=15 u matrici).
+
+**Nemački izvor osvežen (vlasnik odobrio):** upisano 8 novih kleinanzeigen
+3080 Ti oglasa (699, 550, 500, 499, 500, 480, 550, 475 €), svi "Privater
+Nutzer", bez defekta. Izostavljeni PC-ovi, laptop, eGPU i "Suche" oglasi.
+Kleinanzeigen u matrici: n=8 → n=14, P25 338 → 435 €. Kupovni uslov
+kleinanzeigen→hardverapro sada +87,90 € (26 %), ranije izgledalo bolje zbog
+zastarelih cena. serbia.jsonl 159 redova, 218 testova prolazi.
+
+**Dublja provera Isernia 425 € (subito 662978611):** prodavac "GDS", 0 ocena,
+nije verifikovan, nema "član od"; oglas od 2.10. sa 62 favorita; nema računa;
+dostava "da se dogovori privatno", nema Subito paketa/zaštite u podacima
+stranice; 4 fotografije, kartica u kućištu (ne dokazuje vlasništvo). U Italiji
+je sledeća najniža 3090 460 € (Bolzano), pa 425 € nije izuzetak unutar
+italijanskog tržišta. Verdikt ostaje BUY brojčano, ali rizik je veći nego što
+model pokazuje; preporuka pre uplate: video-poziv sa serijskim brojem, plaćanje
+samo preko posrednika. Odluka je vlasnikova (D-003).
