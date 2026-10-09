@@ -1,11 +1,38 @@
 ---
 updated: 2026-10-09
-status: šesti watch prolaz + dopuna (2026-10-09) — 4 DELISTED, 3 UNSOLD (porasla cena), 3. SOLD (willhaben 480 €), BUY kandidat 3508001901 DELISTED (oglas nestao), watchlist dopunjen KP oglasima (prvi srpski resale subjekti); prethodno: sesija zatvorena 09-23 (5 delova) — peti watch prolaz (2 DELISTED, 7 otvoreno); D-021 doneta i primenjena 2x (Igor/KP, Dan/NL); RTX 3090 prvi put ima radnu procenu (n=5) ali nema BUY na kleinanzeigen (obrnut cenovni jaz DE>RS); RTX 4080 Super n=4, i dalje ispod praga; sistematska provera dilera HU/HR/BG/NL/BE zatvorena; BUY kandidat (3508001901) i dalje čeka odluku vlasnika
+status: skeniranje svih oglasnika + novi BUY kandidat subito 662978611 (2026-10-09); šesti watch prolaz + dopuna (2026-10-09) — 4 DELISTED, 3 UNSOLD (porasla cena), 3. SOLD (willhaben 480 €), BUY kandidat 3508001901 DELISTED (oglas nestao), watchlist dopunjen KP oglasima (prvi srpski resale subjekti); prethodno: sesija zatvorena 09-23 (5 delova) — peti watch prolaz (2 DELISTED, 7 otvoreno); D-021 doneta i primenjena 2x (Igor/KP, Dan/NL); RTX 3090 prvi put ima radnu procenu (n=5) ali nema BUY na kleinanzeigen (obrnut cenovni jaz DE>RS); RTX 4080 Super n=4, i dalje ispod praga; sistematska provera dilera HU/HR/BG/NL/BE zatvorena; BUY kandidat (3508001901) i dalje čeka odluku vlasnika
 ---
 
 # PROGRESS — AI Hardware Arbitrage Serbia
 
 ## Gde smo stali
+
+**2026-10-09, treći deo — skeniranje svih 11 oglasnika, upis, dublja provera, drugi modeli.**
+(1) RTX 3080 Ti: ~60 novih oglasa; upisano **15 opservacija** (subito 3, olx-bg 1,
+2dehands 3, njuskalo 1, hardverapro 4, KP 2, olx-pl 1) po opsegu "ispod 400 € +
+tržišta ispod praga". Tip prodavca proveren na svakoj stranici: 2 `dealer_reference`
+(hardverapro Medvus — račun/garancija; 2dehands "verkoop op factuur"). Nisu upisani:
+olx-bg 895 € (nov, diler) i 490 € (3 kartice u 1 oglasu), 2dehands 9 € (cena
+nečitljiva), duplikat 2dehands ASUS TUF. **hardverapro n=4→7, vraćen u matricu**
+(P25 469,82 €, med 547,90 € — skok jer su novi oglasi ~219k Ft). kleinanzeigen DE
+(22 nova, min 450 € VB) NIJE upisan: matrica i dalje koristi stare DE cene (P25
+338 €) iako su trenutne 450+ € — **zastareo DE izvor**, #čeka-vlasnika da li
+upisati. (2) **Dublja provera:** subito 660873695 (300 €) — slika kartice je
+GIGABYTE, naslov/opis ASUS TUF, prevedeni šablon → sumnja na lažan oglas;
+olx-pl 1cGsq2 (1.050 zł ≈243 € po kursu od 08-19, brojčano BUY) — privatni,
+bez ocena, upola cene ostalih PL oglasa; oba na watchlist-i, nijedan nije predikcija.
+(3) **Drugi modeli** (KP, srpski uzorak): 3090 Ti 0 oglasa, 4070 Ti Super 0
+(samo PC), 4090 n=1, A4000 n=0 (3 diler "nov iz EU"), A5000 n=1, A6000 n=1 —
+svi INSUFFICIENT_DATA; 3 diler-oglasa (`dealer_reference`, `new`) iako KP piše
+"nije trgovac". 4080 Super ostaje n=4. (4) **3090 EU strana (subito):** 4
+oglasa 425–550 € upisano (`asking`), 4 predikcije u `predictions.jsonl`:
+**662978611 Palit GameRock Isernia 425 € = BUY** (landed 486,25 €, profit
+293,75 €, ROI 60%, risk Low), 662710376 FE Bolzano 460 € = NEGOTIATE (ROI 45%,
+Subito zaštita kupca), 659748983 ASUS Strix 550 € i 659419812 Palit 550 € =
+NEGOTIATE (>500 € budžet, D-008). **Upozorenje:** BUY je 45% ispod srpskog
+P25 (780 €), prodavac nema račun i nudi privatno dogovorenu dostavu (van Subito
+zaštite) — uzorak srpskog tržišta je n=5 (conf 0,47); brojke su kandidat, ne
+dokaz. Matrica 3090: subito n=4 (ispod praga). 218 testova prolazi.
 
 **Isti dan, dopuna watchlist-a + provera BUY kandidata.** (1) **BUY kandidat
 kleinanzeigen 3508001901 (240 €) je nestao** posle 29 dana: URL vodi na

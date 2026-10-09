@@ -445,3 +445,16 @@ dokaz prodaje.
 
 Isto: willhaben oglas koji nije na watchlist-i može biti već SOLD — pri
 liveness proveri kandidata za praćenje čitati i naslov ("(verkauft)").
+
+## Subito i KP: cena ispod tržišta + "nije trgovac" nisu dokaz privatnog prodavca (2026-10-09)
+
+- subito 660873695: naslov i opis ASUS TUF, a slika kartice GIGABYTE (zumirano) +
+  prevedeni šablonski tekst → lažan/prepisan oglas. Pre upisa cene sa subito
+  proveriti da slika odgovara naslovu. Isti sajt ima i prave oglase na 425–550 €
+  (slika sa kutijom/u kućištu), pa nizak cenovni nivo sam po sebi nije dokaz.
+- KP: Subotica/Beograd prodavci sa "Korisnik je izjavio da nije trgovac", ali
+  "svi proizvodi novi, uvoz iz EU, garancija, po porudžbini" (1.587 ocena) su
+  dileri → `dealer_reference`, `new`. Samoizjava nije kriterijum.
+- BUY po `predict` ne znači bezbedan: risk model nije video "bez računa" i
+  "dostava privatno dogovorena" (Isernia 425 €) — uzeti u obzir pre bilo kakve
+  uplate.

@@ -1755,3 +1755,29 @@ Ostala 2 willhaben oglasa (480, 450 €) nestala bez oznake prodaje.
 
 **Brojevi:** outcomes 97 → 100 (3 SOLD, 32 DELISTED, 65 UNSOLD); watchlist
 25 → 30 stavki; 7 watch + 3 SKIP predikcije otvoreno. 218 testova prolazi.
+
+## 2026-10-09 `[claude-code]` (treći deo) — Skeniranje svih oglasnika, upis, dublja provera, drugi modeli
+
+Vlasnik: "upis u store, pa dublja provera. Posle proveri i druge modele"
+(posle izveštaja o ~60 novih RTX 3080 Ti oglasa; potvrđeno da nije kupio BUY
+kandidata 3508001901).
+
+**Upis (15):** vidi PROGRESS. Tip prodavca čitan sa svake stranice. hardverapro
+n=4→7. DE novi oglasi (22) nisu upisani — otvoreno pitanje zastarele DE strane.
+
+**Dublja provera:** subito 300 € — slika GIGABYTE vs naslov ASUS TUF, prevedeni
+šablon, "test do sutra" → verovatno lažan; olx-pl 1.050 zł → neproverena niska
+cena. Oba na watchlist-i. Brojke po politici (D-008/D-009/D-010/D-015): landed =
+cena + 15 € posrednik + 25 € prevoz.
+
+**Drugi modeli:** KP pretraga za 3090 Ti, 4090, A4000/A5000/A6000, 4070 Ti Super:
+uzorci 0–1 po modelu, upisano 3 asking + 3 dealer_reference (`new`). Nijedan model
+ne prelazi prag od 5. **Strukturna napomena:** `max_purchase_eur`=500 € (D-008)
+pretvara svaki BUY iznad 500 € u NEGOTIATE (`calculator.py:241`), pa skuplji
+modeli (3090, 4080 Super, A-serija) ne mogu dobiti BUY.
+
+**3090 EU:** subito 425/460/550/550 €. Napravljeni ručni HTML fajlovi u
+`data/listings/subito/` iz polja pročitanih sa stranica (opisi skraćeni na ~520
+znakova), `predict --evaluate`: Isernia 425 € BUY, Bolzano 460 € NEGOTIATE,
+Crotone i Udine 550 € NEGOTIATE. 4 asking opservacije upisane. Nije kupovina;
+odluka je vlasnikova (D-003).
