@@ -432,3 +432,16 @@ početne cene bile realne. Ne menja `asking` opservacije (princip 6).
 willhaben: preusmerenje na kategoriju sa banerom "nicht mehr verfügbar"
 pri 2 različita slug prefiksa tretirano kao DELISTED (isti standard dokaza
 kao 2026-09-23: živ oglas se sa slugom učitava u celosti).
+
+## KupujemProdajem "parkiran" oglas (2026-10-09)
+
+KP stranica sa porukom "Oglas trenutno nije aktivan / Oglašivač je
+parkirao ovaj oglas" i dalje prikazuje naslov, cenu i opis. To je stanje
+između aktivnog i uklonjenog: oglas ne vidi kupac, ali se može reaktivirati.
+Tretirati kao **otvoreno** (kao hardverapro "Jegelve"), ne DELISTED i ne
+SOLD, dok se ne vidi reaktivacija ili uklanjanje. Starije KP oglase koji
+vraćaju generičku stranicu ("Oglas - KupujemProdajem") ne tumačiti kao
+dokaz prodaje.
+
+Isto: willhaben oglas koji nije na watchlist-i može biti već SOLD — pri
+liveness proveri kandidata za praćenje čitati i naslov ("(verkauft)").

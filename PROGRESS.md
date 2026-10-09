@@ -1,11 +1,29 @@
 ---
 updated: 2026-10-09
-status: šesti watch prolaz (2026-10-09) — 4 DELISTED, 3 UNSOLD (sva 3 sa PORASLOM cene), 3 subjekta ostaju; prethodno: sesija zatvorena 09-23 (5 delova) — peti watch prolaz (2 DELISTED, 7 otvoreno); D-021 doneta i primenjena 2x (Igor/KP, Dan/NL); RTX 3090 prvi put ima radnu procenu (n=5) ali nema BUY na kleinanzeigen (obrnut cenovni jaz DE>RS); RTX 4080 Super n=4, i dalje ispod praga; sistematska provera dilera HU/HR/BG/NL/BE zatvorena; BUY kandidat (3508001901) i dalje čeka odluku vlasnika
+status: šesti watch prolaz + dopuna (2026-10-09) — 4 DELISTED, 3 UNSOLD (porasla cena), 3. SOLD (willhaben 480 €), BUY kandidat 3508001901 DELISTED (oglas nestao), watchlist dopunjen KP oglasima (prvi srpski resale subjekti); prethodno: sesija zatvorena 09-23 (5 delova) — peti watch prolaz (2 DELISTED, 7 otvoreno); D-021 doneta i primenjena 2x (Igor/KP, Dan/NL); RTX 3090 prvi put ima radnu procenu (n=5) ali nema BUY na kleinanzeigen (obrnut cenovni jaz DE>RS); RTX 4080 Super n=4, i dalje ispod praga; sistematska provera dilera HU/HR/BG/NL/BE zatvorena; BUY kandidat (3508001901) i dalje čeka odluku vlasnika
 ---
 
 # PROGRESS — AI Hardware Arbitrage Serbia
 
 ## Gde smo stali
+
+**Isti dan, dopuna watchlist-a + provera BUY kandidata.** (1) **BUY kandidat
+kleinanzeigen 3508001901 (240 €) je nestao** posle 29 dana: URL vodi na
+početnu, kontrolni živ oglas sa istim formatom se učitava, pretraga po
+naslovu ga ne nalazi (dokaz istog nivoa kao ASUS TUF 09-10, bez "Gelöscht").
+DELISTED upisan za obe predikcije tog oglasa; vlasnik potvrdio 2026-10-09 da nije kupio. Nijedna BUY preporuka u projektu nema ishod sa cenom. (2)
+**Treći SOLD:** pri liveness proveri kandidata za dopunu nađen willhaben
+1981110508 (ASUS TUF 3080 Ti) označen "(verkauft)", 480 € (nepromenjeno u
+odnosu na asking), stranica izmenjena 27.08.2026. Nije bio na watchlist-i —
+dodat, upisan SOLD + SOLD opservacija u store (`days_listed` nepoznat). Oba
+ostala willhaben oglasa iz Aug 23 su nestala (nisu dodavana). (3) **Watchlist
++5:** prvi put ikakvi srpski resale subjekti — 4 kupujemprodajem (2 RTX 4080
+Super živa 1.100/1.400 €; 2 RTX 3090 840/900 € **"parkirani"**, nov status:
+"Oglas trenutno nije aktivan / Oglašivač je parkirao", stranica prikazana,
+tretirano kao otvoreno, ne DELISTED) + willhaben SOLD. Avgustovski KP oglasi
+(13) nisu dodavani: većina vraća generičku/neaktivnu stranicu. `outcomes.jsonl`:
+**100 linija** (3 SOLD, 32 DELISTED, 65 UNSOLD). **7 watch subjekata +
+3 SKIP kleinanzeigen predikcije otvoreno.** 218 testova prolazi.
 
 **Šesti watch prolaz (2026-10-09, 16 dana od prošlog):** svih 7 otvorenih
 subjekata provereno. **4 DELISTED, 3 UNSOLD, 0 SOLD.** DELISTED: willhaben
@@ -430,9 +448,8 @@ Nakon fixa:
   nije na njemu). Treba ili proširiti D-017 na Češku ili povući taj upis.
 
 ## Sledeći zadatak
-**#čeka-vlasnika:** odluka o BUY kandidatu (kleinanzeigen 3508001901, 240 €,
-profit 88 €, ROI 30%) — beleška u `dnevnik/deals/`. Kad se zna ishod
-(kupljeno/odbijeno/pretekao neko), upisati `outcome` za kalibraciju.
+✅ BUY kandidat 3508001901 zatvoren 2026-10-09: oglas nestao (DELISTED). Ostaje
+opšte pitanje minimalne confidence za BUY (nema prvog BUY-a sa ishodom).
 
 Za nekoliko dana: `arbitrage watch` za preostala 3 subjekta (1 olx-pl, 2
 njuskalo — sva tri sa povišenom cenom od 10-09). Dopuniti watchlist novim oglasima (ostalo samo 3). I dalje 0 SOLD na PL/HR/HU/DE — oba
@@ -472,6 +489,7 @@ Kod koji nedostaje, a ne zavisi od podataka: W5 liquidity, friction i
 deal/confidence score.
 
 ## Poslednje sesije
+- 2026-10-09 (dopuna) — Provera BUY kandidata: 3508001901 nestao (DELISTED). Treći SOLD (willhaben 1981110508, 480 €) otkriven pri liveness proveri. Watchlist +5 (4 KP prvi srpski resale subjekti, 2 od njih "parkirani"). 100 ishoda. 218 testova prolazi.
 - 2026-10-09 — Šesti watch prolaz, 7 subjekata: 4 DELISTED (2 willhaben, 1 olx-pl, 1 hardverapro Jegelve→arhiva), 3 UNSOLD sa porastom cene (olx-pl 2200→2500 zł, njuskalo 500/490→600 €). 97 ishoda. 218 testova prolazi.
 - 2026-09-23 (peti deo) — Sistematska provera preostalih HU/HR/BG/NL/BE
   opservacija (23 ukupno) na neotkrivene dilere. Nađen samo 1 problem:

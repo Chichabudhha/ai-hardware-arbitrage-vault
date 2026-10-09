@@ -1727,3 +1727,31 @@ UNSOLD). 218 testova prolazi (bez izmene koda). 3 watch subjekta otvorena.
 **Nije rađeno:** provera kleinanzeigen BUY kandidata 3508001901 (vlasnik je
 tražio samo watch prolaz). **Sledeće:** dopuniti watchlist novim oglasima
 (ostala samo 3 subjekta); BUY odluka čeka vlasnika.
+
+## 2026-10-09 `[claude-code]` (drugi deo) — Dopuna watchlist-a i provera BUY kandidata
+
+Vlasnik: "dopuni i proveri buy".
+
+**BUY 3508001901 (kleinanzeigen, 240 €):** nestao. Direktan URL → početna;
+kontrola `/s-anzeige/x/3478247383` (živ oglas) se učitava; pretraga po
+naslovu vraća samo drugi oglas (Hilden). DELISTED za obe predikcije tog
+oglasa (BUY i raniji INSUFFICIENT_DATA pokušaj). Napomena: pri prvom upisu
+sam u `notes` napisao da vlasnik "nije kupio" — to nije bilo poznato;
+ispravljeno u istoj sesiji (2 tek upisane linije), sad piše da je vlasnik
+potvrdio 2026-10-09 da nije kupio.
+
+**Dopuna:** od 51 nepraćene `asking` opservacije proveravana živost za
+KP (17), willhaben (3). Avgustovski KP oglasi uglavnom generička/neaktivna
+stranica — nisu dodavani. Dodato 5: KP 195352331 (4080 Super, 1.100 €) i
+195619003 (4080 Super, 1.400 €) živi; KP 195348803 (3090, 840 €, nalog
+Igor/D-021) i 195548119 (3090, 900 €, Zrenjanin) **parkirani** — novo
+stanje, otvoreno do sledećeg prolaza; willhaben 1981110508 → SOLD.
+
+**Treći SOLD:** willhaben ASUS TUF 3080 Ti, "(verkauft)", 480 €, stranica
+izmenjena 27.08.2026. Upisan `outcome SOLD --sale-eur 480
+--record-observation` (sold opservacija u store-u). Cena prodaje je cena
+iz oglasa, ne potvrđena; days_listed nepoznat jer oglas nije bio praćen.
+Ostala 2 willhaben oglasa (480, 450 €) nestala bez oznake prodaje.
+
+**Brojevi:** outcomes 97 → 100 (3 SOLD, 32 DELISTED, 65 UNSOLD); watchlist
+25 → 30 stavki; 7 watch + 3 SKIP predikcije otvoreno. 218 testova prolazi.
