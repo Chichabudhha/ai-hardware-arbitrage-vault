@@ -1,11 +1,25 @@
 ---
-updated: 2026-09-23
-status: sesija zatvorena (5 delova) — peti watch prolaz (2 DELISTED, 7 otvoreno); D-021 doneta i primenjena 2x (Igor/KP, Dan/NL); RTX 3090 prvi put ima radnu procenu (n=5) ali nema BUY na kleinanzeigen (obrnut cenovni jaz DE>RS); RTX 4080 Super n=4, i dalje ispod praga; sistematska provera dilera HU/HR/BG/NL/BE zatvorena; BUY kandidat (3508001901) i dalje čeka odluku vlasnika
+updated: 2026-10-09
+status: šesti watch prolaz (2026-10-09) — 4 DELISTED, 3 UNSOLD (sva 3 sa PORASLOM cene), 3 subjekta ostaju; prethodno: sesija zatvorena 09-23 (5 delova) — peti watch prolaz (2 DELISTED, 7 otvoreno); D-021 doneta i primenjena 2x (Igor/KP, Dan/NL); RTX 3090 prvi put ima radnu procenu (n=5) ali nema BUY na kleinanzeigen (obrnut cenovni jaz DE>RS); RTX 4080 Super n=4, i dalje ispod praga; sistematska provera dilera HU/HR/BG/NL/BE zatvorena; BUY kandidat (3508001901) i dalje čeka odluku vlasnika
 ---
 
 # PROGRESS — AI Hardware Arbitrage Serbia
 
 ## Gde smo stali
+
+**Šesti watch prolaz (2026-10-09, 16 dana od prošlog):** svih 7 otvorenih
+subjekata provereno. **4 DELISTED, 3 UNSOLD, 0 SOLD.** DELISTED: willhaben
+1421623773 i 856878159 (oba preusmerena na kategoriju sa banerom pri 2 slug
+prefiksa — isti standard dokaza kao 09-23), olx-pl 1aVLwi (eksplicitno "To
+ogłoszenie nie jest już dostępne"), hardverapro MSI Ventus (Jegelve →
+"Archivált", **2. potvrda** hipoteze Jegelve → arhiva, n=2). UNSOLD, ali
+**cena PORASLA** na sva 3 preostala: olx-pl 17ILRO 2200→2500 zł (osvežen
+09.09.), njuskalo 51071226 500→600 € i 49147086 490→600 € (diler eRadar,
+objavljeni 09.09.). Nije PRICE_CUT; zapisano u notes + `reference/naucene-lekcije.md`.
+`outcomes.jsonl`: **97 linija** (2 SOLD, 30 DELISTED, 65 UNSOLD). 218 testova
+prolazi (bez izmene koda). **3 watch subjekta ostaju otvorena** (+5
+kleinanzeigen predikcija, nisu dirnute — BUY 3508001901 i dalje čeka vlasnika,
+nije proveravano da li je oglas još živ).
 
 **Peti watch prolaz (2026-09-23, 13 dana od prošlog):** svih 9 otvorenih
 subjekata provereno (3 willhaben, 2 olx-pl, 2 njuskalo, 2 hardverapro).
@@ -420,8 +434,8 @@ Nakon fixa:
 profit 88 €, ROI 30%) — beleška u `dnevnik/deals/`. Kad se zna ishod
 (kupljeno/odbijeno/pretekao neko), upisati `outcome` za kalibraciju.
 
-Za nekoliko dana: `arbitrage watch` za preostalih 7 subjekata (2 willhaben, 2
-olx-pl, 2 njuskalo, 1 hardverapro). I dalje 0 SOLD na PL/HR/HU/DE — oba
+Za nekoliko dana: `arbitrage watch` za preostala 3 subjekta (1 olx-pl, 2
+njuskalo — sva tri sa povišenom cenom od 10-09). Dopuniti watchlist novim oglasima (ostalo samo 3). I dalje 0 SOLD na PL/HR/HU/DE — oba
 dosadašnja SOLD ishoda su na willhaben/AT.
 
 ✅ **Završeno 2026-09-23 za RTX 3090:** kleinanzeigen ocenjen sad kad postoji
@@ -458,6 +472,7 @@ Kod koji nedostaje, a ne zavisi od podataka: W5 liquidity, friction i
 deal/confidence score.
 
 ## Poslednje sesije
+- 2026-10-09 — Šesti watch prolaz, 7 subjekata: 4 DELISTED (2 willhaben, 1 olx-pl, 1 hardverapro Jegelve→arhiva), 3 UNSOLD sa porastom cene (olx-pl 2200→2500 zł, njuskalo 500/490→600 €). 97 ishoda. 218 testova prolazi.
 - 2026-09-23 (peti deo) — Sistematska provera preostalih HU/HR/BG/NL/BE
   opservacija (23 ukupno) na neotkrivene dilere. Nađen samo 1 problem:
   "Dan" (marktplaats.nl) potvrđen sa jačim dokazom (raznovrstan inventar,

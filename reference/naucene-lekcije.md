@@ -418,3 +418,17 @@ rešava), a ne samo o visokom obimu/reputaciji naloga uopšte. Visok obim sa
 raznovrsnim modelima je i dalje samo D-020 pitanje (jasan poslovni identitet
 — ime firme, sajt) ili ostaje otvoreno kao neformalni diler bez odluke. Mešanje
 ova dva kriterijuma bi nepotrebno izbacilo validne opservacije iz uzorka.
+
+## Watch: cena poraslа umesto da padne (2026-10-09)
+
+Šesti watch prolaz je prvi put video **rast** tražene cene na praćenim
+oglasima: olx-pl 2200 → 2500 zł (oglas osvežen 09.09.), oba njuskalo
+(diler eRadar, objavljeni 09.09.) 490/500 → 600 €. Ishod je UNSOLD, ne
+PRICE_CUT (PRICE_CUT znači snižena cena); rast je zapisan u `notes`.
+Hipoteza (n=3, nije pravilo): oglas koji nije prodat posle ~30 dana se
+osvežava/ponovo objavljuje sa višom cenom — to je dokaz protiv teze da su
+početne cene bile realne. Ne menja `asking` opservacije (princip 6).
+
+willhaben: preusmerenje na kategoriju sa banerom "nicht mehr verfügbar"
+pri 2 različita slug prefiksa tretirano kao DELISTED (isti standard dokaza
+kao 2026-09-23: živ oglas se sa slugom učitava u celosti).

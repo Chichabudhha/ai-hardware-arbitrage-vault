@@ -1701,3 +1701,29 @@ beleška u `dnevnik/deals/`. Kad se zna ishod, upisati `outcome`.
 dana), razmotriti proširenje mernog prolaza na ostale modele iz kataloga
 (D-011), i proveru preostalih HU/HR/BG/NL/BE opservacija na dalje
 neotkrivene dilere.
+
+## 2026-10-09 `[claude-code]` — Šesti watch prolaz
+
+Vlasnik: "kreni 6" (predlog: šesti watch prolaz, 16 dana od petog). Ručno
+kroz vlasnikov Chrome (D-012/D-014/D-017), 7 subjekata.
+
+**Rezultat: 4 DELISTED, 3 UNSOLD, 0 SOLD.**
+- willhaben 1421623773, 856878159 — slug prefiksi `x-` i `rtx-3080ti-`
+  oba preusmeravaju na kategoriju (`?fromExpiredAdId=`) sa banerom. Baner
+  sam nije dokaz (lekcija 09-23); dokaz je što se oglas ne učitava sa 2
+  slug prefiksa. DELISTED, bez tvrdnje o prodaji.
+- olx-pl 1aVLwi — "To ogłoszenie nie jest już dostępne". DELISTED.
+- hardverapro MSI Ventus (MvilágKft) — Jegelve → "Archivált hirdetés".
+  DELISTED; 2. potvrda hipoteze Jegelve → arhiva (n=2, i dalje ne pravilo).
+- olx-pl 17ILRO — živ, privatni prodavac, **2200 → 2500 zł**, osvežen 09.09.
+- njuskalo 51071226 (500→600 €) i 49147086 (490→600 €) — živi, diler eRadar,
+  objavljeni 09.09.2026.
+Sva tri UNSOLD imaju **povišenu** cenu (ne PRICE_CUT) — zapisano u notes i
+u `reference/naucene-lekcije.md`.
+
+**Brojevi:** `outcomes.jsonl` 90 → 97 linija (2 SOLD, 30 DELISTED, 65
+UNSOLD). 218 testova prolazi (bez izmene koda). 3 watch subjekta otvorena.
+
+**Nije rađeno:** provera kleinanzeigen BUY kandidata 3508001901 (vlasnik je
+tražio samo watch prolaz). **Sledeće:** dopuniti watchlist novim oglasima
+(ostala samo 3 subjekta); BUY odluka čeka vlasnika.
