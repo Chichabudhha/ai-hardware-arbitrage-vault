@@ -7,6 +7,8 @@ status: skeniranje svih oglasnika + novi BUY kandidat subito 662978611 (2026-10-
 
 ## Gde smo stali
 
+**2026-10-09, peti deo — sedmi watch prolaz.** 15 ishoda (3 DELISTED kleinanzeigen, 1 PRICE_CUT KP 4080 Super 1400 → 1200 €, 11 UNSOLD; svih 5 subito otvoreno, Isernia 425 € živ). olx-pl 1cGsq2 vraća generičku grešku bez poruke o uklanjanju — ostaje otvoren. 13 subjekata na watchlist-i, outcomes 115, 218 testova prolazi.
+
 **2026-10-09, četvrti deo — odluke vlasnika.** subito 3080 Ti 300 € → `manual_reference`; upisano 8 novih kleinanzeigen 3080 Ti oglasa (DE P25 338 → 435 €, n=14); dublja provera Isernia 3090 425 €: prodavac GDS bez ocena i verifikacije, bez računa, privatna dostava, nema Subito zaštite — BUY brojčano, rizik povišen. Detalji u DNEVNIK-NAPRETKA.md.
 
 **2026-10-09, treći deo — skeniranje svih 11 oglasnika, upis, dublja provera, drugi modeli.**

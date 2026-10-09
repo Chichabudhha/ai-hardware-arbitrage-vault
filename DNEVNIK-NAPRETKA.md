@@ -1803,3 +1803,19 @@ je sledeća najniža 3090 460 € (Bolzano), pa 425 € nije izuzetak unutar
 italijanskog tržišta. Verdikt ostaje BUY brojčano, ali rizik je veći nego što
 model pokazuje; preporuka pre uplate: video-poziv sa serijskim brojem, plaćanje
 samo preko posrednika. Odluka je vlasnikova (D-003).
+
+## 2026-10-09 `[claude-code]` (peti deo) — Sedmi watch prolaz
+
+Proverena 16 subjekta, upisano 15 ishoda (outcomes.jsonl 100 → 115).
+- **DELISTED ×3:** kleinanzeigen 3508436220, 3507530223, 3507903810 (naslov
+  "Gelöscht"; ne tvrdi prodaju). Sva tri su bila SKIP predikcije.
+- **PRICE_CUT ×1:** KP 195619003 (4080 Super), 1400 → 1200 €, upisana nova
+  asking opservacija (serbia.jsonl 160); 4080 Super i dalje n=4 (isti oglas).
+- **UNSOLD ×11:** olx-pl 17ILRO (2500 zł), njuskalo ×2 (600 €), KP 195348803
+  i 195548119 ("parkirao" — parkiran, tretiran kao otvoren), KP 195352331
+  (1100 → 1180 €, porast zabeležen u notes), subito ×5 (svih 5 otvoreno, iste
+  cene, uključujući Isernia 425 €).
+- **Ostavljeno otvoreno:** olx-pl 1cGsq2 (1050 zł) vraća generičku grešku "Ups!
+  Coś poszło nie tak" i nije u pretrazi, ali nema eksplicitne poruke o
+  uklanjanju → nije DELISTED dok se ne potvrdi.
+- Prvi prolaz bez SOLD ishoda; 13 subjekata ostaje na watchlist-i.
