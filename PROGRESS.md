@@ -440,11 +440,7 @@ Nakon fixa:
   koridoru (provizija platforme, naknada posrednika u drugom smeru).
   #čeka-provere: pravni i poreski položaj izvoza iz Srbije. #čeka-vlasnika:
   rizik prodaje na daljinu — risk model pokriva kupovinu, ne prodaju.
-- 🟡 Minimalna confidence za BUY (#čeka-vlasnika). Odgovor treba da dođe iz
-  kalibracionog izveštaja, ne iz pretpostavke. **Sad ima konkretan slučaj:**
-  prva BUY preporuka u projektu (kleinanzeigen 3508001901, 2026-09-10) nosi
-  confidence 0,53 (ASKING osnova, n=9) — nije poznato da li je to iznad ili
-  ispod praga koji bi vlasnik smatrao prihvatljivim, jer prag ne postoji.
+- ✅ **Rešeno 2026-10-09 (vlasnik, bez izmene pravila):** minimalna confidence za BUY — **bez praga**. Uzorak: BUY slučajevi imali su confidence 0,53 (kleinanzeigen) i 0,47 (subito Isernia). Vlasnik ručno procenjuje rizik. Risk model se takođe ne menja sada (signali 'bez računa' / 'privatna dostava van zaštite' ostaju neobuhvaćeni; Isernia je 'Low' uprkos obema). Pošto nema promene pravila, nema zapisa u `odluke/`; ponovo otvoriti ako BUY dobije loš ishod.
 - ✅ **Rešeno 2026-09-23 (D-021):** ponovljeni privatni nalog kao neformalni
   diler. Isto pitanje otvoreno 2026-08-24 za "Dan" (marktplaats.nl, 3 oglasa)
   se ponovilo 2026-09-23 na kupujemprodajem ("Igor", 4 istovremena RTX 3090
