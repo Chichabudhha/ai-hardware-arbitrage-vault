@@ -458,3 +458,15 @@ liveness proveri kandidata za praćenje čitati i naslov ("(verkauft)").
 - BUY po `predict` ne znači bezbedan: risk model nije video "bez računa" i
   "dostava privatno dogovorena" (Isernia 425 €) — uzeti u obzir pre bilo kakve
   uplate.
+
+## Subito "È stato venduto" nije dokaz prodaje; KP "obrisan" jeste specifičan (2026-11-02)
+
+- subito: stranica "Questo annuncio non esiste più — È stato venduto" prikazuje
+  se i za ID koji nikad nije postojao (`test-xyz-999999999999`). Tekst je
+  generički šablon za svaku nepostojeću stranicu → upisati **DELISTED**, nikad
+  SOLD. Isti tip zamke kao willhaben `?fromExpiredAdId=` baner.
+- KP: "Traženi oglas je obrisan!" se NE pojavljuje za nepostojeći ID (on daje
+  error stranicu), pa je poruka vezana za stvaran, uklonjen oglas → DELISTED
+  (ne tvrdi prodaju).
+- Pravilo: pre nego što poruka o uklanjanju/prodaji postane dokaz, probati
+  izmišljen ID na istom sajtu.

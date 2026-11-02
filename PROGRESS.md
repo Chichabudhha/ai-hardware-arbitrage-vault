@@ -1,11 +1,13 @@
 ---
-updated: 2026-10-09
-status: skeniranje svih oglasnika + novi BUY kandidat subito 662978611 (2026-10-09); šesti watch prolaz + dopuna (2026-10-09) — 4 DELISTED, 3 UNSOLD (porasla cena), 3. SOLD (willhaben 480 €), BUY kandidat 3508001901 DELISTED (oglas nestao), watchlist dopunjen KP oglasima (prvi srpski resale subjekti); prethodno: sesija zatvorena 09-23 (5 delova) — peti watch prolaz (2 DELISTED, 7 otvoreno); D-021 doneta i primenjena 2x (Igor/KP, Dan/NL); RTX 3090 prvi put ima radnu procenu (n=5) ali nema BUY na kleinanzeigen (obrnut cenovni jaz DE>RS); RTX 4080 Super n=4, i dalje ispod praga; sistematska provera dilera HU/HR/BG/NL/BE zatvorena; BUY kandidat (3508001901) i dalje čeka odluku vlasnika
+updated: 2026-11-02
+status: osmi watch prolaz (2026-11-02) — 4 DELISTED (subito Bolzano, 3 KP), 8 UNSOLD, 0 SOLD, Isernia BUY 425 € i dalje živ, 9 subjekata ostaje; prethodno: skeniranje svih oglasnika + novi BUY kandidat subito 662978611 (2026-10-09); šesti watch prolaz + dopuna (2026-10-09) — 4 DELISTED, 3 UNSOLD (porasla cena), 3. SOLD (willhaben 480 €), BUY kandidat 3508001901 DELISTED (oglas nestao), watchlist dopunjen KP oglasima (prvi srpski resale subjekti); prethodno: sesija zatvorena 09-23 (5 delova) — peti watch prolaz (2 DELISTED, 7 otvoreno); D-021 doneta i primenjena 2x (Igor/KP, Dan/NL); RTX 3090 prvi put ima radnu procenu (n=5) ali nema BUY na kleinanzeigen (obrnut cenovni jaz DE>RS); RTX 4080 Super n=4, i dalje ispod praga; sistematska provera dilera HU/HR/BG/NL/BE zatvorena; BUY kandidat (3508001901) i dalje čeka odluku vlasnika
 ---
 
 # PROGRESS — AI Hardware Arbitrage Serbia
 
 ## Gde smo stali
+
+**2026-11-02 — osmi watch prolaz (24 dana od prošlog).** 12 ishoda: 4 DELISTED (subito Bolzano FE 460 €; KP Aorus 3090 900 € i oba KP 4080 Super), 8 UNSOLD (Isernia 425 € BUY i dalje živ, vlasnik nije preduzeo ništa; subito Crotone/Udine 550 €, Asti 300 €; njuskalo ×2 600 €; olx-pl 17ILRO 2500 zł; KP Zotac 840 € i dalje parkiran). olx-pl 1cGsq2 drugi put zaredom vraća generičku grešku — ostaje otvoren bez upisa. Subito "È stato venduto" se pokazao kao generički šablon (prikazuje se i za izmišljen ID) → DELISTED, ne SOLD; lekcija upisana. 0 SOLD, ishoda sa cenom i dalje 3. outcomes 127, **9 subjekata na watchlist-i**, 218 testova prolazi.
 
 **2026-10-09, peti deo — sedmi watch prolaz.** 15 ishoda (3 DELISTED kleinanzeigen, 1 PRICE_CUT KP 4080 Super 1400 → 1200 €, 11 UNSOLD; svih 5 subito otvoreno, Isernia 425 € živ). olx-pl 1cGsq2 vraća generičku grešku bez poruke o uklanjanju — ostaje otvoren. 13 subjekata na watchlist-i, outcomes 115, 218 testova prolazi.
 
@@ -475,12 +477,14 @@ Nakon fixa:
   nije na njemu). Treba ili proširiti D-017 na Češku ili povući taj upis.
 
 ## Sledeći zadatak
-✅ BUY kandidat 3508001901 zatvoren 2026-10-09: oglas nestao (DELISTED). Ostaje
-opšte pitanje minimalne confidence za BUY (nema prvog BUY-a sa ishodom).
+**Dopuniti watchlist novim oglasima** (merni prolaz, 2026-11-02 ostalo 9
+subjekata, od toga 1 nepotvrđen i 1 parkiran). Gate traži 20 ishoda sa cenom,
+a ima ih 3; DELISTED ne donosi cenu, pa sam watch prolaz ne pomera gate —
+treba više subjekata, posebno na tržištima gde SOLD bude vidljiv (willhaben
+"verkauft"). KP više nema nijedan 4080 Super subjekat (n=4 ostaje).
 
-Za nekoliko dana: `arbitrage watch` za preostala 3 subjekta (1 olx-pl, 2
-njuskalo — sva tri sa povišenom cenom od 10-09). Dopuniti watchlist novim oglasima (ostalo samo 3). I dalje 0 SOLD na PL/HR/HU/DE — oba
-dosadašnja SOLD ishoda su na willhaben/AT.
+Otvoreno za vlasnika: Isernia 425 € (subito 662978611, BUY, rizik povišen)
+i dalje živ posle 31 dan.
 
 ✅ **Završeno 2026-09-23 za RTX 3090:** kleinanzeigen ocenjen sad kad postoji
 RS uzorak (n=5) — nema BUY kandidata (svi nemački oglasi 1.049–1.350 €,
@@ -516,6 +520,7 @@ Kod koji nedostaje, a ne zavisi od podataka: W5 liquidity, friction i
 deal/confidence score.
 
 ## Poslednje sesije
+- 2026-11-02 — Osmi watch prolaz, 13 subjekata: 4 DELISTED, 8 UNSOLD, 1 ostavljen otvoren (olx-pl 1cGsq2). Subito "È stato venduto" = generički šablon. 127 ishoda. 218 testova prolazi.
 - 2026-10-09 (dopuna) — Provera BUY kandidata: 3508001901 nestao (DELISTED). Treći SOLD (willhaben 1981110508, 480 €) otkriven pri liveness proveri. Watchlist +5 (4 KP prvi srpski resale subjekti, 2 od njih "parkirani"). 100 ishoda. 218 testova prolazi.
 - 2026-10-09 — Šesti watch prolaz, 7 subjekata: 4 DELISTED (2 willhaben, 1 olx-pl, 1 hardverapro Jegelve→arhiva), 3 UNSOLD sa porastom cene (olx-pl 2200→2500 zł, njuskalo 500/490→600 €). 97 ishoda. 218 testova prolazi.
 - 2026-09-23 (peti deo) — Sistematska provera preostalih HU/HR/BG/NL/BE

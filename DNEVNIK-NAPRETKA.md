@@ -1819,3 +1819,22 @@ Proverena 16 subjekta, upisano 15 ishoda (outcomes.jsonl 100 → 115).
   Coś poszło nie tak" i nije u pretrazi, ali nema eksplicitne poruke o
   uklanjanju → nije DELISTED dok se ne potvrdi.
 - Prvi prolaz bez SOLD ishoda; 13 subjekata ostaje na watchlist-i.
+
+## 2026-11-02 `[claude-code]` — Osmi watch prolaz
+
+24 dana od prošlog prolaza. Provereno svih 13 subjekata, upisano 12 ishoda
+(outcomes.jsonl 115 → 127).
+- **DELISTED ×4:** subito 662710376 (Bolzano FE 460 €, NEGOTIATE), KP
+  195548119 (Aorus 3090 900 €, ranije parkiran), KP 195352331 i 195619003
+  (oba 4080 Super, 1180 i 1200 €). KP: "Traženi oglas je obrisan!".
+- **Subito Bolzano NIJE SOLD:** poruka "È stato venduto" se pojavljuje i za
+  izmišljen ID → generički šablon. Zapisano u `reference/naucene-lekcije.md`.
+- **UNSOLD ×8:** Isernia 425 € (BUY, i dalje živ, isti opis — vlasnik nije
+  preduzeo ništa), subito Crotone 550 €, Udine 550 €, Asti 300 €; njuskalo ×2
+  (600 €, nisu osveženi od 09.09.); olx-pl 17ILRO 2500 zł (osvežen 19.10.); KP
+  195348803 Zotac 840 € (i dalje parkiran).
+- **Ostavljeno otvoreno bez upisa:** olx-pl 1cGsq2 — i dalje "Ups! Coś poszło
+  nie tak" (sa 2 sluga), bez eksplicitne poruke o uklanjanju; drugi uzastopni
+  prolaz.
+- 0 SOLD; ishoda sa cenom i dalje 3. **9 subjekata ostaje na watchlist-i.**
+  KP više nema nijedan aktivan 4080 Super subjekat. 218 testova prolazi.
