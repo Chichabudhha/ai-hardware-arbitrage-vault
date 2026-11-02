@@ -1871,3 +1871,11 @@ delovi, višekartični oglas. Posle ~36 brzih zahteva KP je dao CAPTCHA → stop
 **Upozorenje za matricu:** spread "KP 780 → willhaben 1.399 (+594 €)" je
 artefakt zastarelog KP uzorka (avg–sep); tekući KP nivo je ~950–1.200 €.
 Ne tretirati kao priliku dok se KP 3090 ne izmeri ponovo. 218 testova prolazi.
+
+## 2026-11-02 `[claude-code]` (treći deo) — D-022: isključen zastareli KP uzorak
+
+Vlasnik: "isključi". 19 KP redova sa `observed_at` < 2026-10-01 prebačeno iz
+`asking` u `manual_reference` (spisak ID-jeva u D-022). Opšte pravilo
+`max_age_days` = 90 nije menjano. KP n posle: 3080 Ti 2, 3090 0, 4080 Super 1
+→ `price` vraća INSUFFICIENT_DATA za sva tri. Spread KP→AT nestao iz matrice.
+218 testova prolazi (bez izmene koda).

@@ -348,3 +348,32 @@ kompletan gaming PC 2.000 €). `m2411760679` (najniži ID) ostaje `asking`,
 `m2417801157` i `m2415741253` prebačeni na `manual_reference`. marktplaats
 n=12→10, medijana 500→505 €; DE→NL najveća neto razlika i dalje prva, sada
 +142 € (49,4%), bilo +137 € (47,9%).
+
+## D-022 — Zastareli KP uzorak (pre 2026-10-01) isključen iz P25/medijana/P75
+
+**Odobreno od vlasnika 2026-11-02.**
+
+Nalaz: merni prolaz 2026-11-02 pokazao je da su tekuće KP cene RTX 3090
+~950–1.200 € (stari uzorak 780–840 €; isti Manli oglas 192218883 avgusta
+750 €, sada 1.050 €), dok willhaben 3090 stoji na 1.230–2.000 €. Postojeće
+pravilo starosti (`max_age_days` = 90) ove opservacije još nije isključilo,
+pa je srpska procena davala lažan spread (KP 780 → AT 1.399, +594 €).
+
+Odlučeno:
+
+- Sve KP (`kupujemprodajem`) opservacije sa `observed_at` pre 2026-10-01 i
+  `price_type` asking/sold/completed prebačene u `manual_reference` (isti
+  mehanizam isključenja kao D-020/D-021). Redovi ostaju u store-u (princip 6);
+  menja se samo `price_type`. Opšte pravilo `max_age_days` se NE menja.
+- Pogođeno 19 redova (svi su ranije bili `asking`):
+  - RTX 3090: 194251380 (780), 194294192 (800), 192218883 (750) — 08-19;
+    195348803 (840), 195548119 (900) — 09-23.
+  - RTX 3080 Ti (08-19): 194579871 (370), 182147880 (440), 182147319 (415),
+    192066253 (390), 192396719 (390), 193677541 (380), 194043382 (410),
+    193277429 (390), 193452547 (350), 183165180 (350).
+  - RTX 4080 Super: 192502799 (1150), 194236043 (950) — 08-19; 195352331
+    (1100), 195619003 (1400) — 09-23.
+- Posledica: srpska procena za 3080 Ti (n=2), 3090 (n=0) i 4080 Super (n=1)
+  je INSUFFICIENT_DATA dok se KP ponovo ne izmeri. Već upisane predikcije se
+  ne menjaju (istorijski zapis); nove predikcije za ove modele nisu moguće.
+- Vraćanje: postaviti `price_type` nazad na `asking` za gornjih 19 ID-jeva.

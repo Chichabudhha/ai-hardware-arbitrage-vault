@@ -7,6 +7,8 @@ status: merni prolaz willhaben (2026-11-02) — +32 opservacije, 3090 i 4080 Sup
 
 ## Gde smo stali
 
+**2026-11-02, treći deo — D-022.** Vlasnik odobrio: 19 KP opservacija pre 2026-10-01 → `manual_reference`. KP n: 3080 Ti 2, 3090 0, 4080 Super 1 → sva tri INSUFFICIENT_DATA. 218 testova prolazi.
+
 **2026-11-02, drugi deo — merni prolaz willhaben + delimično KP.** willhaben: 32 opservacije (3080 Ti 11, 3090 15, 4080 Super 6), D-021 primenjena 4×, 1 defektan izostavljen. Matrica: willhaben 3090 n=10 (P25 1.350 €), **4080 Super n=6 (P25 1.025 €) — prvi uzorak iznad praga**, 3080 Ti n=20. Watchlist 9 → **41 subjekat** (2 stara avgustovska slučajno dodata i odmah zatvorena kao DELISTED). **KP prekinut posle CAPTCHA** — ništa nije upisano; pretraga pokazuje 3090 na 950–1.200 € (stari uzorak 780–840 €) → **KP 3090 P25 780 € je zastareo**, spread KP→AT +594 € je artefakt. outcomes 129, 218 testova prolazi.
 
 **2026-11-02 — osmi watch prolaz (24 dana od prošlog).** 12 ishoda: 4 DELISTED (subito Bolzano FE 460 €; KP Aorus 3090 900 € i oba KP 4080 Super), 8 UNSOLD (Isernia 425 € BUY i dalje živ, vlasnik nije preduzeo ništa; subito Crotone/Udine 550 €, Asti 300 €; njuskalo ×2 600 €; olx-pl 17ILRO 2500 zł; KP Zotac 840 € i dalje parkiran). olx-pl 1cGsq2 drugi put zaredom vraća generičku grešku — ostaje otvoren bez upisa. Subito "È stato venduto" se pokazao kao generički šablon (prikazuje se i za izmišljen ID) → DELISTED, ne SOLD; lekcija upisana. 0 SOLD, ishoda sa cenom i dalje 3. outcomes 127, **9 subjekata na watchlist-i**, 218 testova prolazi.
@@ -484,8 +486,10 @@ oglas** (lekcija o CAPTCHA). Srpski resale uzorak za 3090 je zastareo (stare
 cene 780–840 €, tekuće 950–1.200 €), a on je osnova svake procene i predikcije
 za 3090. Kandidati već nađeni (vidi DNEVNIK 2026-11-02 drugi deo): 196838434,
 196382004, 196767724, 196676130, 192218883, 143766473 (opis nepročitan),
-195120180 (ok). Stare KP 3090 opservacije ostaju (princip 6); da li ih
-isključiti iz uzorka po starosti je pitanje pravila → #čeka-vlasnika.
+195120180 (ok). **D-022 (2026-11-02):** sve KP opservacije pre 2026-10-01 (19) prebačene u
+`manual_reference` → srpska procena za 3080 Ti/3090/4080 Super je
+INSUFFICIENT_DATA dok se KP ponovo ne izmeri. Ovo je sad blokirajući korak
+za svaku novu predikciju.
 
 Sledeći watch prolaz: 41 subjekat, prvo 2 willhaben "(reserviert)" 3080 Ti.
 
@@ -526,6 +530,7 @@ Kod koji nedostaje, a ne zavisi od podataka: W5 liquidity, friction i
 deal/confidence score.
 
 ## Poslednje sesije
+- 2026-11-02 (treći deo) — D-022: zastareli KP uzorak (pre 10-01, 19 redova) isključen; srpske procene INSUFFICIENT_DATA do novog KP merenja.
 - 2026-11-02 (drugi deo) — Merni prolaz willhaben: +32 opservacije, 4080 Super prvi put n≥5 (AT), watchlist 41. KP prekinut zbog CAPTCHA; tekuće KP 3090 cene ~950–1.200 € (stari uzorak zastareo).
 - 2026-11-02 — Osmi watch prolaz, 13 subjekata: 4 DELISTED, 8 UNSOLD, 1 ostavljen otvoren (olx-pl 1cGsq2). Subito "È stato venduto" = generički šablon. 127 ishoda. 218 testova prolazi.
 - 2026-10-09 (dopuna) — Provera BUY kandidata: 3508001901 nestao (DELISTED). Treći SOLD (willhaben 1981110508, 480 €) otkriven pri liveness proveri. Watchlist +5 (4 KP prvi srpski resale subjekti, 2 od njih "parkirani"). 100 ishoda. 218 testova prolazi.
