@@ -1838,3 +1838,36 @@ Proverena 16 subjekta, upisano 15 ishoda (outcomes.jsonl 100 → 115).
   prolaz.
 - 0 SOLD; ishoda sa cenom i dalje 3. **9 subjekata ostaje na watchlist-i.**
   KP više nema nijedan aktivan 4080 Super subjekat. 218 testova prolazi.
+
+## 2026-11-02 `[claude-code]` (drugi deo) — Merni prolaz: willhaben + delimično KP
+
+**willhaben (AT), 3080 Ti / 3090 / 4080 Super:** sve gole kartice iz pretrage,
+detalji pročitani sa svake stranice (svi ISPRIVATE, bez organizacije).
+Upisane 32 opservacije (`data/observations/wh-2026-11-02.csv`):
+3080 Ti 11 (499–850 €), 3090 15 (1.230–2.000 €), 4080 Super 6 (890–1.300 €).
+- Izostavljen: Inno3D 3080 Ti 500 € — prodavac piše "als defekt /
+  Bastlerobjekt".
+- **D-021 primenjena 4×** (po 2 istovremena oglasa istog modela, ista cena
+  ili ±10 €; u uzorak niži ID): Walter 3080 Ti (2140871628 → manual_reference),
+  A.B. 3090 (1798614210), "Game" 3090 (1958079578), "Dan" 3090 (2079209970).
+- 2 oglasa "(reserviert)" (3080 Ti 499/510 €) upisana kao asking — dobri
+  kandidati za SOLD.
+- Matrica: willhaben 3080 Ti n=12→20 (P25 480 €), **3090 n=10 (P25 1.350 €,
+  novo)**, **4080 Super n=6 (P25 1.025 €, prvi put iznad praga na bilo kom
+  tržištu)**.
+- Watchlist +32 novih + 2 stara avgustovska (slučajno preko `watch --add`) →
+  oba odmah zatvorena kao DELISTED (2 sluga, kontrolni oglas radi).
+
+**KP (RS) — prekinuto, ništa nije upisano.** 3090 pretraga (7 strana):
+standalone oglasi su sada **950–1.200 €** (Beograd, Novi Pazar, Subotica,
+Sm. Palanka), naspram 780–840 € u uzorku iz septembra. Manli 192218883 je
+avgusta bio 750 €, sada 1.050 €. Poznato: 192056500 970 € = It-Zona (diler,
+D-020); 196688502 1.200 € = ponovo "Igor" (D-021); 195120180 Aorus Xtreme
+1.000 € privatni, opis ok. Ostalih 6 bez pročitanog opisa → nije upisano.
+Isključeno: Skopje "NOVE 11 komada" (diler, MK), "Neispravna" 600 €, donor
+delovi, višekartični oglas. Posle ~36 brzih zahteva KP je dao CAPTCHA → stop
+(lekcija upisana). 3080 Ti i 4080 Super na KP nisu mereni.
+
+**Upozorenje za matricu:** spread "KP 780 → willhaben 1.399 (+594 €)" je
+artefakt zastarelog KP uzorka (avg–sep); tekući KP nivo je ~950–1.200 €.
+Ne tretirati kao priliku dok se KP 3090 ne izmeri ponovo. 218 testova prolazi.

@@ -470,3 +470,17 @@ liveness proveri kandidata za praćenje čitati i naslov ("(verkauft)").
   (ne tvrdi prodaju).
 - Pravilo: pre nego što poruka o uklanjanju/prodaji postane dokaz, probati
   izmišljen ID na istom sajtu.
+
+## KP CAPTCHA posle brzog niza zahteva (2026-11-02)
+
+Oko 21 stranica pretrage i ~15 stranica oglasa dohvaćenih iz istog taba za par
+minuta → KP vraća generičku stranicu "Oglas - KupujemProdajem", a zatim
+reCAPTCHA "Otvoren veliki broj stranica". CAPTCHA se ne rešava (princip 7).
+Na KP čitati sporo, oglas po oglas, bez paralelnog `fetch`-a. Generička
+stranica u takvom nizu znači ograničenje učestalosti, ne uklonjen oglas.
+
+## `watch --add <market>` uzima SVE opservacije tog tržišta (2026-11-02)
+
+Komanda dodaje i stare opservacije čiji oglasi nikad nisu bili praćeni (npr.
+avgustovski willhaben oglasi koji su već nestali). Posle `--add` proveriti
+koliko je dodato van tekućeg prolaza i odmah ih proveriti ili zatvoriti.
