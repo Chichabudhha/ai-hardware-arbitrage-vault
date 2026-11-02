@@ -1,0 +1,15 @@
+product_id,price_amount,currency,price_type,condition,observed_at,marketplace,source_listing_id,url,is_bundle
+rtx-3090,1080,EUR,asking,used,2026-11-02T14:00:00Z,kupujemprodajem,196838434,https://www.kupujemprodajem.com/kompjuteri-desktop/graficke-kartice/x/oglas/196838434,false
+rtx-3090,950,EUR,asking,used,2026-11-02T14:00:00Z,kupujemprodajem,196382004,https://www.kupujemprodajem.com/kompjuteri-desktop/graficke-kartice/x/oglas/196382004,false
+rtx-3090,1000,EUR,asking,used,2026-11-02T14:00:00Z,kupujemprodajem,196767724,https://www.kupujemprodajem.com/kompjuteri-desktop/graficke-kartice/x/oglas/196767724,false
+rtx-3090,1050,EUR,asking,used,2026-11-02T14:00:00Z,kupujemprodajem,192218883,https://www.kupujemprodajem.com/kompjuteri-desktop/graficke-kartice/x/oglas/192218883,false
+rtx-3090,1499,EUR,asking,used,2026-11-02T14:00:00Z,kupujemprodajem,143766473,https://www.kupujemprodajem.com/kompjuteri-desktop/graficke-kartice/x/oglas/143766473,false
+rtx-3090,1000,EUR,asking,used,2026-11-02T14:00:00Z,kupujemprodajem,195120180,https://www.kupujemprodajem.com/kompjuteri-desktop/graficke-kartice/x/oglas/195120180,false
+rtx-3090,1200,EUR,asking,used,2026-11-02T14:00:00Z,kupujemprodajem,196688502,https://www.kupujemprodajem.com/kompjuteri-desktop/graficke-kartice/x/oglas/196688502,false
+rtx-3090,1000,EUR,manual_reference,used,2026-11-02T14:00:00Z,kupujemprodajem,196676130,https://www.kupujemprodajem.com/kompjuteri-desktop/graficke-kartice/x/oglas/196676130,false
+rtx-3090,970,EUR,dealer_reference,used,2026-11-02T14:00:00Z,kupujemprodajem,192056500,https://www.kupujemprodajem.com/kompjuteri-desktop/graficke-kartice/x/oglas/192056500,false
+rtx-3080-ti,600,EUR,asking,used,2026-11-02T14:00:00Z,kupujemprodajem,196754519,https://www.kupujemprodajem.com/kompjuteri-desktop/graficke-kartice/x/oglas/196754519,false
+rtx-3080-ti,600,EUR,dealer_reference,used,2026-11-02T14:00:00Z,kupujemprodajem,196337097,https://www.kupujemprodajem.com/kompjuteri-desktop/graficke-kartice/x/oglas/196337097,false
+rtx-3080-ti,550,EUR,dealer_reference,used,2026-11-02T14:00:00Z,kupujemprodajem,196180026,https://www.kupujemprodajem.com/kompjuteri-desktop/graficke-kartice/x/oglas/196180026,false
+rtx-3080-ti,600,EUR,dealer_reference,used,2026-11-02T14:00:00Z,kupujemprodajem,196415377,https://www.kupujemprodajem.com/kompjuteri-desktop/graficke-kartice/x/oglas/196415377,false
+rtx-4080-super,1330,EUR,dealer_reference,new,2026-11-02T14:00:00Z,kupujemprodajem,179379190,https://www.kupujemprodajem.com/kompjuteri-desktop/graficke-kartice/x/oglas/179379190,false

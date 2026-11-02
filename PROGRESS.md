@@ -1,11 +1,13 @@
 ---
 updated: 2026-11-02
-status: merni prolaz willhaben (2026-11-02) — +32 opservacije, 3090 i 4080 Super prvi put sa AT uzorkom, watchlist 41; KP prekinut (CAPTCHA), tekuće KP 3090 cene 950–1.200 € → stari KP uzorak zastareo; osmi watch prolaz (2026-11-02) — 4 DELISTED (subito Bolzano, 3 KP), 8 UNSOLD, 0 SOLD, Isernia BUY 425 € i dalje živ, 9 subjekata ostaje; prethodno: skeniranje svih oglasnika + novi BUY kandidat subito 662978611 (2026-10-09); šesti watch prolaz + dopuna (2026-10-09) — 4 DELISTED, 3 UNSOLD (porasla cena), 3. SOLD (willhaben 480 €), BUY kandidat 3508001901 DELISTED (oglas nestao), watchlist dopunjen KP oglasima (prvi srpski resale subjekti); prethodno: sesija zatvorena 09-23 (5 delova) — peti watch prolaz (2 DELISTED, 7 otvoreno); D-021 doneta i primenjena 2x (Igor/KP, Dan/NL); RTX 3090 prvi put ima radnu procenu (n=5) ali nema BUY na kleinanzeigen (obrnut cenovni jaz DE>RS); RTX 4080 Super n=4, i dalje ispod praga; sistematska provera dilera HU/HR/BG/NL/BE zatvorena; BUY kandidat (3508001901) i dalje čeka odluku vlasnika
+status: KP ponovo izmeren posle D-022 (2026-11-02) — 3090 P25 1.000 € (n=6), 3080 Ti n=3 i 4080 Super n=1 ispod praga, watchlist 49; merni prolaz willhaben (2026-11-02) — +32 opservacije, 3090 i 4080 Super prvi put sa AT uzorkom, watchlist 41; KP prekinut (CAPTCHA), tekuće KP 3090 cene 950–1.200 € → stari KP uzorak zastareo; osmi watch prolaz (2026-11-02) — 4 DELISTED (subito Bolzano, 3 KP), 8 UNSOLD, 0 SOLD, Isernia BUY 425 € i dalje živ, 9 subjekata ostaje; prethodno: skeniranje svih oglasnika + novi BUY kandidat subito 662978611 (2026-10-09); šesti watch prolaz + dopuna (2026-10-09) — 4 DELISTED, 3 UNSOLD (porasla cena), 3. SOLD (willhaben 480 €), BUY kandidat 3508001901 DELISTED (oglas nestao), watchlist dopunjen KP oglasima (prvi srpski resale subjekti); prethodno: sesija zatvorena 09-23 (5 delova) — peti watch prolaz (2 DELISTED, 7 otvoreno); D-021 doneta i primenjena 2x (Igor/KP, Dan/NL); RTX 3090 prvi put ima radnu procenu (n=5) ali nema BUY na kleinanzeigen (obrnut cenovni jaz DE>RS); RTX 4080 Super n=4, i dalje ispod praga; sistematska provera dilera HU/HR/BG/NL/BE zatvorena; BUY kandidat (3508001901) i dalje čeka odluku vlasnika
 ---
 
 # PROGRESS — AI Hardware Arbitrage Serbia
 
 ## Gde smo stali
+
+**2026-11-02, četvrti deo — KP merni prolaz posle D-022.** Sporo, bez CAPTCHA-e. 14 opservacija. **RTX 3090: n=6, P25 1.000 €, med 1.025 €, conf 0,53** (zastareli uzorak davao 780 €). RTX 3080 Ti: samo 1 nov privatni (600 €) + 3 dilera → n=3. RTX 4080 Super: samo 1 nov diler → n=1. Watchlist 49. 218 testova prolazi.
 
 **2026-11-02, treći deo — D-022.** Vlasnik odobrio: 19 KP opservacija pre 2026-10-01 → `manual_reference`. KP n: 3080 Ti 2, 3090 0, 4080 Super 1 → sva tri INSUFFICIENT_DATA. 218 testova prolazi.
 
@@ -481,17 +483,13 @@ Nakon fixa:
   nije na njemu). Treba ili proširiti D-017 na Češku ili povući taj upis.
 
 ## Sledeći zadatak
-**Ponovo izmeriti KP (RTX 3090, pa 3080 Ti i 4080 Super) — sporo, oglas po
-oglas** (lekcija o CAPTCHA). Srpski resale uzorak za 3090 je zastareo (stare
-cene 780–840 €, tekuće 950–1.200 €), a on je osnova svake procene i predikcije
-za 3090. Kandidati već nađeni (vidi DNEVNIK 2026-11-02 drugi deo): 196838434,
-196382004, 196767724, 196676130, 192218883, 143766473 (opis nepročitan),
-195120180 (ok). **D-022 (2026-11-02):** sve KP opservacije pre 2026-10-01 (19) prebačene u
-`manual_reference` → srpska procena za 3080 Ti/3090/4080 Super je
-INSUFFICIENT_DATA dok se KP ponovo ne izmeri. Ovo je sad blokirajući korak
-za svaku novu predikciju.
+Srpska procena za RTX 3090 ponovo radi (P25 1.000 €). **Ponovo oceniti otvorene
+EU 3090 kandidate** (subito Isernia 425 €, Crotone 550 €, Udine 550 €) na novoj
+proceni — stare predikcije računate na P25 780 €. 3080 Ti i 4080 Super na KP
+ostaju ispod praga (privatnih oglasa skoro nema; većina su dileri).
 
-Sledeći watch prolaz: 41 subjekat, prvo 2 willhaben "(reserviert)" 3080 Ti.
+Sledeći watch prolaz: 49 subjekata, prvo 2 willhaben "(reserviert)" 3080 Ti i
+KP 196382004 ("Rezervisano", 950 €).
 
 Otvoreno za vlasnika: Isernia 425 € (subito 662978611, BUY, rizik povišen)
 i dalje živ posle 31 dan.
@@ -530,6 +528,7 @@ Kod koji nedostaje, a ne zavisi od podataka: W5 liquidity, friction i
 deal/confidence score.
 
 ## Poslednje sesije
+- 2026-11-02 (četvrti deo) — KP merni prolaz posle D-022: 3090 P25 1.000 € (n=6); 3080 Ti n=3, 4080 Super n=1. Watchlist 49.
 - 2026-11-02 (treći deo) — D-022: zastareli KP uzorak (pre 10-01, 19 redova) isključen; srpske procene INSUFFICIENT_DATA do novog KP merenja.
 - 2026-11-02 (drugi deo) — Merni prolaz willhaben: +32 opservacije, 4080 Super prvi put n≥5 (AT), watchlist 41. KP prekinut zbog CAPTCHA; tekuće KP 3090 cene ~950–1.200 € (stari uzorak zastareo).
 - 2026-11-02 — Osmi watch prolaz, 13 subjekata: 4 DELISTED, 8 UNSOLD, 1 ostavljen otvoren (olx-pl 1cGsq2). Subito "È stato venduto" = generički šablon. 127 ishoda. 218 testova prolazi.

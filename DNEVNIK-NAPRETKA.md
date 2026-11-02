@@ -1879,3 +1879,24 @@ Vlasnik: "isključi". 19 KP redova sa `observed_at` < 2026-10-01 prebačeno iz
 `max_age_days` = 90 nije menjano. KP n posle: 3080 Ti 2, 3090 0, 4080 Super 1
 → `price` vraća INSUFFICIENT_DATA za sva tri. Spread KP→AT nestao iz matrice.
 218 testova prolazi (bez izmene koda).
+
+## 2026-11-02 `[claude-code]` (četvrti deo) — KP merni prolaz posle D-022
+
+Sporo, oglas po oglas (~8 s pauze), bez CAPTCHA-e. Pretraga unutar kategorije
+grafičkih kartica (`categoryId=10&groupId=102`) daje čistije rezultate od opšte.
+Upisano 14 opservacija (`data/observations/kp-2026-11-02.csv`):
+- **RTX 3090 (9):** asking 950 (rezervisano, Zlatko/Vračar), 1.000 (Daniel/
+  Subotica), 1.000 (Omer/Novi Pazar, Aorus Xtreme), 1.050 (Adis/Novi Pazar,
+  Manli — isti oglas avgusta 750 €), 1.080 (Vladimir/Beograd, servisirana),
+  1.200 (Igor — jedini njegov aktivni oglas, po D-021 ulazi u uzorak jer su
+  stari isključeni D-022), 1.499 (Marko/Beograd, ispao kao IQR outlier).
+  `manual_reference`: Zotac 1.000 € (prodavac traži samo zamenu). `dealer_
+  reference`: It-Zona 970 €.
+- **RTX 3080 Ti (4):** asking samo 600 € (Venom/Ljubovija). Dileri (D-020):
+  "Racunari I Tehnika" 600 €, "Racunarska Oprema" 600 € ("više komada"),
+  Zotac 550 € ("na stanju još 4 kom", adresa preuzimanja). Oktobarski 195946836
+  obrisan, 196109845 parkiran (sada 450 €).
+- **RTX 4080 Super (1):** samo MAXSUN 1.330 € nov (diler). Nema privatnih.
+- **Rezultat:** KP 3090 n=6, **P25 1.000 €, med 1.025 €, conf 0,53** (bio 780 €
+  na zastarelom uzorku). 3080 Ti n=3, 4080 Super n=1 → INSUFFICIENT_DATA.
+- Watchlist +8 (privatni asking), ukupno 49 subjekata. 218 testova prolazi.
