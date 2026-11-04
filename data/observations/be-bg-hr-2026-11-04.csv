@@ -1,0 +1,5 @@
+product_id,price_amount,currency,price_type,condition,observed_at,marketplace,source_listing_id,url,is_bundle
+rtx-3080-ti,499,EUR,asking,used,2026-11-04T14:00:00Z,2dehands,m2461114084,https://www.2dehands.be/v/computers-en-software/videokaarten/m2461114084-msi-geforce-rtx-3080-ti-ventus-3x-12g-oc-12-gb-gddr6x,false
+rtx-3080-ti,550,EUR,asking,used,2026-11-04T14:00:00Z,olx-bg,a78iS,https://www.olx.bg/d/ad/grafik-kart-geforce-rtx-3080-ti-12gb-CID632-IDa78iS.html,false
+rtx-3080-ti,620,EUR,dealer_reference,used,2026-11-04T14:00:00Z,olx-bg,a7Hos,https://www.olx.bg/d/ad/grafichna-karta-rtx-geforce-3080-ti-12-gb-evga-5-m-garantsiya-CID632-IDa7Hos.html,false
+rtx-3080-ti,600,EUR,asking,used,2026-11-04T14:00:00Z,njuskalo,52134663,https://www.njuskalo.hr/graficke-kartice/palit-geforce-rtx-3080-ti-gamerock-graficka-kartica-12-gb-gddr6x-oglas-52134663,false

@@ -1951,3 +1951,21 @@ Spec je imao samo nazive skorova; bez odluke implementacija nije bila dozvoljena
 - Probno (bez upisa): Isernia BUY i Crotone NEGOTIATE oba deal 100, conf 0,53.
   Skala se zasićuje na ovim kandidatima — to je posledica odobrene skale, ne bug.
 
+## 2026-11-04 `[claude-code]` (četvrti deo) — Merni prolaz 3080 Ti: 2dehands, olx.bg, njuskalo
+
+Cilj: dovesti BE/BG/HR iznad praga od 5 (HU je već n=7).
+- **2dehands (BE):** 9 rezultata, 3 standalone 3080 Ti. Nov: m2461114084 MSI
+  Ventus 3X OC 499 € (Fred, Aarschot, "Particuliere verkoop", od 02.11.) →
+  asking. Gaming X Trio 899 € "Nieuw" preskočen (nov). ASUS TUF 650 € (Dylan,
+  Amay, 09.10.) nije stari m2445619196 (Eeklo), ali link na stranici pretrage
+  nema čitljiv ID → nije upisan. **n=5, P25 500 €, med 500 € — u matrici.**
+- **olx.bg (BG):** standalone samo a78iS Palit GameRock 550 € (Частна) →
+  asking, ali IQR outlier prema 450/450/465 → n ostaje 3; a7Hos EVGA 620 €
+  (Шумен) → `dealer_reference`: oglas "Частна", ali prodaje firmin računar iz
+  evroprojekta, test "u našoj kancelariji" — poslovni identitet (D-020).
+  EVGA 895 € = poznat diler. a6LVW (450 €, 10-09) više nije u pretrazi.
+- **njuskalo (HR):** 52134663 Palit GameRock 600 € (Osijek, "nije trgovac",
+  02.11.) → asking, n=4. Ostala 2 su poznati eRadar dileri.
+- Avgustovski uzorci ovih tržišta ističu (90 dana) oko 2026-11-22.
+- 227 testova prolazi (bez izmene koda).
+
