@@ -346,7 +346,7 @@ def test_calculation_version_records_policy(listing, evaluation, product_match):
     opportunity = build_opportunity(
         listing, evaluation, COSTS, Decimal("117200"), EUR_RSD, product_match=product_match
     )
-    assert opportunity.provenance.calculation_version == "calc-v2/policy-v3"
+    assert opportunity.provenance.calculation_version == "calc-v3/policy-v4"
 
 
 def test_inverted_rate_keeps_the_timestamp_and_names_its_source():

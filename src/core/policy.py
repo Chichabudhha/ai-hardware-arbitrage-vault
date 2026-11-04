@@ -11,10 +11,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 from decimal import Decimal
 
-# v3 adds the D-019 flat corridor shipping. v2 added the D-015 import cost defaults. The version travels with every
+# v4 adds the D-023 resale friction (UNKNOWN) and Deal Score scale. v3 adds the D-019 flat corridor shipping. v2 added the D-015 import cost defaults. The version travels with every
 # recorded prediction, so a later change to these numbers stays visible in
 # calibration instead of quietly reshaping past results.
-POLICY_VERSION = "policy-v3"
+POLICY_VERSION = "policy-v4"
 
 
 @dataclass(frozen=True)
@@ -42,6 +42,14 @@ class Policy:
     # Zero because the intermediary's fee already covers customs and VAT — an
     # approved fact, not an UNKNOWN silently treated as 0 (principle 2).
     import_buffer_eur: Decimal = Decimal("0")
+    # D-023: cost of reselling one card in Serbia (platform promotion, shipping
+    # to the buyer, ...). UNKNOWN until the owner measures it: None means the
+    # profit excludes it and says so, never that it is 0 (principle 2).
+    resale_friction_eur: Decimal | None = None
+    # D-023: Deal Score points awarded exactly at the D-009 BUY thresholds;
+    # twice the thresholds reaches the cap.
+    deal_score_at_threshold: Decimal = Decimal("50")
+    deal_score_max: Decimal = Decimal("100")
     version: str = POLICY_VERSION
 
     def __post_init__(self) -> None:
@@ -61,6 +69,10 @@ class Policy:
             raise ValueError("import cost defaults must not be negative")
         if self.corridor_shipping_eur < 0:
             raise ValueError("corridor_shipping_eur must not be negative")
+        if self.resale_friction_eur is not None and self.resale_friction_eur < 0:
+            raise ValueError("resale_friction_eur must not be negative")
+        if not (0 < self.deal_score_at_threshold <= self.deal_score_max):
+            raise ValueError("deal score scale must satisfy 0 < at_threshold <= max")
 
 
 # D-008: starting capital 1000 EUR, at most 500 EUR committed to one card.

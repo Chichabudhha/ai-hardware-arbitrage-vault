@@ -28,8 +28,9 @@ from src.core.models import (
 from src.core.money import FxRate, Money, round_money, round_units
 from src.core.policy import OWNER_POLICY, Policy
 from src.deal_engine.risk import risk_level, risk_reserve_rate
+from src.deal_engine.scores import confidence_score, deal_score
 
-CALC_VERSION = "calc-v2"
+CALC_VERSION = "calc-v3"  # v3: D-023 scores, resale friction
 
 
 @dataclass(frozen=True)
@@ -200,8 +201,14 @@ def build_opportunity(
         # eur_rsd is EUR/RSD, so RSD -> EUR is a division by its rate.
         assert eur_rsd is not None
         sale_eur = round_money(expected_sale_rsd / eur_rsd.rate)
-    profit = round_money(sale_eur - costs.landed_cost_eur)
+    # D-023: resale friction is subtracted only once the owner has approved a
+    # figure. Until then the profit excludes it and the gap is named.
+    friction = policy.resale_friction_eur
+    unpriced = [] if friction is not None else ["resale_friction"]
+    profit = round_money(sale_eur - costs.landed_cost_eur - (friction or Decimal("0")))
     roi = (profit / costs.landed_cost_eur) if costs.landed_cost_eur > 0 else Decimal("0")
+    roi = roi.quantize(Decimal("0.0001"))
+    pricing_conf = estimate.confidence if estimate else None
 
     return Opportunity(
         listing=listing,
@@ -212,13 +219,20 @@ def build_opportunity(
         # converted number that would look observed.
         expected_sale_rsd=round_units(expected_sale_rsd) if sale_currency == "RSD" else None,
         price_basis=estimate.price_basis if estimate else None,
-        pricing_confidence=estimate.confidence if estimate else None,
+        pricing_confidence=pricing_conf,
         pricing_sample_size=estimate.sample_size if estimate else None,
         expected_sale_eur=sale_eur,
         expected_profit_eur=profit,
-        roi=roi.quantize(Decimal("0.0001")),
+        roi=roi,
         risk_level=level,
         verdict=decide(roi, level, profit, costs.purchase_eur, policy),
+        deal_score=deal_score(profit, roi, policy),
+        confidence_score=confidence_score(
+            pricing_conf, product_match.confidence if product_match else None
+        ),
+        liquidity_sample_listings=estimate.sample_size if estimate else None,
+        resale_friction_eur=friction,
+        unpriced_costs=unpriced,
         provenance=provenance,
     )
 

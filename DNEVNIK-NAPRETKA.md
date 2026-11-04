@@ -1935,3 +1935,19 @@ willhaben otvaran sa `x-` slugom.
   "Rezervisano", aktivan, pre 20 dana. Jedan zahtev ka KP, bez CAPTCHA-e.
 - outcomes 129 → 132. 218 testova prolazi.
 
+## 2026-11-04 `[claude-code]` (treći deo) — W5: D-023 i skorovi
+
+Spec je imao samo nazive skorova; bez odluke implementacija nije bila dozvoljena
+(princip 9). Vlasnik izabrao preporuke za sva 4 pitanja → **D-023**.
+- `src/deal_engine/scores.py`: `deal_score()` (0–100, slabija od ROI/18% i
+  profit/50 € × 50, clamp), `confidence_score()` (min pricing/match).
+- `Policy`: `resale_friction_eur=None`, skala Deal Score-a; `policy-v4`.
+- `build_opportunity`: friction se oduzima od profita samo kad je odobren;
+  inače `unpriced_costs=["resale_friction"]`. Liquidity proksi = `sample_size`
+  RS procene, `liquidity_sell_through` uvek UNKNOWN. `calc-v3`.
+- `PaperPrediction` dobio nova polja sa podrazumevanim UNKNOWN — 15 starih
+  zapisa se učitava bez izmene.
+- Testovi: 218 → 227 (`tests/test_scores.py`), 1 test ažuriran za verziju.
+- Probno (bez upisa): Isernia BUY i Crotone NEGOTIATE oba deal 100, conf 0,53.
+  Skala se zasićuje na ovim kandidatima — to je posledica odobrene skale, ne bug.
+

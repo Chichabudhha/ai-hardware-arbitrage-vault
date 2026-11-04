@@ -377,3 +377,30 @@ Odlučeno:
   je INSUFFICIENT_DATA dok se KP ponovo ne izmeri. Već upisane predikcije se
   ne menjaju (istorijski zapis); nove predikcije za ove modele nisu moguće.
 - Vraćanje: postaviti `price_type` nazad na `asking` za gornjih 19 ID-jeva.
+
+## D-023 — W5: friction, liquidity, Confidence Score i Deal Score
+
+**Odobreno od vlasnika 2026-11-04.**
+
+`DEAL-ENGINE.md` je imao samo nazive tri skora, bez formula. Odlučeno:
+
+- **Friction (troškovi prodaje u Srbiji) = UNKNOWN dok se ne izmeri.**
+  `Policy.resale_friction_eur` je `None`. Profit se tada računa bez friction-a,
+  a predikcija nosi `unpriced_costs: ["resale_friction"]` — vidljivo, ne
+  prećutno 0 (princip 2). Ne blokira BUY. Kad vlasnik da iznos, oduzima se od
+  profita (ne ulazi u landed cost); to je nova odluka.
+- **Liquidity = proksi + UNKNOWN.** `liquidity_sample_listings` = broj
+  opservacija u srpskom uzorku (aktivni privatni oglasi posle D-020/D-021/D-022
+  isključenja). `liquidity_sell_through` ostaje UNKNOWN dok KP ne da SOLD/
+  DELISTED ishode. Ne utiče na verdikt.
+- **Confidence Score = minimum komponenti:** `min(pricing_confidence,
+  product_match.confidence)`. Obavezni troškovi su ionako kompletni, inače je
+  rezultat `INSUFFICIENT_DATA` i skor se ne računa. Bez težina.
+- **Deal Score (0–100) relativno prema D-009:**
+  `ratio = min(ROI / 18%, profit / 50 €)`, `score = clamp(50 × ratio, 0, 100)`,
+  zaokruženo na ceo broj. 50 = tačno na BUY pragu, 100 = dvostruko iznad oba
+  praga. Slabija od dve mere odlučuje. Skor ne menja verdikt.
+- Risk Score ostaje postojeći `risk_level` (Low/Medium/High).
+
+Posledica u kodu: `src/deal_engine/scores.py`, `policy-v4`, `calc-v3`. Stare
+predikcije se ne preračunavaju (princip 6).

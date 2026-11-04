@@ -74,6 +74,13 @@ class PaperPrediction(BaseModel):
     missing_inputs: list[str] = Field(default_factory=list)
     calculation_version: str | None = None
 
+    # D-023 (calc-v3). Absent on older records, which load as UNKNOWN.
+    deal_score: Decimal | None = None
+    confidence_score: Decimal | None = None
+    liquidity_sample_listings: int | None = None
+    resale_friction_eur: Decimal | None = None
+    unpriced_costs: list[str] = Field(default_factory=list)
+
     @property
     def is_scored(self) -> bool:
         """A candidate the engine could actually price."""
@@ -128,6 +135,11 @@ def prediction_from_opportunity(
         risk_level=opportunity.risk_level,
         verdict=opportunity.verdict,
         missing_inputs=list(opportunity.missing_inputs),
+        deal_score=opportunity.deal_score,
+        confidence_score=opportunity.confidence_score,
+        liquidity_sample_listings=opportunity.liquidity_sample_listings,
+        resale_friction_eur=opportunity.resale_friction_eur,
+        unpriced_costs=list(opportunity.unpriced_costs),
         calculation_version=(
             opportunity.provenance.calculation_version if opportunity.provenance else None
         ),

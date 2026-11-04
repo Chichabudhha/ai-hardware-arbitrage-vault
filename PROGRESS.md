@@ -1,11 +1,13 @@
 ---
 updated: 2026-11-04
-status: prioritetna watch provera (2026-11-04) — 4. SOLD u projektu (willhaben 3080 Ti 499 €), 2 rezervisana i dalje UNSOLD; subito 3090 ponovo ocenjen na P25 1.000 € (2026-11-04) — Isernia 425 € BUY (profit 513,75 €, ROI 106%), Crotone/Udine 550 € NEGOTIATE (ROI 62%, >500 € budžet); KP ponovo izmeren posle D-022 (2026-11-02) — 3090 P25 1.000 € (n=6), 3080 Ti n=3 i 4080 Super n=1 ispod praga, watchlist 49; merni prolaz willhaben (2026-11-02) — +32 opservacije, 3090 i 4080 Super prvi put sa AT uzorkom, watchlist 41; KP prekinut (CAPTCHA), tekuće KP 3090 cene 950–1.200 € → stari KP uzorak zastareo; osmi watch prolaz (2026-11-02) — 4 DELISTED (subito Bolzano, 3 KP), 8 UNSOLD, 0 SOLD, Isernia BUY 425 € i dalje živ, 9 subjekata ostaje; prethodno: skeniranje svih oglasnika + novi BUY kandidat subito 662978611 (2026-10-09); šesti watch prolaz + dopuna (2026-10-09) — 4 DELISTED, 3 UNSOLD (porasla cena), 3. SOLD (willhaben 480 €), BUY kandidat 3508001901 DELISTED (oglas nestao), watchlist dopunjen KP oglasima (prvi srpski resale subjekti); prethodno: sesija zatvorena 09-23 (5 delova) — peti watch prolaz (2 DELISTED, 7 otvoreno); D-021 doneta i primenjena 2x (Igor/KP, Dan/NL); RTX 3090 prvi put ima radnu procenu (n=5) ali nema BUY na kleinanzeigen (obrnut cenovni jaz DE>RS); RTX 4080 Super n=4, i dalje ispod praga; sistematska provera dilera HU/HR/BG/NL/BE zatvorena; BUY kandidat (3508001901) i dalje čeka odluku vlasnika
+status: W5 kod završen po D-023 (deal/confidence score, liquidity proksi, friction UNKNOWN), 227 testova; prioritetna watch provera (2026-11-04) — 4. SOLD u projektu (willhaben 3080 Ti 499 €), 2 rezervisana i dalje UNSOLD; subito 3090 ponovo ocenjen na P25 1.000 € (2026-11-04) — Isernia 425 € BUY (profit 513,75 €, ROI 106%), Crotone/Udine 550 € NEGOTIATE (ROI 62%, >500 € budžet); KP ponovo izmeren posle D-022 (2026-11-02) — 3090 P25 1.000 € (n=6), 3080 Ti n=3 i 4080 Super n=1 ispod praga, watchlist 49; merni prolaz willhaben (2026-11-02) — +32 opservacije, 3090 i 4080 Super prvi put sa AT uzorkom, watchlist 41; KP prekinut (CAPTCHA), tekuće KP 3090 cene 950–1.200 € → stari KP uzorak zastareo; osmi watch prolaz (2026-11-02) — 4 DELISTED (subito Bolzano, 3 KP), 8 UNSOLD, 0 SOLD, Isernia BUY 425 € i dalje živ, 9 subjekata ostaje; prethodno: skeniranje svih oglasnika + novi BUY kandidat subito 662978611 (2026-10-09); šesti watch prolaz + dopuna (2026-10-09) — 4 DELISTED, 3 UNSOLD (porasla cena), 3. SOLD (willhaben 480 €), BUY kandidat 3508001901 DELISTED (oglas nestao), watchlist dopunjen KP oglasima (prvi srpski resale subjekti); prethodno: sesija zatvorena 09-23 (5 delova) — peti watch prolaz (2 DELISTED, 7 otvoreno); D-021 doneta i primenjena 2x (Igor/KP, Dan/NL); RTX 3090 prvi put ima radnu procenu (n=5) ali nema BUY na kleinanzeigen (obrnut cenovni jaz DE>RS); RTX 4080 Super n=4, i dalje ispod praga; sistematska provera dilera HU/HR/BG/NL/BE zatvorena; BUY kandidat (3508001901) i dalje čeka odluku vlasnika
 ---
 
 # PROGRESS — AI Hardware Arbitrage Serbia
 
 ## Gde smo stali
+
+**2026-11-04, treći deo — W5 završen po D-023.** Vlasnik odobrio 4 pravila (sve preporuke): friction = UNKNOWN (polje postoji, profit ga ne oduzima, predikcija nosi `unpriced_costs: ["resale_friction"]`); liquidity = proksi (veličina RS uzorka) + sell-through UNKNOWN; Confidence Score = min(pricing, match); Deal Score = clamp(50 × min(ROI/18%, profit/50 €), 0, 100). Novi modul `src/deal_engine/scores.py`, `calc-v3/policy-v4`, stare predikcije se učitavaju bez skorova. Probni račun (bez upisa): Isernia i Crotone oba deal 100 (zasićeno — daleko iznad praga), conf 0,53. **Napomena:** BUY profiti su i dalje bez friction-a — vlasnik treba da izmeri trošak prodaje na KP. 227 testova prolazi.
 
 **2026-11-04, drugi deo — prioritetna watch provera (3 rezervisana oglasa).** **4. SOLD u projektu:** willhaben 1265532635 (MSI 3080 Ti) "(verkauft)" 499 € (= asking, nepotvrđena pregovarana cena), izmenjen 03.11. — upisan sa `--record-observation`. willhaben 997510474 (510 €) i KP 196382004 (3090, 950 €) i dalje rezervisani → UNSOLD. Sva 4 SOLD-a su willhaben (AT). outcomes 132. Ostali subjekti nisu provereni (dodati pre 1–2 dana). 218 testova prolazi.
 
@@ -524,8 +526,7 @@ Vredi i vratiti se na Belgiju (2dehands, n=2) i Bugarsku (olx.bg, n=2 posle
 D-020) sa još jednim mernim prolazom da pređu prag uzorka od 5 — trenutno
 oba ispod praga i ne ulaze u matricu.
 
-Kod koji nedostaje, a ne zavisi od podataka: W5 liquidity, friction i
-deal/confidence score.
+✅ **Završeno 2026-11-04:** W5 liquidity, friction i deal/confidence score (D-023). Otvoreno #čeka-vlasnika: iznos friction-a (trošak prodaje jedne kartice u Srbiji).
 
 ## Poslednje sesije
 - 2026-11-02 (četvrti deo) — KP merni prolaz posle D-022: 3090 P25 1.000 € (n=6); 3080 Ti n=3, 4080 Super n=1. Watchlist 49.

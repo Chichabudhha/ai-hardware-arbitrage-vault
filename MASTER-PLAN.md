@@ -74,9 +74,9 @@ je ASKING baza sa P25 anchor-om i confidence ≤ ~0.65.
 - [x] Profit.
 - [x] ROI.
 - [x] Risk.
-- [ ] Liquidity.
-- [ ] Friction.
-- [ ] Deal/Confidence/Risk scores. (risk gotov; deal/confidence score još ne)
+- [x] Liquidity. (D-023: proksi = veličina RS uzorka; sell-through UNKNOWN dok nema RS ishoda)
+- [x] Friction. (D-023: polje postoji, iznos UNKNOWN dok vlasnik ne izmeri)
+- [x] Deal/Confidence/Risk scores. (D-023, `src/deal_engine/scores.py`)
 - [x] BUY / NEGOTIATE / WATCH / SKIP. (pragovi D-008/D-009 u `src/core/policy.py`)
 **Gate:** finansijski rezultat je deterministički i testiran.
 

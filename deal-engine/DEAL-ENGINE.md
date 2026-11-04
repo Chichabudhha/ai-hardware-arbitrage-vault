@@ -34,14 +34,30 @@ Use Decimal.
 
 ## Three scores
 
+Formulas approved in D-023 (`src/deal_engine/scores.py`). Scores are advisory:
+none of them changes the verdict.
+
 ### Deal Score
-Measures economic attractiveness.
+Measures economic attractiveness, 0–100 relative to D-009:
+`clamp(50 × min(ROI / 18%, profit / 50 EUR), 0, 100)`, rounded to an integer.
+50 = exactly at the BUY thresholds, 100 = twice both. UNKNOWN when profit/ROI
+are unknown.
 
 ### Confidence Score
-Measures quality/completeness of product, market and cost data.
+`min(pricing_confidence, product_match.confidence)` — weakest link, no
+weights. Mandatory costs are complete by construction (else INSUFFICIENT_DATA).
 
 ### Risk Score
-Measures seller, condition, import, liquidity and data risks.
+Existing `risk_level` (Low/Medium/High) from `src/deal_engine/risk.py`.
+
+### Liquidity (D-023)
+Proxy `liquidity_sample_listings` = Serbian sample size after exclusions.
+`liquidity_sell_through` is UNKNOWN until Serbian SOLD/DELISTED outcomes exist.
+
+### Resale friction (D-023)
+`Policy.resale_friction_eur` is UNKNOWN (None): profit excludes it and the
+opportunity lists `unpriced_costs: ["resale_friction"]`. Once approved, it is
+subtracted from profit (not added to landed cost).
 
 ## Initial policy
 

@@ -327,6 +327,16 @@ class Opportunity(BaseModel):
     risk_level: RiskLevel = RiskLevel.HIGH
     verdict: Verdict = Verdict.INSUFFICIENT_DATA
     missing_inputs: list[str] = Field(default_factory=list)
+    # D-023. Scores are advisory and never change the verdict.
+    deal_score: Decimal | None = None
+    confidence_score: Decimal | None = None
+    liquidity_sample_listings: int | None = None
+    # Sell-through stays UNKNOWN until Serbian SOLD/DELISTED outcomes exist.
+    liquidity_sell_through: Decimal | None = None
+    resale_friction_eur: Decimal | None = None
+    # Costs that are known to exist but have no approved figure, so the
+    # profit above excludes them. Visible, not silently zero.
+    unpriced_costs: list[str] = Field(default_factory=list)
     provenance: Provenance | None = None
 
 
