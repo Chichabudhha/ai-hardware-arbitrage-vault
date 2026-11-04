@@ -1900,3 +1900,23 @@ Upisano 14 opservacija (`data/observations/kp-2026-11-02.csv`):
 - **Rezultat:** KP 3090 n=6, **P25 1.000 €, med 1.025 €, conf 0,53** (bio 780 €
   na zastarelom uzorku). 3080 Ti n=3, 4080 Super n=1 → INSUFFICIENT_DATA.
 - Watchlist +8 (privatni asking), ukupno 49 subjekata. 218 testova prolazi.
+
+## 2026-11-04 `[claude-code]` — Ponovna ocena subito RTX 3090 na novoj proceni
+
+Srpska procena posle KP mernog prolaza: P25 1.000 €, med 1.025 €, n=6, conf 0,53
+(bila 780 €, n=5, na uzorku isključenom D-022). `predict --evaluate` nad istim
+ručnim HTML fajlovima iz `data/listings/subito/` (oglasi UNSOLD 2026-11-02):
+
+| Oglas | Asking | Landed | Profit | ROI | Verdict (staro → novo) |
+|---|---|---|---|---|---|
+| 662978611 Isernia | 425 € | 486,25 € | 513,75 € | 105,66% | BUY → BUY |
+| 659748983 Crotone | 550 € | 617,50 € | 382,50 € | 61,94% | NEGOTIATE → NEGOTIATE |
+| 659419812 Udine | 550 € | 617,50 € | 382,50 € | 61,94% | NEGOTIATE → NEGOTIATE |
+
+- Verdikti nepromenjeni; profit/ROI porasli zbog više srpske procene.
+- Crotone/Udine ostaju NEGOTIATE zbog budžeta 500 € (D-008), ne zbog marže.
+- Isernia: rizik i dalje neobuhvaćen modelom (bez ocena, bez računa, privatna
+  dostava). Jaz 57,5% ispod RS P25 je sumnjivo velik — kandidat, ne dokaz.
+- Stare predikcije (2026-10-09) nisu menjane; `predictions.jsonl` 12 → 15.
+- 218 testova prolazi (bez izmene koda).
+
