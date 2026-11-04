@@ -1,11 +1,13 @@
 ---
 updated: 2026-11-04
-status: subito 3090 ponovo ocenjen na P25 1.000 € (2026-11-04) — Isernia 425 € BUY (profit 513,75 €, ROI 106%), Crotone/Udine 550 € NEGOTIATE (ROI 62%, >500 € budžet); KP ponovo izmeren posle D-022 (2026-11-02) — 3090 P25 1.000 € (n=6), 3080 Ti n=3 i 4080 Super n=1 ispod praga, watchlist 49; merni prolaz willhaben (2026-11-02) — +32 opservacije, 3090 i 4080 Super prvi put sa AT uzorkom, watchlist 41; KP prekinut (CAPTCHA), tekuće KP 3090 cene 950–1.200 € → stari KP uzorak zastareo; osmi watch prolaz (2026-11-02) — 4 DELISTED (subito Bolzano, 3 KP), 8 UNSOLD, 0 SOLD, Isernia BUY 425 € i dalje živ, 9 subjekata ostaje; prethodno: skeniranje svih oglasnika + novi BUY kandidat subito 662978611 (2026-10-09); šesti watch prolaz + dopuna (2026-10-09) — 4 DELISTED, 3 UNSOLD (porasla cena), 3. SOLD (willhaben 480 €), BUY kandidat 3508001901 DELISTED (oglas nestao), watchlist dopunjen KP oglasima (prvi srpski resale subjekti); prethodno: sesija zatvorena 09-23 (5 delova) — peti watch prolaz (2 DELISTED, 7 otvoreno); D-021 doneta i primenjena 2x (Igor/KP, Dan/NL); RTX 3090 prvi put ima radnu procenu (n=5) ali nema BUY na kleinanzeigen (obrnut cenovni jaz DE>RS); RTX 4080 Super n=4, i dalje ispod praga; sistematska provera dilera HU/HR/BG/NL/BE zatvorena; BUY kandidat (3508001901) i dalje čeka odluku vlasnika
+status: prioritetna watch provera (2026-11-04) — 4. SOLD u projektu (willhaben 3080 Ti 499 €), 2 rezervisana i dalje UNSOLD; subito 3090 ponovo ocenjen na P25 1.000 € (2026-11-04) — Isernia 425 € BUY (profit 513,75 €, ROI 106%), Crotone/Udine 550 € NEGOTIATE (ROI 62%, >500 € budžet); KP ponovo izmeren posle D-022 (2026-11-02) — 3090 P25 1.000 € (n=6), 3080 Ti n=3 i 4080 Super n=1 ispod praga, watchlist 49; merni prolaz willhaben (2026-11-02) — +32 opservacije, 3090 i 4080 Super prvi put sa AT uzorkom, watchlist 41; KP prekinut (CAPTCHA), tekuće KP 3090 cene 950–1.200 € → stari KP uzorak zastareo; osmi watch prolaz (2026-11-02) — 4 DELISTED (subito Bolzano, 3 KP), 8 UNSOLD, 0 SOLD, Isernia BUY 425 € i dalje živ, 9 subjekata ostaje; prethodno: skeniranje svih oglasnika + novi BUY kandidat subito 662978611 (2026-10-09); šesti watch prolaz + dopuna (2026-10-09) — 4 DELISTED, 3 UNSOLD (porasla cena), 3. SOLD (willhaben 480 €), BUY kandidat 3508001901 DELISTED (oglas nestao), watchlist dopunjen KP oglasima (prvi srpski resale subjekti); prethodno: sesija zatvorena 09-23 (5 delova) — peti watch prolaz (2 DELISTED, 7 otvoreno); D-021 doneta i primenjena 2x (Igor/KP, Dan/NL); RTX 3090 prvi put ima radnu procenu (n=5) ali nema BUY na kleinanzeigen (obrnut cenovni jaz DE>RS); RTX 4080 Super n=4, i dalje ispod praga; sistematska provera dilera HU/HR/BG/NL/BE zatvorena; BUY kandidat (3508001901) i dalje čeka odluku vlasnika
 ---
 
 # PROGRESS — AI Hardware Arbitrage Serbia
 
 ## Gde smo stali
+
+**2026-11-04, drugi deo — prioritetna watch provera (3 rezervisana oglasa).** **4. SOLD u projektu:** willhaben 1265532635 (MSI 3080 Ti) "(verkauft)" 499 € (= asking, nepotvrđena pregovarana cena), izmenjen 03.11. — upisan sa `--record-observation`. willhaben 997510474 (510 €) i KP 196382004 (3090, 950 €) i dalje rezervisani → UNSOLD. Sva 4 SOLD-a su willhaben (AT). outcomes 132. Ostali subjekti nisu provereni (dodati pre 1–2 dana). 218 testova prolazi.
 
 **2026-11-04 — ponovna ocena subito RTX 3090 na novoj srpskoj proceni (P25 1.000 €, n=6, conf 0,53).** 3 nove predikcije (`predict --evaluate`, stare ostaju u `predictions.jsonl`, ukupno 15): **Isernia 662978611 425 € = BUY** (landed 486,25 €, profit 513,75 €, ROI 105,66%, risk Low); Crotone 659748983 i Udine 659419812 550 € = NEGOTIATE (landed 617,50 €, profit 382,50 €, ROI 61,94%; iznad 500 € budžeta, D-008). **Upozorenje:** Isernia je 57,5% ispod srpskog P25 — prodavac bez ocena, bez računa, privatna dostava van Subito zaštite; risk model to ne hvata (odluka vlasnika 2026-10-09). Srpska strana je asking P25, ne sold. 218 testova prolazi.
 
@@ -487,8 +489,7 @@ Nakon fixa:
 ## Sledeći zadatak
 ✅ **Završeno 2026-11-04:** subito 3090 kandidati ponovo ocenjeni na P25 1.000 € (Isernia BUY, Crotone/Udine NEGOTIATE). Nove predikcije (`20261104T...`) treba pratiti u watch prolazu zajedno sa starim.
 
-Sledeći watch prolaz: 49 subjekata, prvo 2 willhaben "(reserviert)" 3080 Ti i
-KP 196382004 ("Rezervisano", 950 €).
+Sledeći pun watch prolaz: ~51 subjekat (uklj. nove subito predikcije 2026-11-04), ne pre ~1–2 nedelje od 2026-11-02 da bi ishodi imali vremena da sazru. Prioritet: willhaben 997510474 i KP 196382004 (oba rezervisana).
 
 Otvoreno za vlasnika: Isernia 425 € (subito 662978611, BUY, rizik povišen)
 i dalje živ posle 31 dan.

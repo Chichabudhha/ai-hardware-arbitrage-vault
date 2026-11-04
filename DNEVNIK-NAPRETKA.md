@@ -1920,3 +1920,18 @@ ručnim HTML fajlovima iz `data/listings/subito/` (oglasi UNSOLD 2026-11-02):
 - Stare predikcije (2026-10-09) nisu menjane; `predictions.jsonl` 12 → 15.
 - 218 testova prolazi (bez izmene koda).
 
+## 2026-11-04 `[claude-code]` (drugi deo) — Prioritetna watch provera
+
+Samo 3 rezervisana subjekta (ostali dodati 2026-11-02/03, prerano za pun prolaz).
+willhaben otvaran sa `x-` slugom.
+- **SOLD — willhaben 1265532635** (MSI RTX 3080 Ti, Marco/Wintersdorf, privatni):
+  "(verkauft)"/VERKAUFT, 499 € = asking; 2026-11-02 bio "(reserviert)",
+  "Zuletzt geändert 03.11.2026 11:00". `outcome SOLD --sale-eur 499
+  --record-observation`. days_listed nepoznat (datum objave nije prikazan).
+  **Četvrti SOLD u projektu, sva 4 na willhaben-u.**
+- **UNSOLD — willhaben 997510474** (3080 Ti 510 €): i dalje "(reserviert)",
+  izmenjen 18.10. — rezervacija traje >2 nedelje.
+- **UNSOLD — KP 196382004** (3090 950 €, Zlatko/Vračar): naslov i dalje
+  "Rezervisano", aktivan, pre 20 dana. Jedan zahtev ka KP, bez CAPTCHA-e.
+- outcomes 129 → 132. 218 testova prolazi.
+
