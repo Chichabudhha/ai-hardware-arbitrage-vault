@@ -484,3 +484,32 @@ stranica u takvom nizu znači ograničenje učestalosti, ne uklonjen oglas.
 Komanda dodaje i stare opservacije čiji oglasi nikad nisu bili praćeni (npr.
 avgustovski willhaben oglasi koji su već nestali). Posle `--add` proveriti
 koliko je dodato van tekućeg prolaza i odmah ih proveriti ili zatvoriti.
+
+## IQR filter na malom uzorku izbacuje legitiman privatni oglas (2026-11-04)
+
+olx-bg 3080 Ti: posle D-020 ostala su 3 privatna oglasa (450/450/465 €), nov
+privatni oglas 550 € je ispao kao `outlier_above_iqr_fence` — kod n=3–4 IQR je
+vrlo uzak, pa se svaki pomak tržišta vidi kao outlier i uzorak ne raste. Nije
+greška pravila, ali objašnjava zašto tržište "zapne" ispod praga. Pre zaključka
+"merni prolaz nije pomogao" pogledati `excluded` razloge (`estimate_resale` sa
+`resale_marketplaces={market}`), ne samo `n` u matrici.
+
+## 2dehands: neke kartice u pretrazi nemaju čitljiv link na oglas (2026-11-04)
+
+Na stranici pretrage pojedini rezultati (npr. ASUS TUF 650 €) nemaju `<a
+href="/v/...">` u DOM-u, a klik preko JS-a ne otvara oglas. Bez ID-ja oglas se
+ne upisuje (CLAUDE.md §5). Probati pretragu specifičnijim upitom ili ga
+preskočiti — ne upisivati bez ID-ja.
+
+## Deal Score se zasićuje na trenutnim 3090 kandidatima (2026-11-04)
+
+D-023 skala daje 100 za sve što je ≥2× iznad oba D-009 praga. Isernia (ROI
+106%) i Crotone (ROI 62%) oba imaju 100, pa skor ne razlikuje kandidate kad je
+srpska cena mnogo viša od EU nabavke. Za rangiranje u tom slučaju gledati profit
+i ROI direktno. Promena skale = nova odluka.
+
+## KP pretraga u kategoriji: ~10 zahteva sa pauzom ~8 s bez CAPTCHA-e (2026-11-04)
+
+Za razliku od 2026-11-02 (~36 brzih zahteva → CAPTCHA), 10 stranica pretrage sa
+pauzom prošlo je bez problema. Stranice pretrage daju ID, cenu, mesto i starost
+— dovoljno za pregled; tip prodavca zahteva otvaranje oglasa.

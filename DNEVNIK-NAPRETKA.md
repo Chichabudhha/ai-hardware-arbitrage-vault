@@ -1969,3 +1969,21 @@ Cilj: dovesti BE/BG/HR iznad praga od 5 (HU je već n=7).
 - Avgustovski uzorci ovih tržišta ističu (90 dana) oko 2026-11-22.
 - 227 testova prolazi (bez izmene koda).
 
+## 2026-11-04 `[claude-code]` (peti deo) — Pregled KP: grafičke za AI (bez upisa)
+
+Samo stranice pretrage u kategoriji grafičkih (`categoryId=10&groupId=102`),
+~10 zahteva sa pauzom ~8 s, bez CAPTCHA-e. Oglasi nisu otvarani → tip prodavca
+nije proveren; **ništa nije upisano**.
+- **RTX 3090:** ~25 oglasa; privatni 950–1.200 €, većina već u uzorku. Nova 2:
+  196889739 Gainward 950 € (Novi Pazar), 196853612 MSI Ventus 980 € (Kovin —
+  moguć diler, iz Kovina postoje višemodelski oglasi). Repack dileri (NS/BG,
+  cena skrivena), Skopje 11 kom, neispravna 600 €, donor 130 €. 3 "Kupujem
+  3090" oglasa (Zrenjanin, Odžaci, Novi Banovci).
+- **RTX 4090:** polovne 2.650/2.700 € (Voždovac — proveriti da li je "Igor",
+  D-021), TUF 1.965 € (Zemun); ROG Strix 800 € (K. Mitrovica) sumnjiv.
+- **RTX 5090:** samo nove, 4.248–9.405 €.
+- **4080 Super:** samo MAXSUN 1.330 € (diler). **4070 Ti Super: prvi put na KP**
+  — 196413504 Zotac 999 €, 196930284 Gigabyte 950 €.
+- 5060 Ti / 5070 Ti 16 GB: novi, dileri. A5000: 2.700 € (Kragujevac) i 3.992 €
+  (Subotica, nov). RTX 5000 Ada 5.431 € (diler). A4000/A6000: nema.
+- Zaključak: na KP nema ničeg u budžetu D-008; KP ostaje resale benchmark.
